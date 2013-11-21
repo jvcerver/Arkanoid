@@ -7,19 +7,32 @@
 package arkanoid;
 
 import FRAMEWORK.LOGICA.Game;
+import java.util.ArrayList;
 
 /**
  *
  * @author josevicente
  */
 public class Mundo extends Game{
+    
+    private Barra barra;
+    private ArrayList<Bola> bolas;
+    private ArrayList<Ladrillo> ladrillos;
+    private int mundo;
+
 
     /**
      *
      */
     @Override
     public void principal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.setName("Arkanoid");
+        bolas = new ArrayList<>();
+        bolas.add(new Bola(this, Recursos.bola));
+        
+        barra = new Barra(this);
+        barra.setVida(3);
+        this.actorManager.add(barra);
     }
     
 }

@@ -19,7 +19,7 @@ public class Barra extends Actor {
     private Mundo mundo;
 
     public Barra(Mundo mundo) {
-        super(mundo, Recursos.cesto);
+        super(mundo, Recursos.barra);
         x = mundo.SCREEN_WIDTH / 2;
         y = mundo.SCREEN_HEIGHT - this.getHeight();
         this.mundo = mundo;
@@ -29,7 +29,7 @@ public class Barra extends Actor {
     public void recibirGolpe(Actor actor) {
         //do nothing
     }
-
+/*
     @Override
     public void actualizar(float deltaTime) {
         int tecla;
@@ -56,7 +56,7 @@ public class Barra extends Actor {
         
         //this.golpear();
     }
-
+*/
     public void moverIzqda() {
         this.x -= 30;
     }
@@ -64,10 +64,10 @@ public class Barra extends Actor {
     public void moverDcha() {
         this.x += 30;
     }
-    public void disparar(){
-        Disparo disparo = new Disparo (mundo);
-        mundo.actorManager.add(disparo);
-        disparo.setPosicion(this.getX()+this.getWidth()/2, this.getY()+this.getHeight()/2);
+
+    @Override
+    public void actualizar(long deltaTime) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

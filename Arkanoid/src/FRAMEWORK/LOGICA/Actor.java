@@ -1,8 +1,7 @@
 /**
  *
- * @author Rafael Pérez
- * DESARROLLO DE APLICACIONES MULTIPLATAFORMAS
- * COLEGIO STMA TRINIDAD DE SALAMANCA
+ * @author Rafael Pérez DESARROLLO DE APLICACIONES MULTIPLATAFORMAS COLEGIO STMA
+ * TRINIDAD DE SALAMANCA
  */
 package FRAMEWORK.LOGICA;
 
@@ -15,97 +14,54 @@ import java.util.ArrayList;
  *
  * @author josevicente
  */
-public abstract class Actor{ 
+public abstract class Actor {
 
-    /**
-     *
-     */
-    protected static long AMILISEGUNDOS=1000000L;
-
-    /**
-     *
-     */
-    protected long tickTime=0;
-
-    /**
-     *
-     */
-    protected long TICK=10*AMILISEGUNDOS;
-
-    /**
-     *
-     */
-    protected int x,
-
-    /**
-     *
-     */
-    y,
-
-    /**
-     *
-     */
-    dx,
-
-    /**
-     *
-     */
-    dy;
+    protected static long AMILISEGUNDOS = 1000000L;
+    protected long tickTime = 0;
+    protected long TICK = 10 * AMILISEGUNDOS;
+    protected int 
+            x,
+            y,
+            dx, //valor de desplazamiento horizontal
+            dy; //valor de desplazamiento vertical
     private Sprite sprite;
-    
-    /**
-     *
-     */
-    protected boolean activo=true;
-
-    /**
-     *
-     */
-    protected boolean visible=true;
-
-    /**
-     *
-     */
+    protected boolean activo = true;
+    protected boolean visible = true;
     protected int vida;
-
-    /**
-     *
-     */
     protected int puntos;
-   
     private Game game;
-  
+
     /**
      *
      * @param game
      */
-    public Actor(Game game){//Para cadenas de texto
-        this.game=game;
+    public Actor(Game game) {//Para cadenas de texto
+        this.game = game;
     }
-    
+
     /**
      *
      * @param game
      * @param bitMap
      */
-    public Actor(Game game, BitMap bitMap){
-        this.game=game;
-        sprite=new Sprite(bitMap);
+    public Actor(Game game, BitMap bitMap) {
+        this.game = game;
+        sprite = new Sprite(bitMap);
     }
- 
+
     /**
      *
      * @param puntos
      */
-    public void setPuntos(int puntos){
-        this.puntos=puntos;
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
     }
 
     /**
      *
      * @return
      */
-    public int getPuntos(){
+    public int getPuntos() {
         return puntos;
     }
 
@@ -113,15 +69,15 @@ public abstract class Actor{
      *
      * @param vida
      */
-    public void setVida(int vida){
-        this.vida=vida;
+    public void setVida(int vida) {
+        this.vida = vida;
     }
 
     /**
      *
      * @return
      */
-    public int getVida(){
+    public int getVida() {
         return vida;
     }
 
@@ -129,15 +85,15 @@ public abstract class Actor{
      *
      * @param activo
      */
-    public void setActivo(boolean activo){
-        this.activo=activo;
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     /**
      *
      * @return
      */
-    public boolean isActivo(){
+    public boolean isActivo() {
         return activo;
     }
 
@@ -145,73 +101,92 @@ public abstract class Actor{
      *
      * @param visible
      */
-    public void setVisible(boolean visible){
-        this.visible=visible;
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     /**
      *
      * @return
      */
-    public boolean isVisible(){
+    public boolean isVisible() {
         return visible;
     }
-    
+
     /**
      *
      * @param x
      * @param y
      */
-    public void setPosition(int x, int y) {this.x=x; this.y=y;}
+    public void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    /**
+     * 
+     * @param c
+     */
+    public void addX(int c) {
+        this.x += c;
+    }
 
     /**
      *
      * @param c
      */
-    public void addX(int c) { this.x += c;}
+    public void addY(int c) {
+        this.y += c;
+    }
 
     /**
-     *
-     * @param c
-     */
-    public void addY(int c) { this.y += c;}   
-
-    /**
-     *
+     * designa un nuevo valor de desplazamiento horizontal
      * @param valor
      */
-    public void setDx(int valor){dx=valor;}
+    public void setDx(int valor) {
+        dx = valor;
+    }
 
     /**
-     *
+     * designa un nuevo valor para desplazamiento vertical
      * @param valor
      */
-    public void setDy(int valor){dy=valor;} 
+    public void setDy(int valor) {
+        dy = valor;
+    }
 
     /**
      *
      * @return
      */
-    public int getDx(){return dx;}
+    public int getDx() {
+        return dx;
+    }
 
     /**
      *
      * @return
      */
-    public int getDy(){return dy;}
-    
-    /**
-     *
-     * @return
-     */
-    public int getX() {return x;}
+    public int getDy() {
+        return dy;
+    }
 
     /**
      *
      * @return
      */
-    public int getY() {return y;}
-            
+    public int getX() {
+        return x;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getY() {
+        return y;
+    }
+
     /**
      *
      * @param deltaTime
@@ -222,14 +197,16 @@ public abstract class Actor{
      *
      * @param g
      */
-    public  void dibujar(Graphics g){
-        if (sprite==null) return;//caso cadena de texto
-        if (visible){
+    public void dibujar(Graphics g) {
+        if (sprite == null) {
+            return;//caso cadena de texto
+        }
+        if (visible) {
             sprite.setPosition(x, y);
             sprite.dibujar(g);
-        }    
+        }
     }
-    
+
     /**
      *
      * @return
@@ -245,7 +222,7 @@ public abstract class Actor{
     public int getHeight() {
         return sprite.getHeight();
     }
-    
+
     /**
      *
      * @param actor
@@ -256,31 +233,33 @@ public abstract class Actor{
      *
      * @return
      */
-    public Actor golpear(){
+    public Actor golpear() {
         //actor-->el que choca; return-->con el que choca
-        Actor actorGolpeado=null,otroActor;
-        Actor actorQueGopea=this;
-        int n=game.actorManager.numeroActores();
-        ArrayList<Actor> lista=game.actorManager.getListaActores();
+        Actor actorGolpeado = null, otroActor;
+        Actor actorQueGopea = this;
+        int n = game.actorManager.numeroActores();
+        ArrayList<Actor> lista = game.actorManager.getListaActores();
         //0 es el escenario
-        for (int i=0;i<lista.size();i++){          
-            otroActor=lista.get(i);
-            if (actorQueGopea==otroActor) continue;
-            if (actorQueGopea.activo && otroActor.activo){
-                if (CollisionManager.colision(actorQueGopea,otroActor)) {
-                    actorGolpeado=otroActor;
+        for (int i = 0; i < lista.size(); i++) {
+            otroActor = lista.get(i);
+            if (actorQueGopea == otroActor) {
+                continue;
+            }
+            if (actorQueGopea.activo && otroActor.activo) {
+                if (CollisionManager.colision(actorQueGopea, otroActor)) {
+                    actorGolpeado = otroActor;
                     actorGolpeado.recibirGolpe(actorQueGopea);
                 }
             }
-        }//fin fori  
+        }//fin for 
         return actorGolpeado;//devuelve referencia con el que choca
-     }
+    }
 
     /**
      *
      * @return
      */
-    public Game getGame(){
+    public Game getGame() {
         return game;
     }
 }
