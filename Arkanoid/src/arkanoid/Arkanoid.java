@@ -17,7 +17,7 @@ public class Arkanoid {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        /*HOla jose*/
+        /*HOla Carmen*/
     }
     
 }
