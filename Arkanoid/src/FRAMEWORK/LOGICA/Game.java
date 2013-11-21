@@ -83,8 +83,10 @@ public abstract class Game extends JFrame implements Runnable {
     public Game(){
         GraphicsConfiguration gc = getGraphicsConfiguration();
         Rectangle screenRect = gc.getBounds();
-        SCREEN_WIDTH=screenRect.width;
-        SCREEN_HEIGHT=screenRect.height;
+        //SCREEN_WIDTH=screenRect.width;
+        //SCREEN_HEIGHT=screenRect.height;
+        SCREEN_WIDTH=800; //Pruebas con este tamaño hasta que Rafa arregle lo de pantalla completa
+        SCREEN_HEIGHT=600;
         escalaX=SCREEN_WIDTH/1024F;   
         escalaY=SCREEN_HEIGHT/768F;
         setUndecorated(true);
@@ -160,7 +162,7 @@ public abstract class Game extends JFrame implements Runnable {
             cont++;
             if (totalTiempo>1000000000L) {
                 inicio=System.nanoTime();
-                System.out.println("FPS: "+cont);cont=0;
+                //System.out.println("FPS: "+cont);cont=0;
             }
          /********************************************/  
         if (!pausa) actorManager.actualizar(deltaTime);
