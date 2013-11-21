@@ -6,13 +6,19 @@
 
 package arkanoid;
 
+import FRAMEWORK.GRAFICOS.BitMap;
 import FRAMEWORK.LOGICA.Actor;
+import FRAMEWORK.LOGICA.Game;
 
 /**
  *
  * @author josevicente
  */
 public class Ladrillo extends Actor {
+
+    public Ladrillo(Game game, BitMap bitMap) {
+        super(game, bitMap);
+    }
 
     @Override
     public void actualizar(long deltaTime) {
