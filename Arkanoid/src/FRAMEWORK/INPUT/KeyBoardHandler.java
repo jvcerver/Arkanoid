@@ -49,7 +49,7 @@ public class KeyBoardHandler  implements KeyListener{
      */
     @Override
     public synchronized void keyReleased(KeyEvent e) {
-
+        teclaPulsada=false; //añadido para añadir suavidad al movimiento de la barra.
     }
 
     /**
@@ -57,7 +57,7 @@ public class KeyBoardHandler  implements KeyListener{
      * @return
      */
     public synchronized int getTecla(){
-        teclaPulsada=false;
+        //teclaPulsada=false;
         return tecla;
     }
 

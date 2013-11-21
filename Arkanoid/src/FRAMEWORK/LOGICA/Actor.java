@@ -22,8 +22,16 @@ public abstract class Actor {
     protected int 
             x,
             y,
-            dx, //valor de desplazamiento horizontal
-            dy; //valor de desplazamiento vertical
+
+    /**
+     * valor de desplazamiento horizontal
+     */
+    dx,
+
+    /**
+     * valor de desplazamiento vertical
+     */
+    dy; 
     private Sprite sprite;
     protected boolean activo = true;
     protected boolean visible = true;
