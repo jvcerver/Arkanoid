@@ -33,6 +33,13 @@ public class Mundo extends Game{
         barra = new Barra(this);
         barra.setVida(3);
         this.actorManager.add(barra);
+        
+        while (!this.isFin()) {
+            this.actualizar(); //ciclo logico de juego
+            if (barra.getVida() == 0 /* || !ladrillos.isEmpty()*/) {
+                this.terminarJuego();
+            }
+        }
     }
     
 }
