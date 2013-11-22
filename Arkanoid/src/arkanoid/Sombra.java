@@ -26,23 +26,6 @@ public class Sombra extends Actor{
     @Override
     public void actualizar(long deltaTime) {
     }
-    
-    public void moverIzqda() {
-        if (this.x>0) { //si no rebasa el borde izquierdo
-            this.x -= this.dx;
-        } else {
-            this.x=0;
-        }
-    }
-
-    public void moverDcha() { //Esto hay que cambiarlo
-        if (this.x + this.getWidth() < this.getGame().SCREEN_WIDTH) {
-            this.x += this.dx;
-        } else {
-            this.x = this.getGame().SCREEN_WIDTH - this.getWidth();
-        }
-        
-    }
 
     @Override
     public void recibirGolpe(Actor actor) {
