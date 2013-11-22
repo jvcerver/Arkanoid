@@ -70,7 +70,37 @@ public class Bola extends Actor {
             //Comprobar si choca con algo y actuar en consecuencia
             Actor conQueChoco = this.golpear();
             if(conQueChoco instanceof Barra)
-                dy = -desplazamiento;          
+                dy = -desplazamiento; 
+            if(conQueChoco instanceof Ladrillo){
+                int pinf = conQueChoco.getY()+conQueChoco.getHeight(); //punto inferior del objeto que colisiona
+                int psup = conQueChoco.getY();//punto superior del objeto que colisiona
+                int pder = conQueChoco.getX()+conQueChoco.getWidth(); //punto derecho maximo del objeto que colisiona
+                int pizq = conQueChoco.getX(); //punto izquierdo maximo del objeto que colisiona
+                int xcentro = this.x - this.getWidth()/2; //coordenada x del centro de la bola
+                int ycentro = this.y - this.getHeight()/2; //coordenada y del centro de la bola
+                //colisiono por debajo
+                if (ycentro > pinf && (xcentro < pder && xcentro > pizq)) {
+                    dy = -desplazamiento;
+                }
+                //colisiono por arriba
+                if (ycentro < pinf && (xcentro < pder && xcentro > pizq)) {
+                    dy = -desplazamiento;
+                }
+                //colisiono desde la izquierda
+                if ((ycentro > psup && ycentro < pinf) && xcentro < pizq) {
+                    dx = -desplazamiento;
+                }
+                //colisiono desde la derecha
+                if ((ycentro > psup && ycentro < pinf) && xcentro > pder) {
+                    dx = -desplazamiento;
+                }
+                //colisiono desde una esquina
+                if (!(xcentro > pder && xcentro < pizq) && 
+                        !(ycentro > psup && ycentro < pinf)) {
+                    dx = -desplazamiento;
+                    dy = -desplazamiento;
+                }
+            }
             
         }
     }
