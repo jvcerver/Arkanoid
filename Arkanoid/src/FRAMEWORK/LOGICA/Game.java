@@ -10,7 +10,6 @@ import FRAMEWORK.GRAFICOS.Galeria;
 import FRAMEWORK.GRAFICOS.Surface;
 import FRAMEWORK.INPUT.KeyBoardHandler;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.Rectangle;
@@ -71,7 +70,7 @@ public abstract class Game extends JFrame implements Runnable {
      */
     public long TIMEFRAME=20000000L;//20ms-->50frames por segundo
         
-    private Graphics g;
+    private Graphics2D g;
     private BufferStrategy strategy;
     
     private boolean fin;
@@ -105,7 +104,7 @@ public abstract class Game extends JFrame implements Runnable {
         
         Galeria.crearGaleria(escalaX,escalaY);
         strategy=surface.crearBufferStrategy();
-        g=surface.getGraphics();
+        g=(Graphics2D)strategy.getDrawGraphics();
        
 
         requestFocus();                
@@ -167,10 +166,8 @@ public abstract class Game extends JFrame implements Runnable {
             }
          /********************************************/  
         if (!pausa) actorManager.actualizar(deltaTime);
-        g=strategy.getDrawGraphics();
-        stageManager.dibujar(g);//ciclo gráfico              
-       
-        strategy.show();     
+        stageManager.dibujar();//ciclo gráfico            
+        strategy.show();    
       
         afterTime=System.nanoTime();
         timeDiff=afterTime-beforeTime;  
@@ -189,7 +186,7 @@ public abstract class Game extends JFrame implements Runnable {
             overSleepTime=0L;
         }
         if (++noDelays>=16){
-            //Thread.yield(); //yield cede el control de la cpu
+            Thread.yield(); //yield cede el control de la cpu
             noDelays=0;
         }    
         beforeTime =System.nanoTime();        
@@ -204,7 +201,7 @@ public abstract class Game extends JFrame implements Runnable {
      *
      * @return
      */
-    public Graphics getGraficos(){
+    public Graphics2D getGraficos(){
         return this.g;
     }
     

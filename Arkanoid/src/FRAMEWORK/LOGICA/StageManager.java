@@ -8,7 +8,6 @@ package FRAMEWORK.LOGICA;
 
 import FRAMEWORK.GRAFICOS.Sprite;
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 /**
@@ -17,7 +16,7 @@ import java.awt.Graphics2D;
  */
 public class StageManager {
     private Game game;   
-    //private Graphics2D g;
+    private Graphics2D g;
     private Sprite spFondo;
 
     /**
@@ -26,13 +25,13 @@ public class StageManager {
      */
     public StageManager(Game game){
         this.game=game;
-       //this.g=game.getGraficos();           
+        this.g=game.getGraficos();           
     }
 
     /**
      *
      */
-    public void dibujar(Graphics g){
+    public void dibujar(){
         Actor item;
         game.actorManager.rewind();
         if (spFondo==null){
