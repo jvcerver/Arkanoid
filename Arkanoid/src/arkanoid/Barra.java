@@ -5,9 +5,7 @@
  */
 package arkanoid;
 
-import FRAMEWORK.GRAFICOS.BitMap;
 import FRAMEWORK.LOGICA.Actor;
-import FRAMEWORK.LOGICA.Game;
 import java.awt.event.KeyEvent;
 
 /**

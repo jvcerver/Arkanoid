@@ -13,23 +13,19 @@ public class Bola extends Actor {
 
     private Mundo mundo;
     private CollisionManager gestorColisiones;
-    private int tickTime = 0;
-    private final float TICK = 20.0f;
+
     public int desplazamiento = 11;
 
     public Bola(Mundo mundo, BitMap bitMap) {
         super(mundo, bitMap);
         this.mundo = mundo;
-        //this.gestorColisiones=mundo.collisionManager;
         reiniciar();
 
     }
 
     public void reiniciar() {
         x = (int) (Math.random() * mundo.SCREEN_WIDTH);
-        //y = (int) (Math.random() * mundo.SCREEN_HEIGHT);
         y = 0;
-        desplazamiento = (int) (Math.random() * 12) + 1;
         dx = desplazamiento;
         dy = desplazamiento;
     }
@@ -66,9 +62,8 @@ public class Bola extends Actor {
     @Override
     public void actualizar(long deltaTime) {
         tickTime += deltaTime;
-        System.err.println("tickTime "+tickTime+" / "+TICK);
         if (tickTime > TICK) {
-            tickTime -= TICK; //AQUI ES DONDE SE DETIENE LA BOLA
+            tickTime -= TICK; 
             this.mover();
             
             //Comprobar si choca con algo y actuar en consecuencia
