@@ -79,5 +79,22 @@ public class Sprite{
      * @return
      */
     public int getHeight() { return height;}
-   
+
+    public BitMap getBitMap() {
+        return bitMap;
+    }
+
+    public void setBitMap(BitMap bitMap) {
+        this.bitMap = bitMap;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+    
+    
 }

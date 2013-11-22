@@ -270,4 +270,14 @@ public abstract class Actor {
     public Game getGame() {
         return game;
     }
+
+    public Sprite getSprite() {
+        return sprite;
+    }
+
+    public void changeSprite(BitMap bitMap) {
+        sprite.setBitMap(bitMap);
+        sprite.setHeight(bitMap.getHeight());
+        sprite.setWidth(bitMap.getWidth());
+    }
 }

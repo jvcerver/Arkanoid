@@ -64,7 +64,6 @@ public class Mundo extends Game{
     }
     
     public void generarParedLadrillos (int numFilas, int numColumnas, int hgapLadrillo, int vgapLadrillo){
-        ArrayList<Ladrillo> ladrillos = new ArrayList<Ladrillo>();
         Ladrillo ladrillo;
         int tamannoLadrillos = (Recursos.ladrillo.getWidth()+hgapLadrillo)*numColumnas;
         int posxInicial = (this.SCREEN_WIDTH-tamannoLadrillos)/2;
@@ -72,7 +71,7 @@ public class Mundo extends Game{
         int posx, posy;
         for (int fila=0;fila<numFilas;fila++){     
             for (int columna=0;columna<numColumnas;columna++){
-                ladrillo=new Ladrillo(this);
+                ladrillo=new LadrilloResistente(this);
                 posx = posxInicial + columna*(ladrillo.getWidth() + hgapLadrillo);
                 posy = posyInicial + fila*(ladrillo.getHeight() + vgapLadrillo);
                 ladrillo.setPosition(posx,posy);
