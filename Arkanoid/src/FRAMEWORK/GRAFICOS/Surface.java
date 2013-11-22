@@ -8,6 +8,7 @@ package FRAMEWORK.GRAFICOS;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 
@@ -16,7 +17,7 @@ import java.awt.image.BufferStrategy;
  * @author josevicente
  */
 public class Surface extends Canvas {   
-    private Graphics2D grafico;
+    private Graphics grafico;
     public  BufferStrategy strategy;       
 
     /**
@@ -35,9 +36,15 @@ public class Surface extends Canvas {
      */
     public BufferStrategy crearBufferStrategy(){
         createBufferStrategy(2);
-        strategy=getBufferStrategy();
-        grafico=(Graphics2D)strategy.getDrawGraphics();
-        grafico.setColor(Color.yellow); 
+        do {
+           strategy = getBufferStrategy();
+        } while (strategy == null);     
+              
         return strategy;
+    }    
+    @Override
+    public Graphics getGraphics(){
+        grafico=strategy.getDrawGraphics();  
+        return grafico;
     }
 } 
