@@ -70,7 +70,7 @@ public class Bola extends Actor {
             //Comprobar si choca con algo y actuar en consecuencia
             Actor conQueChoco = this.golpear();
             if(conQueChoco instanceof Barra)
-                dy = -desplazamiento;
+                dy = -desplazamiento;          
             
         }
     }
