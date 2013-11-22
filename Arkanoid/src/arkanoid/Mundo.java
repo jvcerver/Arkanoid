@@ -21,7 +21,9 @@ public class Mundo extends Game{
     private int mundo;
     private Sombra sombra;
 
-
+    public Barra getBarra(){
+        return barra;
+    }
     /**
      *
      */

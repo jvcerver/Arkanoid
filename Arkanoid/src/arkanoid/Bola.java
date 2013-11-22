@@ -52,6 +52,7 @@ public class Bola extends Actor {
         }
         if (this.y + this.getHeight() > mundo.SCREEN_HEIGHT) {//borde inferior
             this.reiniciar();
+            mundo.getBarra().setVida(mundo.getBarra().getVida()-1);
         }
         if (this.y < 0) {//borde superior
             y = ya;
