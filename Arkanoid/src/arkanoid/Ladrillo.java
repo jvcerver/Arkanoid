@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package arkanoid;
 
-import FRAMEWORK.GRAFICOS.BitMap;
 import FRAMEWORK.LOGICA.Actor;
 import FRAMEWORK.LOGICA.Game;
 
@@ -15,19 +13,26 @@ import FRAMEWORK.LOGICA.Game;
  * @author josevicente
  */
 public class Ladrillo extends Actor {
+    private static int numLadrillos;
 
-    public Ladrillo(Game game, BitMap bitMap) {
-        super(game, bitMap);
+    public Ladrillo(Game game) {
+        super(game, Recursos.ladrillo);
+        numLadrillos++;
     }
 
     @Override
     public void actualizar(long deltaTime) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void recibirGolpe(Actor actor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.getGame().actorManager.del(this);
+        numLadrillos--;
     }
-    
+
+    public static int getNumLadrillos() {
+        return numLadrillos;
+    }
+
 }

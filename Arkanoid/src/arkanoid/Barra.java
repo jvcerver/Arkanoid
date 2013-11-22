@@ -25,10 +25,10 @@ public class Barra extends Actor {
             LENTO = 7,
             EXTRALENTO = 3;
 
-    public Barra(Mundo mundo, Sombra sombra) {
+    public Barra(Mundo mundo) {
         super(mundo, Recursos.barra);
-        this.sombra = sombra;
         this.mundo = mundo;
+        this.sombra = mundo.getSombra();
         x = mundo.SCREEN_WIDTH / 2;
         y = mundo.SCREEN_HEIGHT - this.getHeight()*2;      
         this.setDx(this.NORMAL);
