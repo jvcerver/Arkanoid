@@ -162,7 +162,7 @@ public abstract class Game extends JFrame implements Runnable {
             cont++;
             if (totalTiempo>1000000000L) {
                 inicio=System.nanoTime();
-                //System.out.println("FPS: "+cont);cont=0;
+                System.out.println("FPS: "+cont);cont=0;
             }
          /********************************************/  
         if (!pausa) actorManager.actualizar(deltaTime);

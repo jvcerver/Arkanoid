@@ -66,8 +66,9 @@ public class Bola extends Actor {
     @Override
     public void actualizar(long deltaTime) {
         tickTime += deltaTime;
+        System.err.println("tickTime "+tickTime+" / "+TICK);
         if (tickTime > TICK) {
-            tickTime -= TICK;
+            tickTime -= TICK; //AQUI ES DONDE SE DETIENE LA BOLA
             this.mover();
             
             //Comprobar si choca con algo y actuar en consecuencia

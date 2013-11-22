@@ -65,18 +65,19 @@ public class Barra extends Actor {
     public void actualizar(long deltaTime) {
         int tecla;
         tickTime += deltaTime;
-        while (tickTime > TICK) {
+        if (tickTime > TICK) {
             tickTime -= TICK;
+            //tickTime = 0;
             if (mundo.getKeyBoardHandler().isPulsada()) {
                 tecla = mundo.getKeyBoardHandler().getTecla();
                 if (tecla == KeyEvent.VK_LEFT) {
                        moverIzqda();
-                       sombra.moverIzqda();
+                       sombra.setPosition(this.getX(), this.getY());
                 } //fin if
                 
                 if (tecla == KeyEvent.VK_RIGHT) {
                         moverDcha();
-                        sombra.moverDcha();
+                        sombra.setPosition(this.getX(), this.getY());
                 } //fin if
                 if (tecla == KeyEvent.VK_ESCAPE) {
                     mundo.terminarJuego();
