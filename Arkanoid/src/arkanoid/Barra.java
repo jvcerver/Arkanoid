@@ -17,6 +17,7 @@ import java.awt.event.KeyEvent;
 public class Barra extends Actor {
 
     private Mundo mundo;
+    private Sombra sombra;
 //para futuras iteraciones en las que la velocidad pueda variar    
     private final int 
             MAXIMO = 30,
@@ -26,12 +27,16 @@ public class Barra extends Actor {
             LENTO = 7,
             EXTRALENTO = 3;
 
-    public Barra(Mundo mundo) {
+    public Barra(Mundo mundo, Sombra sombra) {
         super(mundo, Recursos.barra);
-        x = mundo.SCREEN_WIDTH / 2;
-        y = mundo.SCREEN_HEIGHT - this.getHeight();
+        this.sombra = sombra;
         this.mundo = mundo;
+        x = mundo.SCREEN_WIDTH / 2;
+        y = mundo.SCREEN_HEIGHT - this.getHeight()*2;      
         this.setDx(this.NORMAL);
+        
+        sombra.setPosition(x, y);
+        sombra.setDx(this.NORMAL);
     }
 
     @Override
@@ -66,10 +71,12 @@ public class Barra extends Actor {
                 tecla = mundo.getKeyBoardHandler().getTecla();
                 if (tecla == KeyEvent.VK_LEFT) {
                        moverIzqda();
+                       sombra.moverIzqda();
                 } //fin if
                 
                 if (tecla == KeyEvent.VK_RIGHT) {
                         moverDcha();
+                        sombra.moverDcha();
                 } //fin if
                 if (tecla == KeyEvent.VK_ESCAPE) {
                     mundo.terminarJuego();

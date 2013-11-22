@@ -35,7 +35,7 @@ public class StageManager {
         Actor item;
         game.actorManager.rewind();
         if (spFondo==null){
-            g.setColor(Color.black);
+            g.setColor(Color.WHITE); //Para poder probar lo de la sombra negra
             g.fillRect(0,0, game.SCREEN_WIDTH, game.SCREEN_HEIGHT);
         }
         else

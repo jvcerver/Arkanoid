@@ -19,6 +19,7 @@ public class Mundo extends Game{
     private ArrayList<Bola> bolas;
     private ArrayList<Ladrillo> ladrillos;
     private int mundo;
+    private Sombra sombra;
 
 
     /**
@@ -29,10 +30,13 @@ public class Mundo extends Game{
         this.setName("Arkanoid");
         bolas = new ArrayList<>();
         bolas.add(new Bola(this, Recursos.bola));
-        
-        barra = new Barra(this);
+         
+        sombra = new Sombra(this);
+        barra = new Barra(this, sombra);
         barra.setVida(3);
+        this.actorManager.add(sombra);
         this.actorManager.add(barra);
+        this.actorManager.add(bolas.get(0));
         
         while (!this.isFin()) {
             this.actualizar(); //ciclo logico de juego

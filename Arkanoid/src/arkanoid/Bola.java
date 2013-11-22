@@ -27,28 +27,16 @@ public class Bola extends Actor {
 
     public void reiniciar() {
         x = (int) (Math.random() * mundo.SCREEN_WIDTH);
-        y = (int) (Math.random() * mundo.SCREEN_HEIGHT);
+        //y = (int) (Math.random() * mundo.SCREEN_HEIGHT);
+        y = 0;
         desplazamiento = (int) (Math.random() * 12) + 1;
         dx = desplazamiento;
         dy = desplazamiento;
     }
-    /*
-     @Override
-     public void actualizar(float deltaTime) {
-     tickTime += deltaTime; 
-     if (tickTime > TICK) {            
-     tickTime -= TICK;
-     // this.mover(); 
-            
-     mover();            
-     }   
-     }
-     */
 
     //SE HEREDA GOLPEAR
     @Override
     public void recibirGolpe(Actor actor) {
-        System.out.println("ME HAN DADO");
         reiniciar();
     }
 
@@ -67,8 +55,7 @@ public class Bola extends Actor {
             dx = -desplazamiento;
         }
         if (this.y + this.getHeight() > mundo.SCREEN_HEIGHT) {//borde inferior
-            y = ya;
-            dy = -desplazamiento;
+            this.reiniciar();
         }
         if (this.y < 0) {//borde superior
             y = ya;
@@ -82,6 +69,12 @@ public class Bola extends Actor {
         if (tickTime > TICK) {
             tickTime -= TICK;
             this.mover();
+            
+            //Comprobar si choca con algo y actuar en consecuencia
+            Actor conQueChoco = this.golpear();
+            if(conQueChoco instanceof Barra)
+                dy = -desplazamiento;
+            
         }
     }
 }
