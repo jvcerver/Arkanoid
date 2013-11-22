@@ -7,7 +7,6 @@
 package arkanoid;
 
 import FRAMEWORK.LOGICA.Actor;
-import FRAMEWORK.LOGICA.Game;
 
 /**
  *
@@ -17,10 +16,6 @@ public class Sombra extends Actor{
     
     public Sombra(Mundo mundo) {
         super(mundo, Recursos.sombra);
-        /*x = mundo.SCREEN_WIDTH / 2;
-        y = mundo.SCREEN_HEIGHT - barra.getHeight()*2;
-        this.dx=barra.getDx(); 
-        this.mundo = mundo;*/
     }
 
     @Override

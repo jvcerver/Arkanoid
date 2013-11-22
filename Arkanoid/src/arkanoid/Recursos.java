@@ -16,4 +16,5 @@ public class Recursos {
     public static BitMap barra = new BitMap("bar.png");
     public static BitMap bola = new BitMap("bola.png"); 
     public static BitMap sombra = new BitMap("sombra.png");
+    public static BitMap ladrillo = new BitMap("ladrillo.png");
 }
