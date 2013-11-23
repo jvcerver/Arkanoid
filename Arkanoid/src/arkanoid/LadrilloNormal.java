@@ -17,7 +17,7 @@ import FRAMEWORK.LOGICA.Game;
 public class LadrilloNormal extends Ladrillo{
 
     public LadrilloNormal(Game game) {
-        super(game, Recursos.ladrillo);
+        super(game, Recursos.ladrilloAmarillo);
     }
 
     @Override

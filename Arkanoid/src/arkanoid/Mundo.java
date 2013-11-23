@@ -55,7 +55,7 @@ public class Mundo extends Game{
         this.actorManager.add(bolas.get(0));
         
         //Ladrillos
-        generarParedLadrillos(3, 15, 10, 20);
+        generarParedLadrillos(3, 10, 10, 20);
         
     }
     
@@ -65,7 +65,7 @@ public class Mundo extends Game{
     
     public void generarParedLadrillos (int numFilas, int numColumnas, int hgapLadrillo, int vgapLadrillo){
         Ladrillo ladrillo;
-        int tamannoLadrillos = (Recursos.ladrillo.getWidth()+hgapLadrillo)*numColumnas;
+        int tamannoLadrillos = (Recursos.ladrilloAmarillo.getWidth()+hgapLadrillo)*numColumnas;
         int posxInicial = (this.SCREEN_WIDTH-tamannoLadrillos)/2;
         int posyInicial = this.SCREEN_HEIGHT/4;
         int posx, posy;

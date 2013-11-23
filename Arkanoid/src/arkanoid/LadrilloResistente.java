@@ -16,7 +16,7 @@ import FRAMEWORK.LOGICA.Game;
 public class LadrilloResistente extends Ladrillo{
 
     public LadrilloResistente(Game game) {
-        super(game, Recursos.ladrillo);
+        super(game, Recursos.ladrilloAmarillo);
         vida=3;
     }
 
@@ -27,15 +27,13 @@ public class LadrilloResistente extends Ladrillo{
 
     @Override
     public void recibirGolpe(Actor actor) {
-        //this.getGame().actorManager.del(this);
-        //numLadrillos--;
         vida--;
         switch(vida){
             case 2:
-                this.changeSprite(Recursos.barra);
+                this.changeSprite(Recursos.ladrilloAmarilloRoto);
                 break;
             case 1:
-                this.changeSprite(Recursos.sombra);
+                this.changeSprite(Recursos.ladrilloAmarilloSuperRoto);
                 break;
             case 0:
                 this.getGame().actorManager.del(this);
