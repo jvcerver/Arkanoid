@@ -22,6 +22,7 @@ public class Mundo extends Game{
         
     private Barra barra;
     private ArrayList<Bola> bolas;
+    private ArrayList<Vida> vidas;
     //private ArrayList<Ladrillo> ladrillos;
     private int mundo;
     private Sombra sombra;
@@ -59,13 +60,12 @@ public class Mundo extends Game{
                textoInformativo.setTexto("");
             }
        
-            tituloPuntosVidas.setTexto("Vidas " + (barra.getVida()-1) + " | Puntos " + barra.getPuntos());
+            tituloPuntosVidas.setTexto("Puntos " + barra.getPuntos());
             this.actualizar(); //ciclo logico de juego
             
             if (barra.getVida() == 0 || Ladrillo.getNumLadrillos()==0) {
                 textoInformativo.setTexto("GAME OVER");
                 textoInformativo.setPosition((this.SCREEN_WIDTH-textoInformativo.getAncho())/2, textoInformativo.getY());
-                tituloPuntosVidas.setTexto("Puntos " + barra.getPuntos());
                 this.actualizar(); //ciclo logico de juego
                 try {
                     Thread.sleep(3000); //¿Dar la opción de volver a empezar?
@@ -82,7 +82,7 @@ public class Mundo extends Game{
         //Barra y sombra
         sombra = new Sombra(this);
         barra = new Barra(this);
-        barra.setVida(3);
+        barra.setVida(Barra.VIDAS_INICIALES);
                 
         //Bola(s)
         bolas = new ArrayList<>();
@@ -92,7 +92,7 @@ public class Mundo extends Game{
         generarParedLadrillos(3, 10, 10, 20);
         
         //Titulo vidas y puntos
-        tituloPuntosVidas = new ActorTexto(this,"Vidas " + (barra.getVida()-1) + " | Puntos " + barra.getPuntos());
+        tituloPuntosVidas = new ActorTexto(this,"Puntos " + barra.getPuntos());
         tituloPuntosVidas.setPosition(20, this.SCREEN_HEIGHT - barra.getHeight());
         tituloPuntosVidas.setTamanio(20);
         tituloPuntosVidas.setColor(Color.BLUE); 

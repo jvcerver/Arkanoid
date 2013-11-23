@@ -14,6 +14,7 @@ import FRAMEWORK.GRAFICOS.BitMap;
  */
 public class Recursos {
     public static BitMap barra = new BitMap("bar.png");
+    public static BitMap vida = new BitMap("barLife.png");
     public static BitMap bola = new BitMap("bola.png"); 
     public static BitMap sombra = new BitMap("sombra.png");
     public static BitMap ladrilloAmarillo = new BitMap("ladrilloAmarillo.png");

@@ -7,6 +7,7 @@ package arkanoid;
 
 import FRAMEWORK.LOGICA.Actor;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,11 +17,19 @@ public class Barra extends Actor {
 
     private Mundo mundo;
     private Sombra sombra;
+    public static final int VIDAS_INICIALES = 3;
+    public ArrayList<Vida> vidas;    
 
     public Barra(Mundo mundo) {
         super(mundo, Recursos.barra);
         this.mundo = mundo;
         this.sombra = mundo.getSombra();
+        vidas = new ArrayList<Vida>();
+        for(int i=0; i<VIDAS_INICIALES-1; i++){
+            vidas.add(new Vida(mundo));
+            vidas.get(i).setPosition(mundo.SCREEN_WIDTH-(Recursos.vida.getWidth()+10)*(i+1), mundo.SCREEN_HEIGHT-Recursos.vida.getHeight()*2);
+            mundo.actorManager.add(vidas.get(i));
+        }
         reiniciar();
     }
     

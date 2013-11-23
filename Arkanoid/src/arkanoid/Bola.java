@@ -23,7 +23,7 @@ public class Bola extends Actor {
 
     }
 
-    public void reiniciar() {
+    public void reiniciar() { 
         x = mundo.getBarra().getX()+(mundo.getBarra().getWidth()/2)-(this.getWidth()/2);
         y = mundo.getBarra().getY()-this.getHeight();
         dx = desplazamiento;
@@ -56,6 +56,11 @@ public class Bola extends Actor {
             this.reiniciar();
             mundo.getBarra().setVida(mundo.getBarra().getVida()-1);
             mundo.setTextoInformativo("Pulsa la barra espaciadora para comenzar");
+            try{
+                mundo.actorManager.del(mundo.getBarra().vidas.remove(mundo.getBarra().vidas.size()-1));
+            }catch(IndexOutOfBoundsException e){
+                //Cuando quedan 0 vidas
+            }
         }
         if (this.y < 0) {//borde superior
             y = ya;
