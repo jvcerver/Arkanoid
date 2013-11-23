@@ -64,7 +64,7 @@ public class ActorTexto extends Actor{
     public void setTexto(String cadena){
         this.cadena=cadena;
     }
-
+   
     /**
      *
      * @param g
@@ -95,4 +95,8 @@ public class ActorTexto extends Actor{
         
     }
     
+    public int getAncho(){
+        return getGame().getGraficos().getFontMetrics().stringWidth(cadena);
+    }
+
 }

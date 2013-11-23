@@ -15,7 +15,7 @@ import FRAMEWORK.LOGICA.Game;
  */
 public abstract class Ladrillo extends Actor {
     private static int numLadrillos;
-
+    
     public Ladrillo(Game game, BitMap bitMap) {
         super(game, bitMap);
         numLadrillos++;
@@ -31,6 +31,10 @@ public abstract class Ladrillo extends Actor {
     
     public static void sumarLadrillo(){
         numLadrillos++;
+    }
+    
+    public void sumarPuntosBarra(int puntos){
+        ((Mundo)this.getGame()).getBarra().setPuntos(((Mundo)this.getGame()).getBarra().getPuntos()+puntos);
     }
 
 }

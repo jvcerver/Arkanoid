@@ -16,6 +16,8 @@ import FRAMEWORK.LOGICA.Game;
  */
 public class LadrilloNormal extends Ladrillo{
 
+    private final int PUNTOS = 100;
+    
     public LadrilloNormal(Game game) {
         super(game, Recursos.ladrilloAmarillo);
     }
@@ -28,6 +30,7 @@ public class LadrilloNormal extends Ladrillo{
     public void recibirGolpe(Actor actor) {
         this.getGame().actorManager.del(this);
         Ladrillo.restarLadrillo();
+        this.sumarPuntosBarra(PUNTOS);
     }
     
 }
