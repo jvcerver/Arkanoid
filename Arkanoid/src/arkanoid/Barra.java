@@ -16,25 +16,21 @@ public class Barra extends Actor {
 
     private Mundo mundo;
     private Sombra sombra;
-//para futuras iteraciones en las que la velocidad pueda variar    
-    private final int 
-            MAXIMO = 30,
-            EXTRARAPIDO = 20,
-            RAPIDO = 15,
-            NORMAL = 10,
-            LENTO = 7,
-            EXTRALENTO = 3;
 
     public Barra(Mundo mundo) {
         super(mundo, Recursos.barra);
         this.mundo = mundo;
         this.sombra = mundo.getSombra();
-        x = mundo.SCREEN_WIDTH / 2;
-        y = mundo.SCREEN_HEIGHT - this.getHeight()*2;      
-        this.setDx(this.NORMAL);
+        reiniciar();
+    }
+    
+    public void reiniciar(){
+        x = (mundo.SCREEN_WIDTH-this.getWidth())/ 2;
+        y = mundo.SCREEN_HEIGHT - this.getHeight()*4;      
+        this.setDx(Mundo.NORMAL);
         
         sombra.setPosition(x, y);
-        sombra.setDx(this.NORMAL);
+        sombra.setDx(Mundo.NORMAL);        
     }
 
     @Override
@@ -68,17 +64,20 @@ public class Barra extends Actor {
             //tickTime = 0;
             if (mundo.getKeyBoardHandler().isPulsada()) {
                 tecla = mundo.getKeyBoardHandler().getTecla();
-                if (tecla == KeyEvent.VK_LEFT) {
-                       moverIzqda();
-                       sombra.setPosition(this.getX(), this.getY());
-                } //fin if
-                
-                if (tecla == KeyEvent.VK_RIGHT) {
+                switch (tecla){
+                    case KeyEvent.VK_LEFT:
+                        moverIzqda();
+                        sombra.setPosition(this.getX(), this.getY());
+                        break;
+                        
+                    case KeyEvent.VK_RIGHT:
                         moverDcha();
                         sombra.setPosition(this.getX(), this.getY());
-                } //fin if
-                if (tecla == KeyEvent.VK_ESCAPE) {
-                    mundo.terminarJuego();
+                        break;
+                        
+                    case KeyEvent.VK_ESCAPE:
+                        mundo.terminarJuego();
+                        break;
                 }
             }//fin if
         }//fin while
