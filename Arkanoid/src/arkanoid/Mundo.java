@@ -124,7 +124,7 @@ public class Mundo extends Game{
         int posx, posy;
         for (int fila=0;fila<numFilas;fila++){     
             for (int columna=0;columna<numColumnas;columna++){
-                ladrillo=new LadrilloResistente(this);
+                ladrillo=new LadrilloSuerte(this);
                 posx = posxInicial + columna*(ladrillo.getWidth() + hgapLadrillo);
                 posy = posyInicial + fila*(ladrillo.getHeight() + vgapLadrillo);
                 ladrillo.setPosition(posx,posy);
