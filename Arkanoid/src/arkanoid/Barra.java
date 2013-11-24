@@ -49,7 +49,10 @@ public class Barra extends Actor {
 
     public void moverIzqda() {
         if (this.x>0) { //si no rebasa el borde izquierdo
-            this.x -= this.dx;
+            if (dx > 0) {
+                dx = dx*-1;
+            }
+        this.x += this.dx;
         } else {
             this.x=0;
         }
@@ -57,6 +60,9 @@ public class Barra extends Actor {
 
     public void moverDcha() {
         if (this.x + this.getWidth() < this.getGame().SCREEN_WIDTH) {
+            if (dx < 0) {
+                dx = dx*-1;
+            }
             this.x += this.dx;
         } else {
             this.x = this.getGame().SCREEN_WIDTH - this.getWidth();
