@@ -14,7 +14,7 @@ public class Bola extends Actor {
     private Mundo mundo;
     private CollisionManager gestorColisiones;
 
-    public int desplazamiento = Mundo.NORMAL;
+    public int desplazamiento = Mundo.LENTO;
 
     public Bola(Mundo mundo, BitMap bitMap) {
         super(mundo, bitMap);
@@ -24,11 +24,11 @@ public class Bola extends Actor {
     }
 
     public void reiniciar() {
-        x = mundo.getBarra().getX()+(mundo.getBarra().getWidth()/2)-(this.getWidth()/2);
-        y = mundo.getBarra().getY()-this.getHeight();
-        dx = desplazamiento;
-        dy = -desplazamiento;
-        mundo.pausarJuego();
+         x = mundo.getBarra().getX() + (mundo.getBarra().getWidth() / 2) - (this.getWidth() / 2);
+         y = mundo.getBarra().getY() - this.getHeight();
+         dx = desplazamiento;
+         dy = -desplazamiento;
+         mundo.pausarJuego();
     }
 
     //SE HEREDA GOLPEAR
@@ -45,66 +45,110 @@ public class Bola extends Actor {
 //COMPROBAR SI CHOCA CON LOS BORDES DE LA PANTALLA
         if (this.x < 0) {//borde izdo
             x = xa;
-            dx = desplazamiento;
+            dx = dx*-1;
         }
         if (this.x + this.getWidth() > mundo.SCREEN_WIDTH) {//borde dcho
             x = xa;
-            dx = -desplazamiento;
+            dx = dx*-1;
         }
         if (this.y + this.getHeight() > mundo.SCREEN_HEIGHT) {//borde inferior
             mundo.getBarra().reiniciar();
             this.reiniciar();
-            mundo.getBarra().setVida(mundo.getBarra().getVida()-1);
+            mundo.getBarra().setVida(mundo.getBarra().getVida() - 1);
             mundo.setTextoInformativo("Pulsa la barra espaciadora para comenzar");
         }
         if (this.y < 0) {//borde superior
             y = ya;
-            dy = desplazamiento;
+            dy = dy*-1;
+        }
+        //Comprobar si choca con algo y actuar en consecuencia
+        Actor conQueChoco = this.golpear();
+        if (conQueChoco instanceof Barra) {
+            dx = dx + Math.round(mundo.getBarra().getDx()/4);
+            dy = dy*-1;
+        }
+        if (conQueChoco instanceof Ladrillo) {
+
+            int pinfLadrillo = conQueChoco.getY() + conQueChoco.getHeight(); //punto inferior del objeto que colisiona
+            int psupLadrillo = conQueChoco.getY();//punto superior del objeto que colisiona
+            int pderLadrillo = conQueChoco.getX() + conQueChoco.getWidth(); //punto derecho maximo del objeto que colisiona
+            int pizqLadrillo = conQueChoco.getX(); //punto izquierdo maximo del objeto que colisiona
+            int pinfBola = this.y + this.getWidth(); // punto inferior de la bola
+            int pderBola = this.x + this.getWidth(); //punto derecho de la bola
+            
+            //colisiono por debajo
+            if (pinfBola > pinfLadrillo) {
+                y = ya;
+                dy = dy*-1;
+            }
+            
+            //colisiono por arriba
+            if (y < psupLadrillo) {
+                y = ya;
+                dy = dy*-1;
+            }
+
+            //colisiono desde la izquierda
+            if (x < pizqLadrillo) {
+                x = xa;
+                dx = dx*-1;
+            }
+            
+            //colisiono desde la derecha
+            if (pderBola > pderLadrillo) {
+                x = xa;
+                dx = dx*-1;
+            }
+            
+            //colisiones especiales//
+            //colision esquina superior izquierda
+            if (pinfBola > psupLadrillo && pderBola > pizqLadrillo && this.x < pizqLadrillo) {
+                x = xa;
+                y = ya;
+                
+                int aux = dx;
+                dx = dy*-1;
+                dy = dx;        
+            }
+            //esquina superior derecha
+            if (pinfBola > psupLadrillo && pderBola > pderLadrillo && this.x < pderLadrillo) {
+                x = xa;
+                y = ya;
+
+                int aux = dx;
+                dx = dy;
+                dy = dx*-1;
+            }
+
+            //esquina inferior izquierda
+            if (this.y < pinfLadrillo && pderBola > pizqLadrillo && this.x < pizqLadrillo) {
+                x = xa;
+                y = ya;
+
+                int aux = dx;
+                dx = dy*-1;
+                dy = dx;
+            }
+            //esquina inferior derecha
+            if (this.y < pinfLadrillo && pderBola > pderLadrillo && this.x < pderLadrillo) {
+                x = xa;
+                y = ya;
+
+                int aux = dx;
+                dx = dy;
+                dy = dx*-1;
+            }
+
         }
     }
- 
+
     @Override
     public void actualizar(long deltaTime) {
         tickTime += deltaTime;
         if (tickTime > TICK) {
-            tickTime -= TICK; 
+            tickTime -= TICK;
             this.mover();
-            
-            //Comprobar si choca con algo y actuar en consecuencia
-            Actor conQueChoco = this.golpear();
-            if(conQueChoco instanceof Barra)
-                dy = -desplazamiento; 
-            if(conQueChoco instanceof Ladrillo){
-                int pinf = conQueChoco.getY()+conQueChoco.getHeight(); //punto inferior del objeto que colisiona
-                int psup = conQueChoco.getY();//punto superior del objeto que colisiona
-                int pder = conQueChoco.getX()+conQueChoco.getWidth(); //punto derecho maximo del objeto que colisiona
-                int pizq = conQueChoco.getX(); //punto izquierdo maximo del objeto que colisiona
-                int xcentro = this.x - this.getWidth()/2; //coordenada x del centro de la bola
-                int ycentro = this.y - this.getHeight()/2; //coordenada y del centro de la bola
-                //colisiono por debajo
-                if (ycentro > pinf && (xcentro < pder && xcentro > pizq)) {
-                    dy = -desplazamiento;
-                }
-                //colisiono por arriba
-                if (ycentro < pinf && (xcentro < pder && xcentro > pizq)) {
-                    dy = -desplazamiento;
-                }
-                //colisiono desde la izquierda
-                if ((ycentro > psup && ycentro < pinf) && xcentro < pizq) {
-                    dx = -desplazamiento;
-                }
-                //colisiono desde la derecha
-                if ((ycentro > psup && ycentro < pinf) && xcentro > pder) {
-                    dx = -desplazamiento;
-                }
-                //colisiono desde una esquina
-                if (!(xcentro > pder && xcentro < pizq) && 
-                        !(ycentro > psup && ycentro < pinf)) {
-                    dx = -desplazamiento;
-                    dy = -desplazamiento;
-                }
-            }
-            
+
         }
     }
 }
