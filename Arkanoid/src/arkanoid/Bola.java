@@ -24,8 +24,6 @@ public class Bola extends Actor {
     }
 
     public void reiniciar() {
-        //x = (int) (Math.random() * mundo.SCREEN_WIDTH);
-        //y = 0;
         x = mundo.getBarra().getX()+(mundo.getBarra().getWidth()/2)-(this.getWidth()/2);
         y = mundo.getBarra().getY()-this.getHeight();
         dx = desplazamiento;
@@ -57,13 +55,14 @@ public class Bola extends Actor {
             mundo.getBarra().reiniciar();
             this.reiniciar();
             mundo.getBarra().setVida(mundo.getBarra().getVida()-1);
+            mundo.setTextoInformativo("Pulsa la barra espaciadora para comenzar");
         }
         if (this.y < 0) {//borde superior
             y = ya;
             dy = desplazamiento;
         }
     }
-
+ 
     @Override
     public void actualizar(long deltaTime) {
         tickTime += deltaTime;

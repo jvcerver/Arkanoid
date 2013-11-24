@@ -12,8 +12,7 @@
         </group>
         <group name="AD">
             <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/Mundo.java</file>
-            <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/LadrilloResistente.java</file>
-            <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/LadrilloNormal.java</file>
+            <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/FRAMEWORK/LOGICA/ActorTexto.java</file>
         </group>
         <group>
             <file>file:/C:/Users/Jose%20Vicente%20Cerveró/Documents/GitHub/Arkanoid/Arkanoid/src/FRAMEWORK/GRAFICOS/BitMap.java</file>
