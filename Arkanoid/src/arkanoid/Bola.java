@@ -14,7 +14,7 @@ public class Bola extends Actor {
     private Mundo mundo;
     private CollisionManager gestorColisiones;
 
-    public int desplazamiento = Mundo.EXTRALENTO;
+    public int desplazamiento = Mundo.LENTO;
 
     public Bola(Mundo mundo, BitMap bitMap) {
         super(mundo, bitMap);
