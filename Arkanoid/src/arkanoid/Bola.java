@@ -14,7 +14,7 @@ public class Bola extends Actor {
     private Mundo mundo;
     private CollisionManager gestorColisiones;
 
-    public int desplazamiento = 11;
+    public int desplazamiento = Mundo.NORMAL;
 
     public Bola(Mundo mundo, BitMap bitMap) {
         super(mundo, bitMap);
@@ -24,10 +24,11 @@ public class Bola extends Actor {
     }
 
     public void reiniciar() {
-        x = (int) (Math.random() * mundo.SCREEN_WIDTH);
-        y = 0;
+        x = mundo.getBarra().getX()+(mundo.getBarra().getWidth()/2)-(this.getWidth()/2);
+        y = mundo.getBarra().getY()-this.getHeight();
         dx = desplazamiento;
-        dy = desplazamiento;
+        dy = -desplazamiento;
+        mundo.pausarJuego();
     }
 
     //SE HEREDA GOLPEAR
@@ -51,15 +52,17 @@ public class Bola extends Actor {
             dx = -desplazamiento;
         }
         if (this.y + this.getHeight() > mundo.SCREEN_HEIGHT) {//borde inferior
+            mundo.getBarra().reiniciar();
             this.reiniciar();
             mundo.getBarra().setVida(mundo.getBarra().getVida()-1);
+            mundo.setTextoInformativo("Pulsa la barra espaciadora para comenzar");
         }
         if (this.y < 0) {//borde superior
             y = ya;
             dy = desplazamiento;
         }
     }
-
+ 
     @Override
     public void actualizar(long deltaTime) {
         tickTime += deltaTime;

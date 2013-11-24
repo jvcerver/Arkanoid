@@ -5,6 +5,7 @@
  */
 package arkanoid;
 
+import FRAMEWORK.GRAFICOS.BitMap;
 import FRAMEWORK.LOGICA.Actor;
 import FRAMEWORK.LOGICA.Game;
 
@@ -12,27 +13,28 @@ import FRAMEWORK.LOGICA.Game;
  *
  * @author josevicente
  */
-public class Ladrillo extends Actor {
+public abstract class Ladrillo extends Actor {
     private static int numLadrillos;
-
-    public Ladrillo(Game game) {
-        super(game, Recursos.ladrillo);
+    
+    public Ladrillo(Game game, BitMap bitMap) {
+        super(game, bitMap);
         numLadrillos++;
-    }
-
-    @Override
-    public void actualizar(long deltaTime) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void recibirGolpe(Actor actor) {
-        this.getGame().actorManager.del(this);
-        numLadrillos--;
     }
 
     public static int getNumLadrillos() {
         return numLadrillos;
+    }
+    
+    public static void restarLadrillo(){
+        numLadrillos--;
+    }
+    
+    public static void sumarLadrillo(){
+        numLadrillos++;
+    }
+    
+    public void sumarPuntosBarra(int puntos){
+        ((Mundo)this.getGame()).getBarra().setPuntos(((Mundo)this.getGame()).getBarra().getPuntos()+puntos);
     }
 
 }
