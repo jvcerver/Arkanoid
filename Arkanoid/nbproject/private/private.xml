@@ -10,13 +10,6 @@
             <file>file:/C:/Users/josevicente/Documents/GitHub/Arkanoid/Arkanoid/src/FRAMEWORK/LOGICA/Actor.java</file>
             <file>file:/C:/Users/josevicente/Documents/GitHub/Arkanoid/Arkanoid/src/arkanoid/Bola.java</file>
         </group>
-        <group name="AD">
-            <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/Vida.java</file>
-            <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/Mundo.java</file>
-            <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/BloqueVida.java</file>
-            <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/Bola.java</file>
-            <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/Barra.java</file>
-            <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/LadrilloSuerte.java</file>
-        </group>
+        <group name="AD"/>
     </open-files>
 </project-private>

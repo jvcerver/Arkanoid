@@ -42,7 +42,7 @@ public class LadrilloSuerte extends Ladrillo{
         //Lo añado a la lista de actores
         this.getGame().actorManager.add(bloqueVida);
         //Lo coloco en una posición determinada
-        bloqueVida.setPosition(this.x + this.getWidth()/2, 
+        bloqueVida.setPosition(this.x + (this.getWidth()-bloqueVida.getWidth())/2, 
                 this.y+this.getHeight());
     }
     
