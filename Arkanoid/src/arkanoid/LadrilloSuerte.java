@@ -28,9 +28,22 @@ public class LadrilloSuerte extends Ladrillo{
 
     @Override
     public void recibirGolpe(Actor actor) {
-        this.getGame().actorManager.del(this);
-        Ladrillo.restarLadrillo();
-        this.sumarPuntosBarra(PUNTOS);
+        if(actor instanceof Bola){
+            this.getGame().actorManager.del(this);
+            Ladrillo.restarLadrillo();
+            this.sumarPuntosBarra(PUNTOS);
+            crearBono();
+        }
+    }
+    
+    public void crearBono(){
+        //Creo una posible vida
+        BloqueVida bloqueVida = new BloqueVida(this.getGame());
+        //Lo añado a la lista de actores
+        this.getGame().actorManager.add(bloqueVida);
+        //Lo coloco en una posición determinada
+        bloqueVida.setPosition(this.x + this.getWidth()/2, 
+                this.y+this.getHeight());
     }
     
 }

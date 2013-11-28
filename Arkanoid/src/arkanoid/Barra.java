@@ -18,7 +18,7 @@ public class Barra extends Actor {
     private Mundo mundo;
     private Sombra sombra;
     public static final int VIDAS_INICIALES = 3;
-    public ArrayList<Vida> vidas;    
+    private ArrayList<Vida> vidas;    
 
     public Barra(Mundo mundo) {
         super(mundo, Recursos.barra);
@@ -26,9 +26,7 @@ public class Barra extends Actor {
         this.sombra = mundo.getSombra();
         vidas = new ArrayList<Vida>();
         for(int i=0; i<VIDAS_INICIALES-1; i++){
-            vidas.add(new Vida(mundo));
-            vidas.get(i).setPosition(mundo.SCREEN_WIDTH-(Recursos.vida.getWidth()+10)*(i+1), mundo.SCREEN_HEIGHT-Recursos.vida.getHeight()*2);
-            mundo.actorManager.add(vidas.get(i));
+            annadirVida(i);
         }
         reiniciar();
     }
@@ -44,7 +42,15 @@ public class Barra extends Actor {
 
     @Override
     public void recibirGolpe(Actor actor) {
-        //do nothing
+        //La vida se añade en cualquier choque con la barra, tanto superior como lateral. Esto puede dejarse así o mejorarse
+        if(actor instanceof BloqueVida){
+            //Borramos el actor
+            mundo.actorManager.del(actor);
+            //Sumamos una vida
+            annadirVida(vidas.size());
+            
+            //SI SE PIERDE CUANDO ESTÁ BAJANDO DEBERÍA BORRARSE
+        }
     }
 
     public void moverIzqda() {
@@ -96,5 +102,16 @@ public class Barra extends Actor {
                 }
             }//fin if
         }//fin while
+    }
+
+    public ArrayList<Vida> getVidas() {
+        return vidas;
+    }
+
+    private void annadirVida(int indice) {
+            vidas.add(new Vida(mundo));
+            vidas.get(indice).setPosition(mundo.SCREEN_WIDTH-(Recursos.vida.getWidth()+10)*(indice+1), mundo.SCREEN_HEIGHT-Recursos.vida.getHeight()*2);
+            mundo.actorManager.add(vidas.get(indice));
+            vida++;
     }
 }

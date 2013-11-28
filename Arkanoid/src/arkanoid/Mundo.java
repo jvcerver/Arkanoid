@@ -22,7 +22,7 @@ public class Mundo extends Game{
         
     private Barra barra;
     private ArrayList<Bola> bolas;
-    private ArrayList<Vida> vidas;
+    //private ArrayList<Vida> vidas;
     //private ArrayList<Ladrillo> ladrillos;
     private int mundo;
     private Sombra sombra;
@@ -82,7 +82,7 @@ public class Mundo extends Game{
         //Barra y sombra
         sombra = new Sombra(this);
         barra = new Barra(this);
-        barra.setVida(Barra.VIDAS_INICIALES);
+        //barra.setVida(Barra.VIDAS_INICIALES);
                 
         //Bola(s)
         bolas = new ArrayList<>();

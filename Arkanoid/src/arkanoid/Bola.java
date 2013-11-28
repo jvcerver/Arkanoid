@@ -23,27 +23,18 @@ public class Bola extends Actor {
 
     }
 
-<<<<<<< HEAD
-    public void reiniciar() { 
-        x = mundo.getBarra().getX()+(mundo.getBarra().getWidth()/2)-(this.getWidth()/2);
-        y = mundo.getBarra().getY()-this.getHeight();
-        dx = desplazamiento;
-        dy = -desplazamiento;
-        mundo.pausarJuego();
-=======
     public void reiniciar() {
          x = mundo.getBarra().getX() + (mundo.getBarra().getWidth() / 2) - (this.getWidth() / 2);
          y = mundo.getBarra().getY() - this.getHeight();
          dx = desplazamiento;
          dy = -desplazamiento;
          mundo.pausarJuego();
->>>>>>> ef730fb8e58e19d12ff0aa6b48b28d6e63bd9b50
     }
 
     //SE HEREDA GOLPEAR
     @Override
     public void recibirGolpe(Actor actor) {
-        reiniciar();
+        //reiniciar();
     }
 
     private void mover() {
@@ -66,7 +57,7 @@ public class Bola extends Actor {
             mundo.getBarra().setVida(mundo.getBarra().getVida() - 1);
             mundo.setTextoInformativo("Pulsa la barra espaciadora para comenzar");
             try{
-                mundo.actorManager.del(mundo.getBarra().vidas.remove(mundo.getBarra().vidas.size()-1));
+                mundo.actorManager.del(mundo.getBarra().getVidas().remove(mundo.getBarra().getVidas().size()-1));
             }catch(IndexOutOfBoundsException e){
                 //Cuando quedan 0 vidas
             }
