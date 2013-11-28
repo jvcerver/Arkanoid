@@ -5,6 +5,7 @@
  */
 package arkanoid;
 
+import arkanoid.ladrillos.Ladrillo;
 import FRAMEWORK.GRAFICOS.BitMap;
 import FRAMEWORK.LOGICA.Actor;
 import FRAMEWORK.LOGICA.CollisionManager;

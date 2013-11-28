@@ -5,6 +5,7 @@
  */
 package arkanoid;
 
+import arkanoid.bloques.BloqueVida;
 import FRAMEWORK.LOGICA.Actor;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;

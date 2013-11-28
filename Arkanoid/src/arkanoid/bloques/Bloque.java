@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package arkanoid;
+package arkanoid.bloques;
 
+import FRAMEWORK.GRAFICOS.BitMap;
 import FRAMEWORK.LOGICA.Actor;
 import FRAMEWORK.LOGICA.Game;
 
@@ -13,12 +14,12 @@ import FRAMEWORK.LOGICA.Game;
  *
  * @author Carmen
  */
-public class BloqueVida extends Actor{
+public abstract class Bloque extends Actor{
 
-    public BloqueVida(Game game) {
-        super(game, Recursos.bloqueVida);
+    public Bloque(Game game, BitMap bitMap) {
+        super(game, bitMap);
     }
-
+    
     @Override
     public void actualizar(long deltaTime) {
         tickTime += deltaTime; 
@@ -28,10 +29,6 @@ public class BloqueVida extends Actor{
             this.golpear();
         }
         
-    }
-
-    @Override
-    public void recibirGolpe(Actor actor) {
     }
     
     public void mover(){

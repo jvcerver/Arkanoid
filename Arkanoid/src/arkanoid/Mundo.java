@@ -6,6 +6,8 @@
 
 package arkanoid;
 
+import arkanoid.ladrillos.Ladrillo;
+import arkanoid.ladrillos.LadrilloSuerte;
 import FRAMEWORK.LOGICA.ActorTexto;
 import FRAMEWORK.LOGICA.Game;
 import java.awt.Color;
