@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 
-package arkanoid;
+package arkanoid.ladrillos;
 
 import FRAMEWORK.GRAFICOS.BitMap;
 import FRAMEWORK.LOGICA.Actor;
 import FRAMEWORK.LOGICA.Game;
+import arkanoid.Recursos;
 
 /**
  *
@@ -18,8 +19,8 @@ public class LadrilloNormal extends Ladrillo{
 
     private final int PUNTOS = 100;
     
-    public LadrilloNormal(Game game) {
-        super(game, Recursos.ladrilloAmarillo);
+    public LadrilloNormal(Game game, BitMap bitMap) {
+        super(game, bitMap);
     }
 
     @Override

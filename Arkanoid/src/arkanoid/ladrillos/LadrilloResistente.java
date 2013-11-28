@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 
-package arkanoid;
+package arkanoid.ladrillos;
 
 import FRAMEWORK.LOGICA.Actor;
 import FRAMEWORK.LOGICA.Game;
+import arkanoid.Recursos;
 
 /**
  *

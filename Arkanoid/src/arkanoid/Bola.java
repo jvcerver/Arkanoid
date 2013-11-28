@@ -5,6 +5,7 @@
  */
 package arkanoid;
 
+import arkanoid.ladrillos.Ladrillo;
 import FRAMEWORK.GRAFICOS.BitMap;
 import FRAMEWORK.LOGICA.Actor;
 import FRAMEWORK.LOGICA.CollisionManager;
@@ -34,7 +35,7 @@ public class Bola extends Actor {
     //SE HEREDA GOLPEAR
     @Override
     public void recibirGolpe(Actor actor) {
-        reiniciar();
+        //reiniciar();
     }
 
     private void mover() {
@@ -56,6 +57,11 @@ public class Bola extends Actor {
             this.reiniciar();
             mundo.getBarra().setVida(mundo.getBarra().getVida() - 1);
             mundo.setTextoInformativo("Pulsa la barra espaciadora para comenzar");
+            try{
+                mundo.actorManager.del(mundo.getBarra().getVidas().remove(mundo.getBarra().getVidas().size()-1));
+            }catch(IndexOutOfBoundsException e){
+                //Cuando quedan 0 vidas
+            }
         }
         if (this.y < 0) {//borde superior
             y = ya;
