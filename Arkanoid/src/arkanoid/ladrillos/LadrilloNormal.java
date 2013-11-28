@@ -19,8 +19,8 @@ public class LadrilloNormal extends Ladrillo{
 
     private final int PUNTOS = 100;
     
-    public LadrilloNormal(Game game) {
-        super(game, Recursos.ladrilloAmarillo);
+    public LadrilloNormal(Game game, BitMap bitMap) {
+        super(game, bitMap);
     }
 
     @Override
