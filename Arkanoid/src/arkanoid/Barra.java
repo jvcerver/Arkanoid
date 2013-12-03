@@ -5,6 +5,7 @@
  */
 package arkanoid;
 
+import FRAMEWORK.INPUT.ObjetoControlable;
 import arkanoid.bloques.BloqueVida;
 import FRAMEWORK.LOGICA.Actor;
 import java.awt.event.KeyEvent;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author josevicente
  */
-public class Barra extends Actor {
+public class Barra extends Actor implements ObjetoControlable {
 
     private Mundo mundo;
     private Sombra sombra;
@@ -128,6 +129,11 @@ public class Barra extends Actor {
 
     @Override
     public void debilitar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void doAccion(int accion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
