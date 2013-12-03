@@ -26,7 +26,7 @@ public class LadrilloSuerte extends Ladrillo{
     }
 
     @Override
-    public void actualizar(long deltaTime) {
+    public void actualizar(int deltaTime) {
     }
 
     @Override
@@ -47,6 +47,22 @@ public class LadrilloSuerte extends Ladrillo{
         //Lo coloco en una posición determinada
         bloqueVida.setPosition(this.x + (this.getWidth()-bloqueVida.getWidth())/2, 
                 this.y+this.getHeight());
+    }
+
+
+    @Override
+    public void destruir() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void crear() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void debilitar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

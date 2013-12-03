@@ -21,7 +21,7 @@ public abstract class Bloque extends Actor{
     }
     
     @Override
-    public void actualizar(long deltaTime) {
+    public void actualizar(int deltaTime) {
         tickTime += deltaTime; 
         if (tickTime > TICK) {            
             tickTime -= TICK;

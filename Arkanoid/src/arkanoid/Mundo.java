@@ -76,7 +76,7 @@ public class Mundo extends Game{
             
             if (barra.getVida() == 0 || Ladrillo.getNumLadrillos()==0) {
                 textoInformativo.setTexto("GAME OVER");
-                textoInformativo.setPosition((this.SCREEN_WIDTH-textoInformativo.getAncho())/2, textoInformativo.getY());
+                textoInformativo.setPosition((this.SCREEN_WIDTH-textoInformativo.getWidth())/2, textoInformativo.getY());
                 this.actualizar(); //ciclo logico de juego
                 try {
                     Thread.sleep(3000); //¿Dar la opción de volver a empezar?
@@ -115,7 +115,7 @@ public class Mundo extends Game{
         
         //Texto informativo para el usuario
         textoInformativo = new ActorTexto(this, "Pulsa la barra espaciadora para comenzar");
-        textoInformativo.setPosition((this.SCREEN_WIDTH-textoInformativo.getAncho())/2, barra.getY()- barra.getHeight()*6);
+        textoInformativo.setPosition((this.SCREEN_WIDTH-textoInformativo.getWidth())/2, barra.getY()- barra.getHeight()*6);
         textoInformativo.setTamanio(14);
         textoInformativo.setColor(Color.BLACK);
         

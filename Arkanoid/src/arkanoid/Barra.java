@@ -35,7 +35,7 @@ public class Barra extends Actor {
     public void reiniciar(){
         x = (mundo.SCREEN_WIDTH-this.getWidth())/ 2;
         y = mundo.SCREEN_HEIGHT - this.getHeight()*4;      
-        this.setDx(Mundo.NORMAL);
+        this.dx=(Mundo.NORMAL);
         
         sombra.setPosition(x, y);
         sombra.setDx(Mundo.NORMAL);        
@@ -78,7 +78,7 @@ public class Barra extends Actor {
     }
 
     @Override
-    public void actualizar(long deltaTime) {
+    public void actualizar(int deltaTime) {
         int tecla;
         tickTime += deltaTime;
         if (tickTime > TICK) {
@@ -114,5 +114,20 @@ public class Barra extends Actor {
             vidas.get(indice).setPosition(mundo.SCREEN_WIDTH-(Recursos.vida.getWidth()+10)*(indice+1), mundo.SCREEN_HEIGHT-Recursos.vida.getHeight()*2);
             mundo.actorManager.add(vidas.get(indice));
             vida++;
+    }
+
+    @Override
+    public void destruir() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void crear() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void debilitar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

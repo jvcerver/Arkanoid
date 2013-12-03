@@ -6,27 +6,12 @@
  */
 package FRAMEWORK.LOGICA;
 
-/**
- *
- * @author josevicente
- */
 public class CollisionManager {
-    private Game game;
-
-    /**
-     *
-     * @param game
-     */
+    private Game game;   
+    
     public CollisionManager(Game game){
         this.game=game;
     }    
-
-    /**
-     *
-     * @param sp1
-     * @param sp2
-     * @return
-     */
     public static boolean colision(Actor sp1,Actor sp2) {
         int w1,h1,w2,h2,x1,y1,x2,y2;
         boolean hayColision=false;

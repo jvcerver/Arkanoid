@@ -6,140 +6,111 @@
  */
 package FRAMEWORK.LOGICA;
 
-import FRAMEWORK.GRAFICOS.Galeria;
+import FRAMEWORK.GRAFICOS.GaleriaImagenes;
 import FRAMEWORK.GRAFICOS.Surface;
 import FRAMEWORK.INPUT.KeyBoardHandler;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
+import FRAMEWORK.SONIDO.GaleriaClips;
+import arkanoid.Jugador;
+import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-/**
- *
- * @author josevicente
- */
-public abstract class Game extends JFrame implements Runnable {
-
-    /**
-     *
-     */
+public abstract class Game extends Frame implements Runnable {
     public final ActorManager actorManager;
-
-    /**
-     *
-     */
     public final StageManager stageManager;
-
-    /**
-     *
-     */
     public final CollisionManager collisionManager;
+    public final ControlManager controlManager;
     
-    /**
-     *
-     */
-    public final int SCREEN_WIDTH,
+    
+    public int SCREEN_WIDTH, SCREEN_HEIGHT;
+    public int SCREEN_WIDTH_ESCALADO, SCREEN_HEIGHT_ESCALADO;
+    public float escalaX,escalaY;
+    public static long AMILISEGUNDOS=1000000L;
+    public static int STEPX=2,STEPY=2;
 
-    /**
-     *
-     */
-    SCREEN_HEIGHT;
-
-    /**
-     *
-     */
-    public float escalaX,
-
-    /**
-     *
-     */
-    escalaY;
-    private final Surface surface;
-    private final KeyBoardHandler keyBoardHandler;
+    private KeyBoardHandler keyBoardHandler;
     
     private long deltaTime;//tiempo transcurridos entre ... en milisegundos
     private long startTime;        
-
-    /**
-     *
-     */
-    public long TIMEFRAME=20000000L;//20ms-->50frames por segundo
-        
-    private Graphics2D g;
+    private long TIMEFRAME=10000000L;//20ms-->50frames por segundo
+    private int fps;    
+    private Graphics g;
     private BufferStrategy strategy;
     
     private boolean fin;
     private boolean pausa;
-    private Thread hilo;
+    private final Thread hilo;
     
-    /**
-     *
-     */
+    public Jugador jugador1,jugador2;
     public Game(){
-        GraphicsConfiguration gc = getGraphicsConfiguration();
-        Rectangle screenRect = gc.getBounds();
-        //SCREEN_WIDTH=screenRect.width;
-        //SCREEN_HEIGHT=screenRect.height;
-        SCREEN_WIDTH=800; //Pruebas con este tamaño hasta que Rafa arregle lo de pantalla completa
-        SCREEN_HEIGHT=600;
-        escalaX=SCREEN_WIDTH/1024F;   
-        escalaY=SCREEN_HEIGHT/768F;
-        setUndecorated(true);
-        setResizable(false);
+        iniciarFullScreen();
+        SCREEN_WIDTH=1024;
+        SCREEN_HEIGHT=768;
+        escalaX=(float)SCREEN_WIDTH_ESCALADO/SCREEN_WIDTH;   
+        escalaY=(float)SCREEN_HEIGHT_ESCALADO/SCREEN_HEIGHT;                   
         
-        JPanel panel = (JPanel) this.getContentPane();
-        panel.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
-        panel.setLayout(null);
-
-        surface=new Surface(SCREEN_WIDTH,SCREEN_HEIGHT);
-
-        panel.add(surface);
-        pack();                     
-        setVisible(true);
-        
-        Galeria.crearGaleria(escalaX,escalaY);
-        strategy=surface.crearBufferStrategy();
-        g=(Graphics2D)strategy.getDrawGraphics();
-       
-
-        requestFocus();                
-        keyBoardHandler=new KeyBoardHandler();
-        this.addKeyListener(keyBoardHandler);
-
+        GaleriaImagenes.crearGaleria(escalaX,escalaY);
+        GaleriaClips.crearGaleria();
+                 
         actorManager=new ActorManager();
         stageManager=new StageManager(this);
         collisionManager=new CollisionManager(this);
-
+        controlManager=new ControlManager(this);
+        
+        crearJugadores();
+        
         hilo=new Thread(this);         
     }
+    public void crearJugadores(){
+        this.jugador1=new Jugador(null);
+        this.jugador1.setNombre("Rafa");
+        
+        this.jugador2=new Jugador(null);
+        this.jugador2.setNombre("Angel");
+       
+    }
+    private void iniciarFullScreen(){
+        setUndecorated(true);
+        setIgnoreRepaint(true);
+        setResizable(false);
+        GraphicsEnvironment ge=GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice gd=ge.getDefaultScreenDevice();
+        gd.setFullScreenWindow(this); 
+        GraphicsConfiguration gc = getGraphicsConfiguration();
+        Rectangle screenRect = gc.getBounds();
+        SCREEN_WIDTH_ESCALADO=screenRect.width;
+        SCREEN_HEIGHT_ESCALADO=screenRect.height;         
+        Surface surface=new Surface(SCREEN_WIDTH_ESCALADO,SCREEN_HEIGHT_ESCALADO);  
+        add(surface);
+        pack();      
+        keyBoardHandler=new KeyBoardHandler();
+        surface.addKeyListener(keyBoardHandler);
+        surface.setFocusable(true);
+        surface.requestFocus();
+        setVisible(true);
+        strategy=surface.crearBufferStrategy();      
+        g=surface.getGraphics(); 
+    }
     
-    /**
-     *
-     */
     public void iniciar(){
         fin=false;
         pausa=false;
+          
         hilo.start();
     }
     
-    /**
-     *
-     */
     public void run(){
         beforeTime=System.nanoTime();
         startTime=System.nanoTime();  
         principal();
         finalizarAplicacion();
     }
-
-    /**
-     *
-     */
     public abstract void principal();
        // while(!fin);//LOOP GAME-->debe INCLUIR this.actualizar()
     
@@ -149,11 +120,8 @@ public abstract class Game extends JFrame implements Runnable {
     private long totalTiempo;
     private int cont;
     private long inicio=System.nanoTime();
+    protected void actualizar(){      
 
-    /**
-     *
-     */
-    protected void actualizar(){           
         deltaTime=System.nanoTime()-startTime;
         startTime=System.nanoTime();
         
@@ -162,18 +130,20 @@ public abstract class Game extends JFrame implements Runnable {
             cont++;
             if (totalTiempo>1000000000L) {
                 inicio=System.nanoTime();
+                fps=cont;
                 System.out.println("FPS: "+cont);cont=0;
             }
          /********************************************/  
-        if (!pausa) actorManager.actualizar(deltaTime);
-        stageManager.dibujar();//ciclo gráfico            
+        if (!pausa) actorManager.actualizar((int)(deltaTime/1000000));//paso msg
+        
+        controlManager.actualizar();
+        
+        g=strategy.getDrawGraphics();
+        stageManager.dibujar(g);//ciclo gráfico              
         strategy.show();    
-      
         afterTime=System.nanoTime();
         timeDiff=afterTime-beforeTime;  
- 
-        sleepTime=(TIMEFRAME-timeDiff)-overSleepTime;
-   
+        sleepTime=(TIMEFRAME-timeDiff)-overSleepTime; 
         if (sleepTime>0) {
             try {
                 Thread.sleep(sleepTime/1000000L);
@@ -186,66 +156,39 @@ public abstract class Game extends JFrame implements Runnable {
             overSleepTime=0L;
         }
         if (++noDelays>=16){
-            Thread.yield(); //yield cede el control de la cpu
+            Thread.yield();//-->no parece funcionar en los MAC
             noDelays=0;
         }    
         beforeTime =System.nanoTime();        
     }         
-
+    public int getFps(){
+        return fps;
+    }
     private void finalizarAplicacion(){
         System.out.println("GRACIAS POR JUGAR");
         System.exit(0);
     }
     
-    /**
-     *
-     * @return
-     */
-    public Graphics2D getGraficos(){
+    public Graphics getGraficos(){
         return this.g;
     }
     
-    /**
-     *
-     * @return
-     */
     public KeyBoardHandler getKeyBoardHandler(){
         return keyBoardHandler;
     }
 
-    /**
-     *
-     * @return
-     */
     public boolean isFin(){
         return fin;        
     }
-
-    /**
-     *
-     * @return
-     */
     public boolean isPausa(){
         return pausa;
     }
-
-    /**
-     *
-     */
     public  void pausarJuego(){
         pausa=true;
     }
-
-    /**
-     *
-     */
     public void terminarJuego(){
         fin=true;   
     }
-
-    /**
-     *
-     */
     public void reanudarJuego(){
         pausa=false;
     }    

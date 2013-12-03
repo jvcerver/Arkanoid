@@ -8,48 +8,28 @@ package FRAMEWORK.LOGICA;
 
 import FRAMEWORK.GRAFICOS.Sprite;
 import java.awt.Color;
-import java.awt.Graphics2D;
+import java.awt.Graphics;
 
-/**
- *
- * @author josevicente
- */
 public class StageManager {
     private Game game;   
-    private Graphics2D g;
     private Sprite spFondo;
-
-    /**
-     *
-     * @param game
-     */
     public StageManager(Game game){
-        this.game=game;
-        this.g=game.getGraficos();           
+        this.game=game;           
     }
-
-    /**
-     *
-     */
-    public void dibujar(){
+    public void dibujar(Graphics g){
         Actor item;
         game.actorManager.rewind();
         if (spFondo==null){
-            g.setColor(Color.WHITE); //Para poder probar lo de la sombra negra
+            g.setColor(Color.black);
             g.fillRect(0,0, game.SCREEN_WIDTH, game.SCREEN_HEIGHT);
         }
         else
             spFondo.dibujar(g);
         while((item=game.actorManager.current())!=null){
-            item.dibujar(g);//en el buffer
+            item.dibujar(g);
             game.actorManager.next();
         }    
-    }   
-
-    /**
-     *
-     * @param fondo
-     */
+    }       
     public void setFondo(Sprite fondo){
         spFondo=fondo;
     }

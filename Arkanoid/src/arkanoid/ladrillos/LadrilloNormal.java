@@ -24,7 +24,7 @@ public class LadrilloNormal extends Ladrillo{
     }
 
     @Override
-    public void actualizar(long deltaTime) {
+    public void actualizar(int deltaTime) {
     }
 
     @Override
@@ -32,6 +32,21 @@ public class LadrilloNormal extends Ladrillo{
         this.getGame().actorManager.del(this);
         Ladrillo.restarLadrillo();
         this.sumarPuntosBarra(PUNTOS);
+    }
+
+    @Override
+    public void destruir() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void crear() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void debilitar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

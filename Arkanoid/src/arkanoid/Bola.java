@@ -38,10 +38,13 @@ public class Bola extends Actor {
         //reiniciar();
     }
 
-    private void mover() {
+    @Override
+    public void mover() {
         int xa = x, ya = y;
-        this.addX(dx);
-        this.addY(dy);
+        this.x += dx;
+        this.y += dy;
+        //this.addX(dx);
+        //this.addY(dy);
 
 //COMPROBAR SI CHOCA CON LOS BORDES DE LA PANTALLA
         if (this.x < 0) {//borde izdo
@@ -149,12 +152,27 @@ public class Bola extends Actor {
     }
 
     @Override
-    public void actualizar(long deltaTime) {
+    public void actualizar(int deltaTime) {
         tickTime += deltaTime;
         if (tickTime > TICK) {
             tickTime -= TICK;
             this.mover();
 
         }
+    }
+
+    @Override
+    public void destruir() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void crear() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void debilitar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

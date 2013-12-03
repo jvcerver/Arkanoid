@@ -27,7 +27,7 @@ public class LadrilloResistente extends Ladrillo{
     }
 
     @Override
-    public void actualizar(long deltaTime) {
+    public void actualizar(int deltaTime) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -36,11 +36,11 @@ public class LadrilloResistente extends Ladrillo{
         vida--;
         switch(vida){
             case 2:
-                this.changeSprite(Recursos.ladrilloAmarilloRoto);
+                //this.changeSprite(Recursos.ladrilloAmarilloRoto);
                 this.sumarPuntosBarra(PUNTOS_ROTO1);
                 break;
             case 1:
-                this.changeSprite(Recursos.ladrilloAmarilloSuperRoto);
+                //this.changeSprite(Recursos.ladrilloAmarilloSuperRoto);
                 this.sumarPuntosBarra(PUNTOS_ROTO2);
                 break;
             case 0:
@@ -49,6 +49,21 @@ public class LadrilloResistente extends Ladrillo{
                 this.sumarPuntosBarra(PUNTOS_ROTO3);
                 break;
         }
+    }
+
+    @Override
+    public void destruir() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void crear() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void debilitar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -7,41 +7,24 @@
 package FRAMEWORK.GRAFICOS;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 
-/**
- *
- * @author josevicente
- */
 public class BitMap {
-    private Image img;
-    private int width,height;
-    private static Galeria galeria=Galeria.getGaleria();
-
-    /**
-     *
-     * @param fichero
-     */
+    private BufferedImage img;
+    private final int width,height;
+    private final int widthEscalado,heightEscalado;
+    private final static GaleriaImagenes galeria=GaleriaImagenes.getGaleria();
     public BitMap(String fichero){
-         img=galeria.getImage(fichero);  
-         width = img.getWidth(null);
-         height = img.getHeight(null);
+         img=(BufferedImage)galeria.getImage(fichero);  
+         widthEscalado=img.getWidth(null);
+         heightEscalado=img.getHeight(null);
+         width = (int)(widthEscalado/galeria.getEscalaX());
+         height = (int)(heightEscalado/galeria.getEscalaY());
     }
-
-    /**
-     *
-     * @return
-     */
     public int getWidth() { return width;}
-
-    /**
-     *
-     * @return
-     */
     public int getHeight() { return height;}
-
-    /**
-     *
-     * @return
-     */
-    public Image getImage() { return img;}
+    public int getWidthEscalado(){return widthEscalado;}
+    public int getHeightEscalado(){return heightEscalado;}
+    
+    public BufferedImage getImage() { return img;}
 }
