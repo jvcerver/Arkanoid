@@ -47,6 +47,13 @@ public class ActorTexto extends Actor{
     }
 
     @Override
+    public int getWidth() {
+        
+        return this.getGame().getGraficos().getFontMetrics().stringWidth(cadena);
+    }
+    
+
+    @Override
     public void recibirGolpe(Actor actor) {
         
     }
