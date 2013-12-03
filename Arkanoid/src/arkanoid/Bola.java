@@ -9,12 +9,15 @@ import arkanoid.ladrillos.Ladrillo;
 import FRAMEWORK.GRAFICOS.BitMap;
 import FRAMEWORK.LOGICA.Actor;
 import FRAMEWORK.LOGICA.CollisionManager;
+import FRAMEWORK.SONIDO.Sonido;
 import arkanoid.escenas.Escena1;
 
 public class Bola extends Actor {
 
     private Mundo mundo;
     private CollisionManager gestorColisiones;
+    private Sonido golpeBola;
+    private Sonido perderBola;
 
     public int desplazamiento = Mundo.LENTO;
 
@@ -22,6 +25,8 @@ public class Bola extends Actor {
         super(mundo, bitMap);
         this.mundo = mundo;
         reiniciar();
+        golpeBola = Recursos.sonidoGolpeBola;
+        perderBola = Recursos.sonidoPerderBola;
 
     }
 
@@ -57,6 +62,7 @@ public class Bola extends Actor {
             dx = dx*-1;
         }
         if (this.y + this.getHeight() > mundo.SCREEN_HEIGHT) {//borde inferior
+            perderBola.play();
             mundo.getBarra().reiniciar();
             this.reiniciar();
             mundo.getBarra().setVida(mundo.getBarra().getVida() - 1);
@@ -76,9 +82,10 @@ public class Bola extends Actor {
         if (conQueChoco instanceof Barra) {
             dx = dx + Math.round(mundo.getBarra().getDx()/4);
             dy = dy*-1;
+            golpeBola.play();
         }
         if (conQueChoco instanceof Ladrillo) {
-
+            golpeBola.play();
             int pinfLadrillo = conQueChoco.getY() + conQueChoco.getHeight(); //punto inferior del objeto que colisiona
             int psupLadrillo = conQueChoco.getY();//punto superior del objeto que colisiona
             int pderLadrillo = conQueChoco.getX() + conQueChoco.getWidth(); //punto derecho maximo del objeto que colisiona
