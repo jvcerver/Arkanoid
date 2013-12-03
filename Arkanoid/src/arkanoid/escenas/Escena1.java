@@ -8,11 +8,15 @@
 package arkanoid.escenas;
 
 import ESCENAS.Escena;
-import FRAMEWORK.GRAFICOS.Sprite;
 import FRAMEWORK.INPUT.Control;
 import FRAMEWORK.LOGICA.ActorTexto;
 import FRAMEWORK.LOGICA.Game;
 import arkanoid.Mundo;
+import static arkanoid.Mundo.LADRILLO_AMARILLO;
+import static arkanoid.Mundo.LADRILLO_AZUL;
+import static arkanoid.Mundo.LADRILLO_SUERTE;
+import static arkanoid.Mundo.LADRILLO_VERDE;
+import arkanoid.ladrillos.Ladrillo;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 
@@ -20,13 +24,13 @@ import java.awt.event.KeyEvent;
 public class Escena1 extends Escena{
 
     private ActorTexto textoInformativo; 
+    private ActorTexto tituloPuntosVidas;
     
     public Escena1(Game game){
         super(game);
     }
     @Override
     public void iniciar() {        
-        ActorTexto tituloPuntosVidas;
         /*FUTURO FONDO*/
         //Sprite spFondo=new Sprite(Recursos.fondoPresentacion);
         //game.stageManager.setFondo(spFondo);
@@ -42,10 +46,19 @@ public class Escena1 extends Escena{
         textoInformativo = new ActorTexto(game, "Pulsa la barra espaciadora para comenzar");
         textoInformativo.setPosition((game.SCREEN_WIDTH-textoInformativo.getWidth())/2, ((Mundo)game).getBarra().getY()- ((Mundo)game).getBarra().getHeight()*6);
         textoInformativo.setTamanio(14);
-        textoInformativo.setColor(Color.BLACK);
+        textoInformativo.setColor(Color.WHITE);
         this.addActor(textoInformativo);  
+        
+        //Pared de ladrillos
+         //Ladrillos
+        int matrizLadrillos[][]={ {LADRILLO_AMARILLO,   LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO},
+                                  {0,                   LADRILLO_AZUL, LADRILLO_VERDE, LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_SUERTE,    LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_VERDE, LADRILLO_AZUL, 0},
+                                  {LADRILLO_SUERTE,     LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_SUERTE}};
+        
+        ((Mundo)game).generarParedLadrillosAMedida(matrizLadrillos, 10, 20);
+        //((Mundo)game).generarParedLadrillosHomogenea(LADRILLO_SUERTE, 1, 3, 10, 10);
            
-        controlEscena=new Control(game,"ESCENA PRESENTACION");
+        controlEscena=new Control(game,"ESCENA 1");
         controlEscena.setAction(this.SALIR, KeyEvent.VK_ESCAPE, 0);
         controlEscena.setAction(this.PAUSAR, KeyEvent.VK_P, 0);
         controlEscena.setAction(this.CONTINUAR, KeyEvent.VK_SPACE, 0);
@@ -61,15 +74,16 @@ public class Escena1 extends Escena{
     }
 
     @Override
-    public void actualizar() {
-        /*if (game.getKeyBoardHandler().isPulsada()){
-           this.finEscena=true;
-           finalizar();
-        }*/
+    public void actualizar() {      
+        tituloPuntosVidas.setTexto("Puntos " + ((Mundo)game).getBarra().getPuntos());
+        if (((Mundo)game).getBarra().getVida() == 0 || Ladrillo.getNumLadrillos()==0)
+                finalizar();
+
     }
 
     @Override
     public void reanudar() {
+        textoInformativo.setTexto("");
         game.reanudarJuego();
     }
 

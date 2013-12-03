@@ -77,31 +77,6 @@ public class Mundo extends Game{
            escenaActual.actualizar();
            this.actualizar();                      
         }
-        
-        /*iniciarPersonajes();
-        
-        while (!this.isFin()) {
-            if (this.getKeyBoardHandler().getTecla() == KeyEvent.VK_SPACE){
-               this.reanudarJuego();
-               textoInformativo.setTexto("");
-            }
-       
-            tituloPuntosVidas.setTexto("Puntos " + barra.getPuntos());
-            this.actualizar(); //ciclo logico de juego
-            
-            if (barra.getVida() == 0 || Ladrillo.getNumLadrillos()==0) {
-                textoInformativo.setTexto("GAME OVER");
-                textoInformativo.setPosition((this.SCREEN_WIDTH-textoInformativo.getWidth())/2, textoInformativo.getY());
-                this.actualizar(); //ciclo logico de juego
-                try {
-                    Thread.sleep(3000); //¿Dar la opción de volver a empezar?
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Mundo.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                this.terminarJuego();
-            }
-            
-        }*/
     }
 
     public Escena getEscenaActual() {
@@ -112,30 +87,18 @@ public class Mundo extends Game{
         //Barra y sombra
         sombra = new Sombra(this);
         barra = new Barra(this);
-        Control controlBarra=new Control(this,"CONTROL DE LA BARRA");
         
-
+        //Control para la barra
+        Control controlBarra=new Control(this,"CONTROL DE LA BARRA");
         controlBarra.setAction(Barra.DERECHA, KeyEvent.VK_RIGHT, 0);
         controlBarra.setAction(Barra.IZQUIERDA, KeyEvent.VK_LEFT, 0);
         controlBarra.setOwner(barra);
-        
         this.controlManager.addControl(controlBarra); 
-        //barra.setVida(Barra.VIDAS_INICIALES);
                 
         //Bola(s)
         bolas = new ArrayList<>();
-        bolas.add(new Bola(this, Recursos.bola));
-
-        //Ladrillos
-        int matrizLadrillos[][]={ {LADRILLO_AMARILLO,   LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO},
-                                  {0,                   LADRILLO_AZUL, LADRILLO_VERDE, LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_SUERTE,    LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_VERDE, LADRILLO_AZUL, 0},
-                                  {LADRILLO_SUERTE,     LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_SUERTE}};
-        
-        this.generarParedLadrillosAMedida(matrizLadrillos, 10, 20);
-        //this.generarParedLadrillosHomogenea(LADRILLO_SUERTE, 3, 10, 10, 10);
-        
+        bolas.add(new Bola(this, Recursos.bola));   
        
-        
         //Añadir personajes a actorManager
         this.actorManager.add(sombra);
         this.actorManager.add(barra);

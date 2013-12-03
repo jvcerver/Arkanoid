@@ -28,8 +28,9 @@ public class Barra extends Actor implements ObjetoControlable {
         this.sombra = mundo.getSombra();
         vidas = new ArrayList<Vida>();
         for(int i=0; i<VIDAS_INICIALES-1; i++){
-            annadirVida(i);
+            annadirDibujoVida(i);
         }
+        vida++; //Una vida  más que dibujos hacemos
         reiniciar();
     }
     
@@ -49,9 +50,7 @@ public class Barra extends Actor implements ObjetoControlable {
             //Borramos el actor
             mundo.actorManager.del(actor);
             //Sumamos una vida
-            annadirVida(vidas.size());
-            
-            //SI SE PIERDE CUANDO ESTÁ BAJANDO DEBERÍA BORRARSE
+            annadirDibujoVida(vidas.size());
         }
     }
 
@@ -80,37 +79,13 @@ public class Barra extends Actor implements ObjetoControlable {
 
     @Override
     public void actualizar(int deltaTime) {
-        /*int tecla;
-        tickTime += deltaTime;
-        if (tickTime > TICK) {
-            tickTime -= TICK;
-            //tickTime = 0;
-            if (mundo.getKeyBoardHandler().isPulsada()) {
-                tecla = mundo.getKeyBoardHandler().getTecla();
-                switch (tecla){
-                    case KeyEvent.VK_LEFT:
-                        moverIzqda();
-                        sombra.setPosition(this.getX(), this.getY());
-                        break;
-                        
-                    case KeyEvent.VK_RIGHT:
-                        moverDcha();
-                        sombra.setPosition(this.getX(), this.getY());
-                        break;
-                        
-                    case KeyEvent.VK_ESCAPE:
-                        mundo.terminarJuego();
-                        break;
-                }
-            }//fin if
-        }//fin while*/
     }
 
     public ArrayList<Vida> getVidas() {
         return vidas;
     }
 
-    private void annadirVida(int indice) {
+    private void annadirDibujoVida(int indice) {
             vidas.add(new Vida(mundo));
             vidas.get(indice).setPosition(mundo.SCREEN_WIDTH-(Recursos.vida.getWidth()+10)*(indice+1), mundo.SCREEN_HEIGHT-Recursos.vida.getHeight()*2);
             mundo.actorManager.add(vidas.get(indice));
