@@ -80,7 +80,7 @@ public class Barra extends Actor implements ObjetoControlable {
 
     @Override
     public void actualizar(int deltaTime) {
-        int tecla;
+        /*int tecla;
         tickTime += deltaTime;
         if (tickTime > TICK) {
             tickTime -= TICK;
@@ -103,7 +103,7 @@ public class Barra extends Actor implements ObjetoControlable {
                         break;
                 }
             }//fin if
-        }//fin while
+        }//fin while*/
     }
 
     public ArrayList<Vida> getVidas() {
@@ -132,8 +132,20 @@ public class Barra extends Actor implements ObjetoControlable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public final static int DERECHA=0;
+    public final static int IZQUIERDA=1;
+    
     @Override
     public void doAccion(int accion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        switch (accion){
+            case DERECHA:
+                moverDcha();
+                sombra.setPosition(this.getX(), this.getY());
+                break;
+            case IZQUIERDA:
+                moverIzqda();
+                sombra.setPosition(this.getX(), this.getY());
+                break;
+        }//fin switch
     }
 }

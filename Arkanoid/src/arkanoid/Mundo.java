@@ -6,17 +6,16 @@
 
 package arkanoid;
 
+import ESCENAS.Escena;
+import FRAMEWORK.INPUT.Control;
 import arkanoid.ladrillos.Ladrillo;
 import arkanoid.ladrillos.LadrilloSuerte;
-import FRAMEWORK.LOGICA.ActorTexto;
 import FRAMEWORK.LOGICA.Game;
+import arkanoid.escenas.Escena1;
 import arkanoid.ladrillos.LadrilloNormal;
 import arkanoid.ladrillos.LadrilloResistente;
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -26,10 +25,11 @@ public class Mundo extends Game{
         
     private Barra barra;
     private ArrayList<Bola> bolas;
-    private int mundo;
+    //private int mundo;
     private Sombra sombra;
-    private ActorTexto tituloPuntosVidas;
-    private ActorTexto textoInformativo;
+    //private ActorTexto tituloPuntosVidas;
+    //private ActorTexto textoInformativo;
+    private Escena escenaActual;
     
     //ladrillos
     public static final int LADRILLO_ROJO = 1;
@@ -52,10 +52,6 @@ public class Mundo extends Game{
         return barra;
     }
 
-    public void setTextoInformativo(String textoInformativo) {
-        this.textoInformativo.setTexto(textoInformativo);
-    }
-
     /**
      *
      */
@@ -64,6 +60,25 @@ public class Mundo extends Game{
         this.setName("Arkanoid");
         
         iniciarPersonajes();
+        
+        Escena1 escena1=new Escena1(this);       
+        escena1.iniciar();
+        
+        escenaActual=escena1;
+        
+        while(!this.isFin()){  
+           if (escenaActual.isFin()){
+               escenaActual=escenaActual.getSiguienteEscena();
+               if (escenaActual==null)
+                   this.terminarJuego();
+               else 
+                   escenaActual.iniciar();
+           }        
+           escenaActual.actualizar();
+           this.actualizar();                      
+        }
+        
+        /*iniciarPersonajes();
         
         while (!this.isFin()) {
             if (this.getKeyBoardHandler().getTecla() == KeyEvent.VK_SPACE){
@@ -86,13 +101,25 @@ public class Mundo extends Game{
                 this.terminarJuego();
             }
             
-        }
+        }*/
     }
 
+    public Escena getEscenaActual() {
+        return escenaActual;
+    }
+ 
     public void iniciarPersonajes(){
         //Barra y sombra
         sombra = new Sombra(this);
         barra = new Barra(this);
+        Control controlBarra=new Control(this,"CONTROL DE LA BARRA");
+        
+
+        controlBarra.setAction(Barra.DERECHA, KeyEvent.VK_RIGHT, 0);
+        controlBarra.setAction(Barra.IZQUIERDA, KeyEvent.VK_LEFT, 0);
+        controlBarra.setOwner(barra);
+        
+        this.controlManager.addControl(controlBarra); 
         //barra.setVida(Barra.VIDAS_INICIALES);
                 
         //Bola(s)
@@ -107,24 +134,12 @@ public class Mundo extends Game{
         this.generarParedLadrillosAMedida(matrizLadrillos, 10, 20);
         //this.generarParedLadrillosHomogenea(LADRILLO_SUERTE, 3, 10, 10, 10);
         
-        //Titulo vidas y puntos
-        tituloPuntosVidas = new ActorTexto(this,"Puntos " + barra.getPuntos());
-        tituloPuntosVidas.setPosition(20, this.SCREEN_HEIGHT - barra.getHeight());
-        tituloPuntosVidas.setTamanio(20);
-        tituloPuntosVidas.setColor(Color.BLUE); 
-        
-        //Texto informativo para el usuario
-        textoInformativo = new ActorTexto(this, "Pulsa la barra espaciadora para comenzar");
-        textoInformativo.setPosition((this.SCREEN_WIDTH-textoInformativo.getWidth())/2, barra.getY()- barra.getHeight()*6);
-        textoInformativo.setTamanio(14);
-        textoInformativo.setColor(Color.BLACK);
+       
         
         //Añadir personajes a actorManager
         this.actorManager.add(sombra);
         this.actorManager.add(barra);
         this.actorManager.add(bolas.get(0));
-        this.actorManager.add(tituloPuntosVidas); 
-        this.actorManager.add(textoInformativo); 
         
     }
     
