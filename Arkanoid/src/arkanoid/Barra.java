@@ -8,7 +8,7 @@ package arkanoid;
 import FRAMEWORK.INPUT.ObjetoControlable;
 import arkanoid.bloques.BloqueVida;
 import FRAMEWORK.LOGICA.Actor;
-import java.awt.event.KeyEvent;
+import arkanoid.bloques.BloquePegamento;
 import java.util.ArrayList;
 
 /**
@@ -20,7 +20,8 @@ public class Barra extends Actor implements ObjetoControlable {
     private Mundo mundo;
     private Sombra sombra;
     public static final int VIDAS_INICIALES = 3;
-    private ArrayList<Vida> vidas;    
+    private ArrayList<Vida> vidas;   
+    private boolean cogerBola;
 
     public Barra(Mundo mundo) {
         super(mundo, Recursos.barra);
@@ -52,6 +53,17 @@ public class Barra extends Actor implements ObjetoControlable {
             //Sumamos una vida
             annadirDibujoVida(vidas.size());
         }
+        if (actor instanceof BloquePegamento) {
+            mundo.actorManager.del(actor);
+            setCogerBola(true);
+        }
+    }
+    
+    public void setCogerBola(boolean coger){
+        cogerBola=coger;
+    }
+    public boolean isCogerBola(){
+        return cogerBola;
     }
 
     public void moverIzqda() {
