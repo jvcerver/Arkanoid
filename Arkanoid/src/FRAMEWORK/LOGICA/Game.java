@@ -82,6 +82,8 @@ public abstract class Game extends Frame implements Runnable {
         GraphicsEnvironment ge=GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice gd=ge.getDefaultScreenDevice();
         gd.setFullScreenWindow(this); 
+        this.setVisible(false);
+        this.setVisible(true);
         GraphicsConfiguration gc = getGraphicsConfiguration();
         Rectangle screenRect = gc.getBounds();
         SCREEN_WIDTH_ESCALADO=screenRect.width;
@@ -93,7 +95,7 @@ public abstract class Game extends Frame implements Runnable {
         surface.addKeyListener(keyBoardHandler);
         surface.setFocusable(true);
         surface.requestFocus();
-        setVisible(true);
+        //setVisible(true);
         strategy=surface.crearBufferStrategy();      
         g=surface.getGraphics(); 
     }

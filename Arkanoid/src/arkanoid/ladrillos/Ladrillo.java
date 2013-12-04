@@ -37,5 +37,9 @@ public abstract class Ladrillo extends Actor {
     public void sumarPuntosBarra(int puntos){
         ((Mundo)this.getGame()).getBarra().setPuntos(((Mundo)this.getGame()).getBarra().getPuntos()+puntos);
     }
+    
+    public static void reiniciarLadrillos(){
+        numLadrillos=0;
+    }
 
 }

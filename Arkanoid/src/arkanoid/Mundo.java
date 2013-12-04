@@ -6,17 +6,16 @@
 
 package arkanoid;
 
+import ESCENAS.Escena;
+import FRAMEWORK.INPUT.Control;
 import arkanoid.ladrillos.Ladrillo;
 import arkanoid.ladrillos.LadrilloSuerte;
-import FRAMEWORK.LOGICA.ActorTexto;
 import FRAMEWORK.LOGICA.Game;
+import arkanoid.escenas.EscenaPresentacion;
 import arkanoid.ladrillos.LadrilloNormal;
 import arkanoid.ladrillos.LadrilloResistente;
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -26,10 +25,11 @@ public class Mundo extends Game{
         
     private Barra barra;
     private ArrayList<Bola> bolas;
-    private int mundo;
+    //private int mundo;
     private Sombra sombra;
-    private ActorTexto tituloPuntosVidas;
-    private ActorTexto textoInformativo;
+    //private ActorTexto tituloPuntosVidas;
+    //private ActorTexto textoInformativo;
+    private Escena escenaActual;
     
     //ladrillos
     public static final int LADRILLO_ROJO = 1;
@@ -52,10 +52,6 @@ public class Mundo extends Game{
         return barra;
     }
 
-    public void setTextoInformativo(String textoInformativo) {
-        this.textoInformativo.setTexto(textoInformativo);
-    }
-
     /**
      *
      */
@@ -65,66 +61,48 @@ public class Mundo extends Game{
         
         iniciarPersonajes();
         
-        while (!this.isFin()) {
-            if (this.getKeyBoardHandler().getTecla() == KeyEvent.VK_SPACE){
-               this.reanudarJuego();
-               textoInformativo.setTexto("");
-            }
-       
-            tituloPuntosVidas.setTexto("Puntos " + barra.getPuntos());
-            this.actualizar(); //ciclo logico de juego
-            
-            if (barra.getVida() == 0 || Ladrillo.getNumLadrillos()==0) {
-                textoInformativo.setTexto("GAME OVER");
-                textoInformativo.setPosition((this.SCREEN_WIDTH-textoInformativo.getWidth())/2, textoInformativo.getY());
-                this.actualizar(); //ciclo logico de juego
-                try {
-                    Thread.sleep(3000); //¿Dar la opción de volver a empezar?
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Mundo.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                this.terminarJuego();
-            }
-            
+        EscenaPresentacion escenaPresentacion=new EscenaPresentacion(this);       
+        escenaPresentacion.iniciar();
+        
+        escenaActual=escenaPresentacion;
+        
+        while(!this.isFin()){  
+           if (escenaActual.isFin()){
+               escenaActual=escenaActual.getSiguienteEscena();
+               if (escenaActual==null)
+                   this.terminarJuego();
+               else 
+                   escenaActual.iniciar();
+           }        
+           escenaActual.actualizar();
+           this.actualizar();                      
         }
     }
 
+    public Escena getEscenaActual() {
+        return escenaActual;
+    }
+ 
     public void iniciarPersonajes(){
         //Barra y sombra
         sombra = new Sombra(this);
         barra = new Barra(this);
-        //barra.setVida(Barra.VIDAS_INICIALES);
+        
+        //Control para la barra
+        Control controlBarra=new Control(this,"CONTROL DE LA BARRA");
+        controlBarra.setAction(Barra.DERECHA, KeyEvent.VK_RIGHT, 0);
+        controlBarra.setAction(Barra.IZQUIERDA, KeyEvent.VK_LEFT, 0);
+        controlBarra.setOwner(barra);
+        this.controlManager.addControl(controlBarra); 
                 
         //Bola(s)
         bolas = new ArrayList<>();
-        bolas.add(new Bola(this, Recursos.bola));
-
-        //Ladrillos
-        int matrizLadrillos[][]={ {LADRILLO_AMARILLO,   LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO},
-                                  {0,                   LADRILLO_AZUL, LADRILLO_VERDE, LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_SUERTE,    LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_VERDE, LADRILLO_AZUL, 0},
-                                  {LADRILLO_SUERTE,     LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_SUERTE}};
-        
-        this.generarParedLadrillosAMedida(matrizLadrillos, 10, 20);
-        //this.generarParedLadrillosHomogenea(LADRILLO_SUERTE, 3, 10, 10, 10);
-        
-        //Titulo vidas y puntos
-        tituloPuntosVidas = new ActorTexto(this,"Puntos " + barra.getPuntos());
-        tituloPuntosVidas.setPosition(20, this.SCREEN_HEIGHT - barra.getHeight());
-        tituloPuntosVidas.setTamanio(20);
-        tituloPuntosVidas.setColor(Color.BLUE); 
-        
-        //Texto informativo para el usuario
-        textoInformativo = new ActorTexto(this, "Pulsa la barra espaciadora para comenzar");
-        textoInformativo.setPosition((this.SCREEN_WIDTH-textoInformativo.getWidth())/2, barra.getY()- barra.getHeight()*6);
-        textoInformativo.setTamanio(14);
-        textoInformativo.setColor(Color.BLACK);
-        
+        bolas.add(new Bola(this, Recursos.bola));   
+       
         //Añadir personajes a actorManager
         this.actorManager.add(sombra);
         this.actorManager.add(barra);
         this.actorManager.add(bolas.get(0));
-        this.actorManager.add(tituloPuntosVidas); 
-        this.actorManager.add(textoInformativo); 
         
     }
     
@@ -132,17 +110,17 @@ public class Mundo extends Game{
         return sombra;
     }
     
-    public void generarParedLadrillosHomogenea (int tipoLadrillo, int numFilas, int numColumnas, int hgapLadrillo, int vgapLadrillo){
+    public void generarParedLadrillosHomogenea (int tipoLadrillo, int numFilas, int numColumnas, int hgapLadrillo, int vgapLadrillo, Escena escena){
         //Creamos una matriz homogénea
         int[][] matriz = new int[numFilas][numColumnas];
         for(int fila=0; fila<matriz.length; fila++)
             for(int columna =0; columna<matriz[0].length; columna++)
                 matriz[fila][columna] = tipoLadrillo;
         
-        generarParedLadrillosAMedida(matriz, hgapLadrillo, vgapLadrillo);
+        generarParedLadrillosAMedida(matriz, hgapLadrillo, vgapLadrillo, escena);
     }
     
-    public void generarParedLadrillosAMedida (int[][] matrizLadrillos, int hgapLadrillo, int vgapLadrillo){
+    public void generarParedLadrillosAMedida (int[][] matrizLadrillos, int hgapLadrillo, int vgapLadrillo, Escena escena){
         Ladrillo ladrillo = null;
         int tamannoLadrillos = (Recursos.ladrilloAmarillo.getWidth()+hgapLadrillo)*matrizLadrillos[0].length;
         int posxInicial = (this.SCREEN_WIDTH-tamannoLadrillos)/2;
@@ -174,7 +152,8 @@ public class Mundo extends Game{
                     posx = posxInicial + columna*(ladrillo.getWidth() + hgapLadrillo);
                     posy = posyInicial + fila*(ladrillo.getHeight() + vgapLadrillo);
                     ladrillo.setPosition(posx,posy);
-                    this.actorManager.add(ladrillo);
+                    escena.addActor(ladrillo);
+                    //this.actorManager.add(ladrillo);
                 }
                                 
             }          
