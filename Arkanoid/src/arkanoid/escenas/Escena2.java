@@ -61,8 +61,7 @@ public class Escena2 extends Escena{
                                   {0,                   LADRILLO_AZUL, LADRILLO_VERDE, LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_SUERTE,    LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_VERDE, LADRILLO_AZUL, 0},
                                   {LADRILLO_SUERTE,     LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_SUERTE}};
         
-        ((Mundo)game).generarParedLadrillosAMedida(matrizLadrillos, 10, 20, this);
-        //((Mundo)game).generarParedLadrillosHomogenea(LADRILLO_AMARILLO, 3, 10, 10, 10);
+        ((Mundo)game).generarParedLadrillosAMedida(matrizLadrillos, 10, 20, game.SCREEN_HEIGHT/4, this);
            
         controlEscena=new Control(game,"ESCENA 2");
         controlEscena.setAction(this.SALIR, KeyEvent.VK_ESCAPE, 0);
@@ -101,7 +100,7 @@ public class Escena2 extends Escena{
 
     @Override
     public Escena getSiguienteEscena() {
-         return new EscenaFinal(game);
+         return new Escena3(game);
     }
     
     public void setTextoInformativo(String textoInformativo) {

@@ -112,21 +112,20 @@ public class Mundo extends Game{
         return sombra;
     }
     
-    public void generarParedLadrillosHomogenea (int tipoLadrillo, int numFilas, int numColumnas, int hgapLadrillo, int vgapLadrillo, Escena escena){
+    public void generarParedLadrillosHomogenea (int tipoLadrillo, int numFilas, int numColumnas, int hgapLadrillo, int vgapLadrillo, int posYInicial, Escena escena){
         //Creamos una matriz homogénea
         int[][] matriz = new int[numFilas][numColumnas];
         for(int fila=0; fila<matriz.length; fila++)
             for(int columna =0; columna<matriz[0].length; columna++)
                 matriz[fila][columna] = tipoLadrillo;
         
-        generarParedLadrillosAMedida(matriz, hgapLadrillo, vgapLadrillo, escena);
+        generarParedLadrillosAMedida(matriz, hgapLadrillo, vgapLadrillo, posYInicial, escena);
     }
     
-    public void generarParedLadrillosAMedida (int[][] matrizLadrillos, int hgapLadrillo, int vgapLadrillo, Escena escena){
+    public void generarParedLadrillosAMedida (int[][] matrizLadrillos, int hgapLadrillo, int vgapLadrillo, int posYInicial, Escena escena){
         Ladrillo ladrillo = null;
         int tamannoLadrillos = (Recursos.ladrilloAmarillo.getWidth()+hgapLadrillo)*matrizLadrillos[0].length;
         int posxInicial = (this.SCREEN_WIDTH-tamannoLadrillos)/2;
-        int posyInicial = this.SCREEN_HEIGHT/4;
         int posx, posy;
         for (int fila=0;fila<matrizLadrillos.length;fila++){     
             for (int columna=0;columna<matrizLadrillos[0].length;columna++){
@@ -155,7 +154,7 @@ public class Mundo extends Game{
     
                 if(tipoLadrillo!=0){
                     posx = posxInicial + columna*(ladrillo.getWidth() + hgapLadrillo);
-                    posy = posyInicial + fila*(ladrillo.getHeight() + vgapLadrillo);
+                    posy = posYInicial + fila*(ladrillo.getHeight() + vgapLadrillo);
                     ladrillo.setPosition(posx,posy);
                     escena.addActor(ladrillo);
                     //this.actorManager.add(ladrillo);
