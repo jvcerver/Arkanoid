@@ -28,10 +28,10 @@ public class KeyBoardHandler  implements KeyListener{
 
     @Override
     public void keyReleased(KeyEvent e) {
-        teclaPulsada=false; //añadido para añadir suavidad al movimiento de la barra.
+        //teclaPulsada=false; //añadido para añadir suavidad al movimiento de la barra.
     }
     public int getTecla(){
-        //teclaPulsada=false;
+        teclaPulsada=false;
         return tecla;
     }
     public boolean isPulsada(){

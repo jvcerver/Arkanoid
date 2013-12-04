@@ -66,7 +66,7 @@ public class Bola extends Actor {
             mundo.getBarra().reiniciar();
             this.reiniciar();
             mundo.getBarra().setVida(mundo.getBarra().getVida() - 1);
-            ((Escena1)mundo.getEscenaActual()).setTextoInformativo("Pulsa la barra espaciadora para comenzar");
+            //((Escena1)mundo.getEscenaActual()).setTextoInformativo("Pulsa la barra espaciadora para comenzar");
             try{
                 mundo.actorManager.del(mundo.getBarra().getVidas().remove(mundo.getBarra().getVidas().size()-1));
             }catch(IndexOutOfBoundsException e){

@@ -15,7 +15,6 @@ import FRAMEWORK.SONIDO.Sonido;
 import arkanoid.Mundo;
 import static arkanoid.Mundo.LADRILLO_AMARILLO;
 import static arkanoid.Mundo.LADRILLO_AZUL;
-import static arkanoid.Mundo.LADRILLO_ROJO;
 import static arkanoid.Mundo.LADRILLO_SUERTE;
 import static arkanoid.Mundo.LADRILLO_VERDE;
 import arkanoid.Recursos;
@@ -24,13 +23,13 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 
 
-public class Escena1 extends Escena{
+public class Escena2 extends Escena{
 
     private ActorTexto textoInformativo; 
     private ActorTexto tituloPuntosVidas;
     private Sonido sonidoFondo;
     
-    public Escena1(Game game){
+    public Escena2(Game game){
         super(game);
         sonidoFondo = Recursos.sonidoFondo;
     }
@@ -62,10 +61,10 @@ public class Escena1 extends Escena{
                                   {0,                   LADRILLO_AZUL, LADRILLO_VERDE, LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_SUERTE,    LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_VERDE, LADRILLO_AZUL, 0},
                                   {LADRILLO_SUERTE,     LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_SUERTE}};
         
-        //((Mundo)game).generarParedLadrillosAMedida(matrizLadrillos, 10, 20);
-        ((Mundo)game).generarParedLadrillosHomogenea(LADRILLO_ROJO, 3, 10, 10, 10, this);
+        ((Mundo)game).generarParedLadrillosAMedida(matrizLadrillos, 10, 20, this);
+        //((Mundo)game).generarParedLadrillosHomogenea(LADRILLO_AMARILLO, 3, 10, 10, 10);
            
-        controlEscena=new Control(game,"ESCENA 1");
+        controlEscena=new Control(game,"ESCENA 2");
         controlEscena.setAction(this.SALIR, KeyEvent.VK_ESCAPE, 0);
         controlEscena.setAction(this.PAUSAR, KeyEvent.VK_P, 0);
         controlEscena.setAction(this.CONTINUAR, KeyEvent.VK_SPACE, 0);
@@ -102,7 +101,7 @@ public class Escena1 extends Escena{
 
     @Override
     public Escena getSiguienteEscena() {
-        return new Escena2(game);
+         return new EscenaFinal(game);
     }
     
     public void setTextoInformativo(String textoInformativo) {

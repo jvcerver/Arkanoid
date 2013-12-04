@@ -11,7 +11,7 @@ import FRAMEWORK.INPUT.Control;
 import arkanoid.ladrillos.Ladrillo;
 import arkanoid.ladrillos.LadrilloSuerte;
 import FRAMEWORK.LOGICA.Game;
-import arkanoid.escenas.Escena1;
+import arkanoid.escenas.EscenaPresentacion;
 import arkanoid.ladrillos.LadrilloNormal;
 import arkanoid.ladrillos.LadrilloResistente;
 import java.awt.event.KeyEvent;
@@ -61,10 +61,10 @@ public class Mundo extends Game{
         
         iniciarPersonajes();
         
-        Escena1 escena1=new Escena1(this);       
-        escena1.iniciar();
+        EscenaPresentacion escenaPresentacion=new EscenaPresentacion(this);       
+        escenaPresentacion.iniciar();
         
-        escenaActual=escena1;
+        escenaActual=escenaPresentacion;
         
         while(!this.isFin()){  
            if (escenaActual.isFin()){
@@ -110,17 +110,17 @@ public class Mundo extends Game{
         return sombra;
     }
     
-    public void generarParedLadrillosHomogenea (int tipoLadrillo, int numFilas, int numColumnas, int hgapLadrillo, int vgapLadrillo){
+    public void generarParedLadrillosHomogenea (int tipoLadrillo, int numFilas, int numColumnas, int hgapLadrillo, int vgapLadrillo, Escena escena){
         //Creamos una matriz homogénea
         int[][] matriz = new int[numFilas][numColumnas];
         for(int fila=0; fila<matriz.length; fila++)
             for(int columna =0; columna<matriz[0].length; columna++)
                 matriz[fila][columna] = tipoLadrillo;
         
-        generarParedLadrillosAMedida(matriz, hgapLadrillo, vgapLadrillo);
+        generarParedLadrillosAMedida(matriz, hgapLadrillo, vgapLadrillo, escena);
     }
     
-    public void generarParedLadrillosAMedida (int[][] matrizLadrillos, int hgapLadrillo, int vgapLadrillo){
+    public void generarParedLadrillosAMedida (int[][] matrizLadrillos, int hgapLadrillo, int vgapLadrillo, Escena escena){
         Ladrillo ladrillo = null;
         int tamannoLadrillos = (Recursos.ladrilloAmarillo.getWidth()+hgapLadrillo)*matrizLadrillos[0].length;
         int posxInicial = (this.SCREEN_WIDTH-tamannoLadrillos)/2;
@@ -152,7 +152,8 @@ public class Mundo extends Game{
                     posx = posxInicial + columna*(ladrillo.getWidth() + hgapLadrillo);
                     posy = posyInicial + fila*(ladrillo.getHeight() + vgapLadrillo);
                     ladrillo.setPosition(posx,posy);
-                    this.actorManager.add(ladrillo);
+                    escena.addActor(ladrillo);
+                    //this.actorManager.add(ladrillo);
                 }
                                 
             }          
