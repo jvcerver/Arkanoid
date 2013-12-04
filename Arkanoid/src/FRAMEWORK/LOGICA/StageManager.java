@@ -20,8 +20,9 @@ public class StageManager {
         Actor item;
         game.actorManager.rewind();
         if (spFondo==null){
-            g.setColor(Color.black);
-            g.fillRect(0,0, game.SCREEN_WIDTH, game.SCREEN_HEIGHT);
+            g.setColor(Color.DARK_GRAY);
+            //El rectángulo que rellena tiene que ser el escalado
+            g.fillRect(0,0, game.SCREEN_WIDTH_ESCALADO, game.SCREEN_HEIGHT_ESCALADO);
         }
         else
             spFondo.dibujar(g);

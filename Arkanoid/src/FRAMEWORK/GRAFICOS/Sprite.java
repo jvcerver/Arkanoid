@@ -85,5 +85,5 @@ public class Sprite {
        iFrame = 0;
        frameActual=frames[iFrame];
    }
-    
+  
 }

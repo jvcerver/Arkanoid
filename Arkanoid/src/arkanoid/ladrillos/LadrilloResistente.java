@@ -6,6 +6,7 @@
 
 package arkanoid.ladrillos;
 
+import FRAMEWORK.GRAFICOS.Sprite;
 import FRAMEWORK.LOGICA.Actor;
 import FRAMEWORK.LOGICA.Game;
 import arkanoid.Recursos;
@@ -36,11 +37,11 @@ public class LadrilloResistente extends Ladrillo{
         vida--;
         switch(vida){
             case 2:
-                //this.changeSprite(Recursos.ladrilloAmarilloRoto);
+                this.setSpriteActual(new Sprite(Recursos.ladrilloAmarilloRoto));
                 this.sumarPuntosBarra(PUNTOS_ROTO1);
                 break;
             case 1:
-                //this.changeSprite(Recursos.ladrilloAmarilloSuperRoto);
+                this.setSpriteActual(new Sprite(Recursos.ladrilloAmarilloSuperRoto));
                 this.sumarPuntosBarra(PUNTOS_ROTO2);
                 break;
             case 0:
