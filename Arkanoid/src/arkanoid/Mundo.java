@@ -39,8 +39,11 @@ public class Mundo extends Game{
     public static final int LADRILLO_AMARILLO = 4;
     public static final int LADRILLO_AMARILLO_ROTO = 5;
     public static final int LADRILLO_AMARILLO_SUPER_ROTO = 6;
-    public static final int LADRILLO_SUERTE = 7;
+    public static final int LADRILLO_VIDA = 7;
     public static final int LADRILLO_IRROMPIBLE = 8;
+    public static final int LADRILLO_BARRA_MAX = 9;
+    public static final int LADRILLO_BARRA_MIN = 10;
+    public static final int LADRILLO_BARRA_PEGA = 11;
     
     //para futuras iteraciones en las que la velocidad pueda variar
     public static final int LENTO = 7;
@@ -143,11 +146,20 @@ public class Mundo extends Game{
                     case LADRILLO_AMARILLO: //Ladrillo resistente
                         ladrillo=new LadrilloResistente(this);
                         break;
-                    case LADRILLO_SUERTE: //Ladrillo suerte
-                        ladrillo=new LadrilloSuerte(this);
+                    case LADRILLO_VIDA: //Ladrillo vida
+                        ladrillo=new LadrilloSuerte(this, Recursos.ladrilloVida);
                         break;
                     case LADRILLO_IRROMPIBLE: //Ladrillo irrompible
                         ladrillo=new LadrilloIrrompible(this);
+                        break;
+                    case LADRILLO_BARRA_MAX: //Ladrillo barraMax
+                        ladrillo=new LadrilloSuerte(this, Recursos.ladrilloBarraMax);
+                        break;
+                    case LADRILLO_BARRA_MIN: //Ladrillo barraMin
+                        ladrillo=new LadrilloSuerte(this, Recursos.ladrilloBarraMin);
+                        break;
+                    case LADRILLO_BARRA_PEGA: //Ladrillo barraPega
+                        ladrillo=new LadrilloSuerte(this, Recursos.ladrilloBarraPega);
                         break;
                         
                 }    

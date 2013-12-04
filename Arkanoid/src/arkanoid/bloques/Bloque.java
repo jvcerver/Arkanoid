@@ -45,5 +45,21 @@ public abstract class Bloque extends Actor{
         //Si no se desplaza hacia abajo
         this.y+=3; //Estaría bien poner esto en función de la dificultad del nivel (velocidad barra, bola...)
     }
+
+    @Override
+    public void recibirGolpe(Actor actor) {
+    }
+
+    @Override
+    public void destruir() {
+    }
+
+    @Override
+    public void crear() {
+    }
+
+    @Override
+    public void debilitar() {
+    }
     
 }

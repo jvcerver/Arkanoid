@@ -16,7 +16,7 @@ import arkanoid.Mundo;
 import static arkanoid.Mundo.LADRILLO_AMARILLO;
 import static arkanoid.Mundo.LADRILLO_AZUL;
 import static arkanoid.Mundo.LADRILLO_IRROMPIBLE;
-import static arkanoid.Mundo.LADRILLO_SUERTE;
+import static arkanoid.Mundo.LADRILLO_VIDA;
 import static arkanoid.Mundo.LADRILLO_VERDE;
 import arkanoid.Recursos;
 import arkanoid.ladrillos.Ladrillo;
@@ -58,26 +58,22 @@ public class Escena3 extends Escena{
         
         //Pared de ladrillos
          //Ladrillos
-        int matrizLadrillos[][]={ {0,                   0,                  0,                      0,                      LADRILLO_AMARILLO,      0,                      0,                      0,                  0},
-                                  {0,                   0,                  0,                      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0,                      0,                  0},
-                                  {0,                   0,                  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0,                  0},
-                                  {0,                   0,                  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0,                  0},
-                                  {0,                   LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO,  0},
-                                  {0,                   LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO,  0},
-                                  {LADRILLO_AMARILLO,   LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,  LADRILLO_AMARILLO},
-                                  {LADRILLO_AMARILLO,   LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,  LADRILLO_AMARILLO},
-                                  {LADRILLO_AMARILLO,   LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,  LADRILLO_AMARILLO},
-                                  {0,                   LADRILLO_AMARILLO,  LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,  0},
-                                  {0,                   LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,      LADRILLO_AMARILLO,    LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO,  0},
-                                  {0,                   0,                  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0,                  0},
-                                  {0,                   0,                  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0,                  0},
-                                  {0,                   0,                  0,                      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0,                      0,                  0},
-                                  {0,                   0,                  0,                      0,                      LADRILLO_AMARILLO,      0,                      0,                      0,                  0}
-
-                                  
+        int matrizLadrillos[][]={ {                   0,                  0,                      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0,                      0},
+                                  {                   0,                  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
+                                  {                   0,                  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
+                                  {                   LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO},
+                                  {                   LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO},
+                                  {LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
+                                  {LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
+                                  {LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
+                                  {                   LADRILLO_AMARILLO,  LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO},
+                                  {                   LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO},
+                                  {                   0,                  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
+                                  {                   0,                  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
+                                  {                   0,                  0,                      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0,                      0},                      
         };
         
-        ((Mundo)game).generarParedLadrillosAMedida(matrizLadrillos, 5, 5, 0, this);
+        ((Mundo)game).generarParedLadrillosAMedida(matrizLadrillos, 5, 5, Recursos.ladrilloAmarillo.getHeight(), this);
            
         controlEscena=new Control(game,"ESCENA 2");
         controlEscena.setAction(this.SALIR, KeyEvent.VK_ESCAPE, 0);

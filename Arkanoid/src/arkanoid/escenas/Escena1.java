@@ -16,7 +16,7 @@ import arkanoid.Mundo;
 import static arkanoid.Mundo.LADRILLO_AMARILLO;
 import static arkanoid.Mundo.LADRILLO_AZUL;
 import static arkanoid.Mundo.LADRILLO_ROJO;
-import static arkanoid.Mundo.LADRILLO_SUERTE;
+import static arkanoid.Mundo.LADRILLO_VIDA;
 import static arkanoid.Mundo.LADRILLO_VERDE;
 import static arkanoid.Mundo.LADRILLO_IRROMPIBLE;
 import arkanoid.Recursos;

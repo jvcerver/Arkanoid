@@ -5,9 +5,13 @@
  */
 package arkanoid;
 
+import FRAMEWORK.GRAFICOS.Sprite;
 import FRAMEWORK.INPUT.ObjetoControlable;
 import arkanoid.bloques.BloqueVida;
 import FRAMEWORK.LOGICA.Actor;
+import arkanoid.bloques.Bloque;
+import arkanoid.bloques.BloqueBarraMax;
+import arkanoid.bloques.BloqueBarraMin;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
@@ -45,12 +49,27 @@ public class Barra extends Actor implements ObjetoControlable {
 
     @Override
     public void recibirGolpe(Actor actor) {
-        //La vida se añade en cualquier choque con la barra, tanto superior como lateral. Esto puede dejarse así o mejorarse
         if(actor instanceof BloqueVida){
             //Borramos el actor
             mundo.actorManager.del(actor);
             //Sumamos una vida
             annadirDibujoVida(vidas.size());
+        }
+        else if(actor instanceof BloqueBarraMax){
+            //Borramos el actor
+            mundo.actorManager.del(actor);
+            //Cambiamos el sprite a la barra y a la sombra
+            this.setSpriteActual(new Sprite(Recursos.barraMax));
+            sombra.setSpriteActual(new Sprite(Recursos.sombraMax));
+            
+        }
+        else if(actor instanceof BloqueBarraMin){
+            //Borramos el actor
+            mundo.actorManager.del(actor);
+            //Cambiamos el sprite a la barra y a la sombra
+            this.setSpriteActual(new Sprite(Recursos.barraMin));
+            sombra.setSpriteActual(new Sprite(Recursos.sombraMin));
+            
         }
     }
 

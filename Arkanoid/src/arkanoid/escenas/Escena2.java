@@ -15,7 +15,9 @@ import FRAMEWORK.SONIDO.Sonido;
 import arkanoid.Mundo;
 import static arkanoid.Mundo.LADRILLO_AMARILLO;
 import static arkanoid.Mundo.LADRILLO_AZUL;
-import static arkanoid.Mundo.LADRILLO_SUERTE;
+import static arkanoid.Mundo.LADRILLO_BARRA_MAX;
+import static arkanoid.Mundo.LADRILLO_BARRA_MIN;
+import static arkanoid.Mundo.LADRILLO_VIDA;
 import static arkanoid.Mundo.LADRILLO_VERDE;
 import arkanoid.Recursos;
 import arkanoid.ladrillos.Ladrillo;
@@ -58,8 +60,8 @@ public class Escena2 extends Escena{
         //Pared de ladrillos
          //Ladrillos
         int matrizLadrillos[][]={ {LADRILLO_AMARILLO,   LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO},
-                                  {0,                   LADRILLO_AZUL, LADRILLO_VERDE, LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_SUERTE,    LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_VERDE, LADRILLO_AZUL, 0},
-                                  {LADRILLO_SUERTE,     LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_SUERTE}};
+                                  {0,                   LADRILLO_AZUL, LADRILLO_VERDE, LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_VIDA,    LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_VERDE, LADRILLO_AZUL, 0},
+                                  {LADRILLO_BARRA_MAX,  LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_BARRA_MIN}};
         
         ((Mundo)game).generarParedLadrillosAMedida(matrizLadrillos, 10, 20, game.SCREEN_HEIGHT/4, this);
            
