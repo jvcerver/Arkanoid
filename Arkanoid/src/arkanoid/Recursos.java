@@ -26,6 +26,7 @@ public class Recursos {
     public static BitMap ladrilloAmarillo = new BitMap("ladrilloAmarillo.png");
     public static BitMap ladrilloAmarilloRoto = new BitMap("ladrilloAmarilloRoto.png");
     public static BitMap ladrilloAmarilloSuperRoto = new BitMap("ladrilloAmarilloSuperRoto.png");
+    public static BitMap ladrilloIrrompible = new BitMap("ladrilloIrrompible.png");
     
     public static Sonido sonidoGolpeBola=new Sonido("golpeBola.WAV");
     public static Sonido sonidoFondo=new Sonido("sonidoFondo.wav");

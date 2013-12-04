@@ -12,6 +12,7 @@ import arkanoid.ladrillos.Ladrillo;
 import arkanoid.ladrillos.LadrilloSuerte;
 import FRAMEWORK.LOGICA.Game;
 import arkanoid.escenas.EscenaPresentacion;
+import arkanoid.ladrillos.LadrilloIrrompible;
 import arkanoid.ladrillos.LadrilloNormal;
 import arkanoid.ladrillos.LadrilloResistente;
 import java.awt.event.KeyEvent;
@@ -39,6 +40,7 @@ public class Mundo extends Game{
     public static final int LADRILLO_AMARILLO_ROTO = 5;
     public static final int LADRILLO_AMARILLO_SUPER_ROTO = 6;
     public static final int LADRILLO_SUERTE = 7;
+    public static final int LADRILLO_IRROMPIBLE = 8;
     
     //para futuras iteraciones en las que la velocidad pueda variar
     public static final int LENTO = 7;
@@ -144,6 +146,9 @@ public class Mundo extends Game{
                         break;
                     case LADRILLO_SUERTE: //Ladrillo suerte
                         ladrillo=new LadrilloSuerte(this);
+                        break;
+                    case LADRILLO_IRROMPIBLE: //Ladrillo irrompible
+                        ladrillo=new LadrilloIrrompible(this);
                         break;
                         
                 }    
