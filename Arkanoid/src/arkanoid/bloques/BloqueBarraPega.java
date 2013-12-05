@@ -14,9 +14,9 @@ import arkanoid.Recursos;
  *
  * @author Carmen
  */
-public class BloquePegamento extends Bloque{
+public class BloqueBarraPega extends Bloque{
 
-    public BloquePegamento(Game game) {
+    public BloqueBarraPega(Game game) {
         super(game, Recursos.bloqueVida);
     }
 

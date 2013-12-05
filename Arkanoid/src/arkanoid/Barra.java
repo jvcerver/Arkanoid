@@ -8,7 +8,7 @@ package arkanoid;
 import FRAMEWORK.INPUT.ObjetoControlable;
 import arkanoid.bloques.BloqueVida;
 import FRAMEWORK.LOGICA.Actor;
-import arkanoid.bloques.BloquePegamento;
+import arkanoid.bloques.BloqueBarraPega;
 import java.util.ArrayList;
 
 /**
@@ -61,7 +61,7 @@ public class Barra extends Actor implements ObjetoControlable {
             bola=((Bola)actor);
             bola.setEnEspera(true);
         }
-        if (actor instanceof BloquePegamento) {
+        if (actor instanceof BloqueBarraPega) {
             mundo.actorManager.del(actor);
             setCogerBola(true);
         }
