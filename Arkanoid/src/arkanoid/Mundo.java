@@ -100,18 +100,19 @@ public class Mundo extends Game{
         Control controlBarra=new Control(this,"CONTROL DE LA BARRA");
         controlBarra.setAction(Barra.DERECHA, KeyEvent.VK_RIGHT, 0);
         controlBarra.setAction(Barra.IZQUIERDA, KeyEvent.VK_LEFT, 0);
+        controlBarra.setAction(Barra.ARRIBA, KeyEvent.VK_UP, 0);
         controlBarra.setOwner(barra);
         this.controlManager.addControl(controlBarra); 
                 
         //Bola(s)
         bolas = new ArrayList<>();
         bolas.add(new Bola(this, Recursos.bola));   
-       
+        
         //Añadir personajes a actorManager
         this.actorManager.add(sombra);
         this.actorManager.add(barra);
         this.actorManager.add(bolas.get(0));
-        
+        barra.setBola(bolas.get(0));
     }
     
     public Sombra getSombra() {

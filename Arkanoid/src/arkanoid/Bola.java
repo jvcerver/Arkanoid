@@ -18,7 +18,7 @@ public class Bola extends Actor {
     private CollisionManager gestorColisiones;
     private Sonido golpeBola;
     private Sonido perderBola;
-
+    private boolean enEspera;
     public int desplazamiento = Mundo.LENTO;
 
     public Bola(Mundo mundo, BitMap bitMap) {
@@ -27,15 +27,18 @@ public class Bola extends Actor {
         reiniciar();
         golpeBola = Recursos.sonidoGolpeBola;
         perderBola = Recursos.sonidoPerderBola;
-
+        
+        
     }
 
     public void reiniciar() {
-         x = mundo.getBarra().getX() + (mundo.getBarra().getWidth() / 2) - (this.getWidth() / 2);
-         y = mundo.getBarra().getY() - this.getHeight();
-         dx = desplazamiento;
-         dy = -desplazamiento;
-         mundo.pausarJuego();
+        enEspera = true;
+        x = mundo.getBarra().getX() + (mundo.getBarra().getWidth() / 2) - (this.getWidth() / 2);
+        y = mundo.getBarra().getY() - this.getHeight();
+        dx = desplazamiento;
+        dy = -desplazamiento;
+        //mundo.pausarJuego();
+        
     }
 
     //SE HEREDA GOLPEAR
@@ -55,11 +58,11 @@ public class Bola extends Actor {
 //COMPROBAR SI CHOCA CON LOS BORDES DE LA PANTALLA
         if (this.x < 0) {//borde izdo
             x = xa;
-            dx = dx*-1;
+            dx = dx * -1;
         }
         if (this.x + this.getWidth() > mundo.SCREEN_WIDTH) {//borde dcho
             x = xa;
-            dx = dx*-1;
+            dx = dx * -1;
         }
         if (this.y + this.getHeight() > mundo.SCREEN_HEIGHT) {//borde inferior
             perderBola.play();
@@ -67,22 +70,34 @@ public class Bola extends Actor {
             this.reiniciar();
             mundo.getBarra().setVida(mundo.getBarra().getVida() - 1);
             //((Escena1)mundo.getEscenaActual()).setTextoInformativo("Pulsa la barra espaciadora para comenzar");
-            try{
-                mundo.actorManager.del(mundo.getBarra().getVidas().remove(mundo.getBarra().getVidas().size()-1));
-            }catch(IndexOutOfBoundsException e){
+            try {
+                mundo.actorManager.del(mundo.getBarra().getVidas().remove(mundo.getBarra().getVidas().size() - 1));
+            } catch (IndexOutOfBoundsException e) {
                 //Cuando quedan 0 vidas
             }
         }
         if (this.y < 0) {//borde superior
             y = ya;
-            dy = dy*-1;
+            dy = dy * -1;
         }
         //Comprobar si choca con algo y actuar en consecuencia
         Actor conQueChoco = this.golpear();
         if (conQueChoco instanceof Barra) {
-            dx = dx + Math.round(mundo.getBarra().getDx()/4);
-            dy = dy*-1;
+            //adquiere el 25% del movimiento de la barra
+            dx = dx + Math.round(mundo.getBarra().getDx() / 4);
+            //invierte su trayectoria y
+            dy = dy * -1;
             golpeBola.play();
+            /*
+             if (((Barra)conQueChoco).isCogerBola()) {
+             //detenemos el movimiento
+             int antDx = dx;
+             int antDy = dy;
+             dx = 0;
+             dy = 0;
+                
+             }
+             */
         }
         if (conQueChoco instanceof Ladrillo) {
             golpeBola.play();
@@ -92,40 +107,40 @@ public class Bola extends Actor {
             int pizqLadrillo = conQueChoco.getX(); //punto izquierdo maximo del objeto que colisiona
             int pinfBola = this.y + this.getWidth(); // punto inferior de la bola
             int pderBola = this.x + this.getWidth(); //punto derecho de la bola
-            
+
             //colisiono por debajo
             if (pinfBola > pinfLadrillo) {
                 y = ya;
-                dy = dy*-1;
+                dy = dy * -1;
             }
-            
+
             //colisiono por arriba
             if (y < psupLadrillo) {
                 y = ya;
-                dy = dy*-1;
+                dy = dy * -1;
             }
 
             //colisiono desde la izquierda
             if (x < pizqLadrillo) {
                 x = xa;
-                dx = dx*-1;
+                dx = dx * -1;
             }
-            
+
             //colisiono desde la derecha
             if (pderBola > pderLadrillo) {
                 x = xa;
-                dx = dx*-1;
+                dx = dx * -1;
             }
-            
+
             //colisiones especiales//
             //colision esquina superior izquierda
             if (pinfBola > psupLadrillo && pderBola > pizqLadrillo && this.x < pizqLadrillo) {
                 x = xa;
                 y = ya;
-                
+
                 int aux = dx;
-                dx = dy*-1;
-                dy = dx;        
+                dx = dy * -1;
+                dy = dx;
             }
             //esquina superior derecha
             if (pinfBola > psupLadrillo && pderBola > pderLadrillo && this.x < pderLadrillo) {
@@ -134,7 +149,7 @@ public class Bola extends Actor {
 
                 int aux = dx;
                 dx = dy;
-                dy = dx*-1;
+                dy = dx * -1;
             }
 
             //esquina inferior izquierda
@@ -143,7 +158,7 @@ public class Bola extends Actor {
                 y = ya;
 
                 int aux = dx;
-                dx = dy*-1;
+                dx = dy * -1;
                 dy = dx;
             }
             //esquina inferior derecha
@@ -153,7 +168,7 @@ public class Bola extends Actor {
 
                 int aux = dx;
                 dx = dy;
-                dy = dx*-1;
+                dy = dx * -1;
             }
 
         }
@@ -164,9 +179,22 @@ public class Bola extends Actor {
         tickTime += deltaTime;
         if (tickTime > TICK) {
             tickTime -= TICK;
-            this.mover();
+            if (!enEspera) {
+                this.mover();
+            } else {
+                x = mundo.getBarra().getX() + (mundo.getBarra().getWidth() / 2) - (this.getWidth() / 2);
+                y = mundo.getBarra().getY() - this.getHeight();
+            }
 
         }
+    }
+
+    public boolean isEnEspera() {
+        return enEspera;
+    }
+
+    public void setEnEspera(boolean enEspera) {
+        this.enEspera = enEspera;
     }
 
     @Override

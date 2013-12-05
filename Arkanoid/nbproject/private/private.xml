@@ -2,6 +2,10 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
+        <group name="AD"/>
+        <group/>
+=======
         <group>
             <file>file:/C:/Users/josevicente/Documents/GitHub/Arkanoid/Arkanoid/src/arkanoid/Barra.java</file>
         </group>
@@ -9,5 +13,6 @@
             <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/ladrillos/LadrilloSuerte.java</file>
             <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/Recursos.java</file>
         </group>
+>>>>>>> b259f60b0281dab7b674f2ffc06e8743ee588fee
     </open-files>
 </project-private>
