@@ -27,16 +27,18 @@ public class Bola extends Actor {
         reiniciar();
         golpeBola = Recursos.sonidoGolpeBola;
         perderBola = Recursos.sonidoPerderBola;
-        enEspera = true;
+        
+        
     }
 
     public void reiniciar() {
-
+        enEspera = true;
         x = mundo.getBarra().getX() + (mundo.getBarra().getWidth() / 2) - (this.getWidth() / 2);
         y = mundo.getBarra().getY() - this.getHeight();
         dx = desplazamiento;
         dy = -desplazamiento;
-        mundo.pausarJuego();
+        //mundo.pausarJuego();
+        
     }
 
     //SE HEREDA GOLPEAR

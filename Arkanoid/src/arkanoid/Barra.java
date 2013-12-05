@@ -22,6 +22,7 @@ public class Barra extends Actor implements ObjetoControlable {
     public static final int VIDAS_INICIALES = 3;
     private ArrayList<Vida> vidas;   
     private boolean cogerBola;
+    private Bola bola;
 
     public Barra(Mundo mundo) {
         super(mundo, Recursos.barra);
@@ -43,6 +44,9 @@ public class Barra extends Actor implements ObjetoControlable {
         sombra.setPosition(x, y);
         sombra.setDx(Mundo.NORMAL);        
     }
+    public void setBola(Bola bola){
+        this.bola=bola;
+    }
 
     @Override
     public void recibirGolpe(Actor actor) {
@@ -52,6 +56,10 @@ public class Barra extends Actor implements ObjetoControlable {
             mundo.actorManager.del(actor);
             //Sumamos una vida
             annadirDibujoVida(vidas.size());
+        }
+        if (actor instanceof Bola && isCogerBola()) {
+            bola=((Bola)actor);
+            bola.setEnEspera(true);
         }
         if (actor instanceof BloquePegamento) {
             mundo.actorManager.del(actor);
@@ -121,6 +129,7 @@ public class Barra extends Actor implements ObjetoControlable {
 
     public final static int DERECHA=0;
     public final static int IZQUIERDA=1;
+    public final static int ARRIBA=2;
     
     @Override
     public void doAccion(int accion) {
@@ -133,6 +142,10 @@ public class Barra extends Actor implements ObjetoControlable {
                 moverIzqda();
                 sombra.setPosition(this.getX(), this.getY());
                 break;
+            case ARRIBA:
+                bola.setEnEspera(false);
+                break;
+                
         }//fin switch
     }
 }
