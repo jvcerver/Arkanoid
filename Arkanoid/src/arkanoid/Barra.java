@@ -5,11 +5,16 @@
  */
 package arkanoid;
 
+import FRAMEWORK.GRAFICOS.Sprite;
 import FRAMEWORK.INPUT.ObjetoControlable;
-import arkanoid.bloques.BloqueVida;
 import FRAMEWORK.LOGICA.Actor;
+import static arkanoid.Recursos.vida;
+import arkanoid.bloques.BloqueBarraMax;
+import arkanoid.bloques.BloqueBarraMin;
 import arkanoid.bloques.BloqueBarraPega;
+import arkanoid.bloques.BloqueVida;
 import java.util.ArrayList;
+import static javax.swing.text.html.HTML.Tag.HEAD;
 
 /**
  *
@@ -20,7 +25,7 @@ public class Barra extends Actor implements ObjetoControlable {
     private Mundo mundo;
     private Sombra sombra;
     public static final int VIDAS_INICIALES = 3;
-    private ArrayList<Vida> vidas;   
+    private ArrayList<Vida> vidas;
     private boolean cogerBola;
     private Bola bola;
 
@@ -29,36 +34,51 @@ public class Barra extends Actor implements ObjetoControlable {
         this.mundo = mundo;
         this.sombra = mundo.getSombra();
         vidas = new ArrayList<Vida>();
-        for(int i=0; i<VIDAS_INICIALES-1; i++){
+        for (int i = 0; i < VIDAS_INICIALES - 1; i++) {
             annadirDibujoVida(i);
         }
         vida++; //Una vida  más que dibujos hacemos
         reiniciar();
     }
-    
-    public void reiniciar(){
-        x = (mundo.SCREEN_WIDTH-this.getWidth())/ 2;
-        y = mundo.SCREEN_HEIGHT - this.getHeight()*4;      
-        this.dx=(Mundo.NORMAL);
-        
+
+    public void reiniciar() {
+        x = (mundo.SCREEN_WIDTH - this.getWidth()) / 2;
+        y = mundo.SCREEN_HEIGHT - this.getHeight() * 4;
+        this.dx = (Mundo.NORMAL);
+
         sombra.setPosition(x, y);
-        sombra.setDx(Mundo.NORMAL);        
+        sombra.setDx(Mundo.NORMAL);
     }
-    public void setBola(Bola bola){
-        this.bola=bola;
+
+    public void setBola(Bola bola) {
+        this.bola = bola;
     }
 
     @Override
     public void recibirGolpe(Actor actor) {
-        //La vida se añade en cualquier choque con la barra, tanto superior como lateral. Esto puede dejarse así o mejorarse
-        if(actor instanceof BloqueVida){
+        if (actor instanceof BloqueVida) {
             //Borramos el actor
             mundo.actorManager.del(actor);
             //Sumamos una vida
             annadirDibujoVida(vidas.size());
+        } else if (actor instanceof BloqueBarraMax) {
+            //Borramos el actor
+            mundo.actorManager.del(actor);
+            //Cambiamos el sprite a la barra y a la sombra
+            this.setSpriteActual(new Sprite(Recursos.barraMax));
+            sombra.setSpriteActual(new Sprite(Recursos.sombraMax));
+
+        } else if (actor instanceof BloqueBarraMin) {
+            //Borramos el actor
+            mundo.actorManager.del(actor);
+            //Cambiamos el sprite a la barra y a la sombra
+            this.setSpriteActual(new Sprite(Recursos.barraMin));
+            sombra.setSpriteActual(new Sprite(Recursos.sombraMin));
+
         }
+
         if (actor instanceof Bola && isCogerBola()) {
-            bola=((Bola)actor);
+            bola = ((Bola) actor);
             bola.setEnEspera(true);
         }
         if (actor instanceof BloqueBarraPega) {
@@ -66,35 +86,36 @@ public class Barra extends Actor implements ObjetoControlable {
             setCogerBola(true);
         }
     }
-    
-    public void setCogerBola(boolean coger){
-        cogerBola=coger;
+
+    public void setCogerBola(boolean coger) {
+        cogerBola = coger;
     }
-    public boolean isCogerBola(){
+
+    public boolean isCogerBola() {
         return cogerBola;
     }
 
     public void moverIzqda() {
-        if (this.x>0) { //si no rebasa el borde izquierdo
+        if (this.x > 0) { //si no rebasa el borde izquierdo
             if (dx > 0) {
-                dx = dx*-1;
+                dx = dx * -1;
             }
-        this.x += this.dx;
+            this.x += this.dx;
         } else {
-            this.x=0;
+            this.x = 0;
         }
     }
 
     public void moverDcha() {
         if (this.x + this.getWidth() < this.getGame().SCREEN_WIDTH) {
             if (dx < 0) {
-                dx = dx*-1;
+                dx = dx * -1;
             }
             this.x += this.dx;
         } else {
             this.x = this.getGame().SCREEN_WIDTH - this.getWidth();
         }
-        
+
     }
 
     @Override
@@ -106,10 +127,10 @@ public class Barra extends Actor implements ObjetoControlable {
     }
 
     private void annadirDibujoVida(int indice) {
-            vidas.add(new Vida(mundo));
-            vidas.get(indice).setPosition(mundo.SCREEN_WIDTH-(Recursos.vida.getWidth()+10)*(indice+1), mundo.SCREEN_HEIGHT-Recursos.vida.getHeight()*2);
-            mundo.actorManager.add(vidas.get(indice));
-            vida++;
+        vidas.add(new Vida(mundo));
+        vidas.get(indice).setPosition(mundo.SCREEN_WIDTH - (Recursos.vida.getWidth() + 10) * (indice + 1), mundo.SCREEN_HEIGHT - Recursos.vida.getHeight() * 2);
+        mundo.actorManager.add(vidas.get(indice));
+        vida++;
     }
 
     @Override
@@ -127,13 +148,13 @@ public class Barra extends Actor implements ObjetoControlable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public final static int DERECHA=0;
-    public final static int IZQUIERDA=1;
-    public final static int ARRIBA=2;
-    
+    public final static int DERECHA = 0;
+    public final static int IZQUIERDA = 1;
+    public final static int ARRIBA = 2;
+
     @Override
     public void doAccion(int accion) {
-        switch (accion){
+        switch (accion) {
             case DERECHA:
                 moverDcha();
                 sombra.setPosition(this.getX(), this.getY());
@@ -145,7 +166,7 @@ public class Barra extends Actor implements ObjetoControlable {
             case ARRIBA:
                 bola.setEnEspera(false);
                 break;
-                
+
         }//fin switch
     }
 }

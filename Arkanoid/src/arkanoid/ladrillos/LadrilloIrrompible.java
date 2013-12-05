@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package arkanoid.bloques;
+package arkanoid.ladrillos;
 
 import FRAMEWORK.LOGICA.Actor;
 import FRAMEWORK.LOGICA.Game;
@@ -14,10 +14,15 @@ import arkanoid.Recursos;
  *
  * @author Carmen
  */
-public class BloqueBarraPega extends Bloque{
+public class LadrilloIrrompible extends Ladrillo{
+    
+    public LadrilloIrrompible(Game game) {
+        super(game, Recursos.ladrilloIrrompible);
+        Ladrillo.restarLadrillo();
+    }
 
-    public BloqueBarraPega(Game game) {
-        super(game, Recursos.bloqueBaraPega);
+    @Override
+    public void actualizar(int deltaTime) {
     }
 
     @Override
@@ -38,7 +43,5 @@ public class BloqueBarraPega extends Bloque{
     public void debilitar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    
     
 }

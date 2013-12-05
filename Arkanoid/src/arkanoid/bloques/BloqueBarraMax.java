@@ -14,10 +14,10 @@ import arkanoid.Recursos;
  *
  * @author Carmen
  */
-public class BloqueBarraPega extends Bloque{
+public class BloqueBarraMax extends Bloque{
 
-    public BloqueBarraPega(Game game) {
-        super(game, Recursos.bloqueBaraPega);
+    public BloqueBarraMax(Game game) {
+        super(game, Recursos.bloqueBarraMax);
     }
 
     @Override

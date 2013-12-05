@@ -16,8 +16,9 @@ import arkanoid.Mundo;
 import static arkanoid.Mundo.LADRILLO_AMARILLO;
 import static arkanoid.Mundo.LADRILLO_AZUL;
 import static arkanoid.Mundo.LADRILLO_ROJO;
-import static arkanoid.Mundo.LADRILLO_SUERTE;
+import static arkanoid.Mundo.LADRILLO_VIDA;
 import static arkanoid.Mundo.LADRILLO_VERDE;
+import static arkanoid.Mundo.LADRILLO_IRROMPIBLE;
 import arkanoid.Recursos;
 import arkanoid.ladrillos.Ladrillo;
 import java.awt.Color;
@@ -57,13 +58,7 @@ public class Escena1 extends Escena{
         this.addActor(textoInformativo);  
         
         //Pared de ladrillos
-         //Ladrillos
-        int matrizLadrillos[][]={ {LADRILLO_AMARILLO,   LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO},
-                                  {0,                   LADRILLO_AZUL, LADRILLO_VERDE, LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_SUERTE,    LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_VERDE, LADRILLO_AZUL, 0},
-                                  {LADRILLO_SUERTE,     LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_SUERTE}};
-        
-        //((Mundo)game).generarParedLadrillosAMedida(matrizLadrillos, 10, 20);
-        ((Mundo)game).generarParedLadrillosHomogenea(LADRILLO_ROJO, 3, 10, 10, 10, this);
+        ((Mundo)game).generarParedLadrillosHomogenea(LADRILLO_ROJO, 3, 10, 10, 10, game.SCREEN_HEIGHT/4, this);
            
         controlEscena=new Control(game,"ESCENA 1");
         controlEscena.setAction(this.SALIR, KeyEvent.VK_ESCAPE, 0);
