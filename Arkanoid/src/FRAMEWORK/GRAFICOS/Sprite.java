@@ -61,7 +61,11 @@ public class Sprite {
     public void setPosition(int x, int y){
         this.x = x; this.y = y;  
     }
-    
+
+    public int getiFrame() {
+        return iFrame;
+    }
+
  //   public void setX(int x) { this.x = x;}
  //   public void setY(int y) { this.y = y;}
  //   public int getX(){ return x;}

@@ -13,9 +13,12 @@ import FRAMEWORK.LOGICA.ActorTexto;
 import FRAMEWORK.LOGICA.Game;
 import FRAMEWORK.SONIDO.Sonido;
 import arkanoid.Mundo;
+import static arkanoid.Mundo.LADRILLO_ALEATORIO;
 import static arkanoid.Mundo.LADRILLO_AMARILLO;
 import static arkanoid.Mundo.LADRILLO_AZUL;
-import static arkanoid.Mundo.LADRILLO_IRROMPIBLE;
+import static arkanoid.Mundo.LADRILLO_BARRA_MAX;
+import static arkanoid.Mundo.LADRILLO_BARRA_MIN;
+import static arkanoid.Mundo.LADRILLO_ROJO;
 import static arkanoid.Mundo.LADRILLO_VIDA;
 import static arkanoid.Mundo.LADRILLO_VERDE;
 import arkanoid.Recursos;
@@ -57,23 +60,7 @@ public class Escena3 extends Escena{
         this.addActor(textoInformativo);  
         
         //Pared de ladrillos
-         //Ladrillos
-        int matrizLadrillos[][]={ {                   0,                  0,                      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0,                      0},
-                                  {                   0,                  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
-                                  {                   0,                  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
-                                  {                   LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO},
-                                  {                   LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO},
-                                  {LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
-                                  {LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
-                                  {LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
-                                  {                   LADRILLO_AMARILLO,  LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO},
-                                  {                   LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO},
-                                  {                   0,                  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
-                                  {                   0,                  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
-                                  {                   0,                  0,                      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0,                      0},                      
-        };
-        
-        ((Mundo)game).generarParedLadrillosAMedida(matrizLadrillos, 5, 5, Recursos.ladrilloAmarillo.getHeight(), this);
+        ((Mundo)game).generarParedLadrillosHomogenea(LADRILLO_ALEATORIO, 2, 1, 0, 150, game.SCREEN_HEIGHT/4, this);
            
         controlEscena=new Control(game,"ESCENA 2");
         controlEscena.setAction(this.SALIR, KeyEvent.VK_ESCAPE, 0);
@@ -112,7 +99,7 @@ public class Escena3 extends Escena{
 
     @Override
     public Escena getSiguienteEscena() {
-         return new EscenaFinal(game);
+         return new Escena4(game);
     }
     
     public void setTextoInformativo(String textoInformativo) {

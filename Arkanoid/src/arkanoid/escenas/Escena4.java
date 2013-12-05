@@ -13,11 +13,9 @@ import FRAMEWORK.LOGICA.ActorTexto;
 import FRAMEWORK.LOGICA.Game;
 import FRAMEWORK.SONIDO.Sonido;
 import arkanoid.Mundo;
-import static arkanoid.Mundo.LADRILLO_ALEATORIO;
 import static arkanoid.Mundo.LADRILLO_AMARILLO;
 import static arkanoid.Mundo.LADRILLO_AZUL;
-import static arkanoid.Mundo.LADRILLO_BARRA_MAX;
-import static arkanoid.Mundo.LADRILLO_BARRA_MIN;
+import static arkanoid.Mundo.LADRILLO_IRROMPIBLE;
 import static arkanoid.Mundo.LADRILLO_VIDA;
 import static arkanoid.Mundo.LADRILLO_VERDE;
 import arkanoid.Recursos;
@@ -26,13 +24,13 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 
 
-public class Escena2 extends Escena{
+public class Escena4 extends Escena{
 
     private ActorTexto textoInformativo; 
     private ActorTexto tituloPuntosVidas;
     private Sonido sonidoFondo;
     
-    public Escena2(Game game){
+    public Escena4(Game game){
         super(game);
         sonidoFondo = Recursos.sonidoFondo;
     }
@@ -60,11 +58,22 @@ public class Escena2 extends Escena{
         
         //Pared de ladrillos
          //Ladrillos
-        int matrizLadrillos[][]={ {LADRILLO_AMARILLO,   LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO},
-                                  {0,                   LADRILLO_AZUL, LADRILLO_VERDE, LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_VIDA,    LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_VERDE, LADRILLO_AZUL, 0},
-                                  {LADRILLO_BARRA_MAX,  LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO, LADRILLO_AZUL, LADRILLO_AZUL,  LADRILLO_AZUL, LADRILLO_BARRA_MIN}};
+        int matrizLadrillos[][]={ {                   0,                  0,                      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0,                      0},
+                                  {                   0,                  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
+                                  {                   0,                  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
+                                  {                   LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO},
+                                  {                   LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO},
+                                  {LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
+                                  {LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
+                                  {LADRILLO_AMARILLO, LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
+                                  {                   LADRILLO_AMARILLO,  LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO},
+                                  {                   LADRILLO_AMARILLO,  LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO},
+                                  {                   0,                  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_IRROMPIBLE,    LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
+                                  {                   0,                  LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0},
+                                  {                   0,                  0,                      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      LADRILLO_AMARILLO,      0,                      0},                      
+        };
         
-        ((Mundo)game).generarParedLadrillosAMedida(matrizLadrillos, 10, 20, game.SCREEN_HEIGHT/4, this);
+        ((Mundo)game).generarParedLadrillosAMedida(matrizLadrillos, 5, 5, Recursos.ladrilloAmarillo.getHeight(), this);
            
         controlEscena=new Control(game,"ESCENA 2");
         controlEscena.setAction(this.SALIR, KeyEvent.VK_ESCAPE, 0);
@@ -103,7 +112,7 @@ public class Escena2 extends Escena{
 
     @Override
     public Escena getSiguienteEscena() {
-         return new Escena3(game);
+         return new EscenaFinal(game);
     }
     
     public void setTextoInformativo(String textoInformativo) {

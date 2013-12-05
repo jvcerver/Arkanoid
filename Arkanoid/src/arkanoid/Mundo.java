@@ -7,6 +7,7 @@
 package arkanoid;
 
 import ESCENAS.Escena;
+import FRAMEWORK.GRAFICOS.Sprite;
 import FRAMEWORK.INPUT.Control;
 import arkanoid.ladrillos.Ladrillo;
 import arkanoid.ladrillos.LadrilloSuerte;
@@ -44,6 +45,8 @@ public class Mundo extends Game{
     public static final int LADRILLO_BARRA_MAX = 9;
     public static final int LADRILLO_BARRA_MIN = 10;
     public static final int LADRILLO_BARRA_PEGA = 11;
+    public static final int LADRILLO_SUERTE = 12;
+    public static final int LADRILLO_ALEATORIO = 13;
     
     //para futuras iteraciones en las que la velocidad pueda variar
     public static final int LENTO = 7;
@@ -161,14 +164,16 @@ public class Mundo extends Game{
                     case LADRILLO_BARRA_PEGA: //Ladrillo barraPega
                         ladrillo=new LadrilloSuerte(this, Recursos.ladrilloBarraPega);
                         break;
-                        
+                    case LADRILLO_ALEATORIO: //Ladrillo aleatorio
+                        ladrillo=new LadrilloSuerte(this, Recursos.ladrilloAleatorio);
+                        break;        
                 }    
     
                 if(tipoLadrillo!=0){
                     posx = posxInicial + columna*(ladrillo.getWidth() + hgapLadrillo);
                     posy = posYInicial + fila*(ladrillo.getHeight() + vgapLadrillo);
                     ladrillo.setPosition(posx,posy);
-                    escena.addActor(ladrillo);
+                    escena.addActor(ladrillo);                   
                     //this.actorManager.add(ladrillo);
                 }
                                 

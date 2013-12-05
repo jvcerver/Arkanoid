@@ -25,7 +25,7 @@ public class Recursos {
     public static BitMap sombraMax = new BitMap("sombraMax.png");
     
     //Ladrillos
-    public static BitMap ladrilloSuerte = new BitMap("ladrilloSuerte.png");
+    public static BitMap ladrilloAleatorio = new BitMap("ladrilloAleatorio.png");
     public static BitMap ladrilloAzul = new BitMap("ladrilloAzul.png");
     public static BitMap ladrilloRojo = new BitMap("ladrilloRojo.png");
     public static BitMap ladrilloVerde = new BitMap("ladrilloVerde.png");

@@ -7,6 +7,7 @@
 package arkanoid.ladrillos;
 
 import FRAMEWORK.GRAFICOS.BitMap;
+import FRAMEWORK.GRAFICOS.Sprite;
 import FRAMEWORK.LOGICA.Actor;
 import FRAMEWORK.LOGICA.Game;
 import arkanoid.bloques.BloqueVida;
@@ -29,10 +30,17 @@ public class LadrilloSuerte extends Ladrillo{
     public LadrilloSuerte(Game game, BitMap bitMap) {
         super(game, bitMap);
         this.bitMap=bitMap;
+        if(bitMap.equals(Recursos.ladrilloAleatorio))
+            setSpriteActual(new Sprite(Recursos.ladrilloAleatorio,4,40));
     }
 
     @Override
     public void actualizar(int deltaTime) {
+        tickTime += deltaTime; 
+        if (tickTime > TICK) {            
+            tickTime -= TICK;
+            this.actualizar(tickTime);
+        }
     }
 
     @Override
@@ -49,20 +57,32 @@ public class LadrilloSuerte extends Ladrillo{
         Bloque bloque = null;
         
         if (bitMap.equals(Recursos.ladrilloVida)){
-            //Creo una posible vida
             bloque = new BloqueVida(this.getGame());
         }
         else if (bitMap.equals(Recursos.ladrilloBarraMax)){
-            //Creo una posible vida
             bloque = new BloqueBarraMax(this.getGame());
         }
         else if (bitMap.equals(Recursos.ladrilloBarraMin)){
-            //Creo una posible vida
             bloque = new BloqueBarraMin(this.getGame());
         }
         else if (bitMap.equals(Recursos.ladrilloBarraPega)){
-            //Creo una posible vida
             bloque = new BloqueBarraPega(this.getGame());
+        }
+        else if (bitMap.equals(Recursos.ladrilloAleatorio)){
+            switch(this.getSpriteActual().getiFrame()){
+            case 0:
+                bloque = new BloqueBarraMin(this.getGame());
+                break;
+            case 1:
+                bloque = new BloqueBarraPega(this.getGame());
+                break;
+            case 2:
+                bloque = new BloqueBarraMax(this.getGame());
+                break;
+            case 3:
+                bloque = new BloqueVida(this.getGame());
+                break;
+            }
         }
         
         //Lo añado a la lista de actores
@@ -76,17 +96,14 @@ public class LadrilloSuerte extends Ladrillo{
 
     @Override
     public void destruir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void crear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void debilitar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
