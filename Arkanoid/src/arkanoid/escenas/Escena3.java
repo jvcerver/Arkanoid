@@ -69,11 +69,13 @@ public class Escena3 extends Escena{
 
     @Override
     public void reanudar() {
+        ((Mundo)game).resetTextoInformativo();
         game.reanudarJuego();
     }
 
     @Override
     public void pausar() {
+        ((Mundo)game).setTextoInformativo("Pulsa la barra espaciadora para reanudar el juego");
         game.pausarJuego();
     }
 
