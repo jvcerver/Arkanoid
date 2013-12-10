@@ -1,8 +1,7 @@
 /**
  *
- * @author Rafael Pérez
- * DESARROLLO DE APLICACIONES MULTIPLATAFORMAS
- * COLEGIO STMA TRINIDAD DE SALAMANCA
+ * @author josevicente
+ * @author Carmen
  */
 package arkanoid;
 

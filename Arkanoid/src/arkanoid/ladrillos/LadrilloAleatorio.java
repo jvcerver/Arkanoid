@@ -19,7 +19,7 @@ import arkanoid.bloques.BloqueBarraMin;
 import arkanoid.bloques.BloqueBarraPega;
 
 /**
- *
+ * @author josevicente
  * @author Carmen
  */
 public class LadrilloAleatorio extends Ladrillo{

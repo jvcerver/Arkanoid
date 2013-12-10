@@ -11,7 +11,7 @@ import FRAMEWORK.LOGICA.Game;
 import arkanoid.Recursos;
 
 /**
- *
+ * @author josevicente
  * @author Carmen
  */
 public class BloqueBarraPega extends Bloque{

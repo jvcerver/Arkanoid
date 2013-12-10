@@ -20,17 +20,14 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 /**
- *
  * @author josevicente
+ * @author Carmen
  */
 public class Mundo extends Game{
         
     private Barra barra;
     private ArrayList<Bola> bolas;
-    //private int mundo;
     private Sombra sombra;
-    //private ActorTexto tituloPuntosVidas;
-    //private ActorTexto textoInformativo;
     private Escena escenaActual;
     
     //ladrillos

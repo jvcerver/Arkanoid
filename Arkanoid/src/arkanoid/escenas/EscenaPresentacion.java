@@ -1,14 +1,12 @@
 /**
  *
- * @author Rafael Pérez
- * DESARROLLO DE APLICACIONES MULTIPLATAFORMAS
- * COLEGIO STMA TRINIDAD DE SALAMANCA
+ * @author josevicente
+ * @author Carmen
  */
 
 package arkanoid.escenas;
 
 import ESCENAS.Escena;
-import FRAMEWORK.GRAFICOS.Sprite;
 import FRAMEWORK.INPUT.Control;
 import FRAMEWORK.LOGICA.ActorTexto;
 import FRAMEWORK.LOGICA.Game;

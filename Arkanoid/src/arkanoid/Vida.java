@@ -10,7 +10,7 @@ import FRAMEWORK.LOGICA.Actor;
 import FRAMEWORK.LOGICA.Game;
 
 /**
- *
+ * @author josevicente
  * @author Carmen
  */
 public class Vida extends Actor{

@@ -10,8 +10,8 @@ import FRAMEWORK.GRAFICOS.BitMap;
 import FRAMEWORK.SONIDO.Sonido;
 
 /**
- *
  * @author josevicente
+ * @author Carmen
  */
 public class Recursos {
     /******IMÁGENES***********/

@@ -9,10 +9,9 @@ package arkanoid.ladrillos;
 import FRAMEWORK.GRAFICOS.BitMap;
 import FRAMEWORK.LOGICA.Actor;
 import FRAMEWORK.LOGICA.Game;
-import arkanoid.Recursos;
 
 /**
- *
+ * @author josevicente
  * @author Carmen
  */
 public class LadrilloNormal extends Ladrillo{
@@ -36,17 +35,17 @@ public class LadrilloNormal extends Ladrillo{
 
     @Override
     public void destruir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void crear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
     @Override
     public void debilitar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
 }

@@ -11,7 +11,7 @@ import FRAMEWORK.LOGICA.Game;
 import arkanoid.Recursos;
 
 /**
- *
+ * @author josevicente
  * @author Carmen
  */
 public class LadrilloIrrompible extends Ladrillo{
@@ -31,17 +31,17 @@ public class LadrilloIrrompible extends Ladrillo{
 
     @Override
     public void destruir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
     public void crear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
     public void debilitar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
     
 }

@@ -7,7 +7,6 @@
 package arkanoid.ladrillos;
 
 import FRAMEWORK.GRAFICOS.BitMap;
-import FRAMEWORK.GRAFICOS.Sprite;
 import FRAMEWORK.LOGICA.Actor;
 import FRAMEWORK.LOGICA.Game;
 import arkanoid.bloques.BloqueVida;
@@ -19,7 +18,7 @@ import arkanoid.bloques.BloqueBarraMin;
 import arkanoid.bloques.BloqueBarraPega;
 
 /**
- *
+ * @author josevicente
  * @author Carmen
  */
 public class LadrilloSuerte extends Ladrillo{
