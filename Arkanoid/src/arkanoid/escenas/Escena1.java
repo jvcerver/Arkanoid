@@ -51,7 +51,7 @@ public class Escena1 extends Escena{
         this.addActor(tituloPuntosVidas);
         
         //Texto informativo para el usuario
-        textoInformativo = new ActorTexto(game, "Pulsa la barra espaciadora para comenzar");
+        textoInformativo = new ActorTexto(game, "Pulsa flecha arriba para empezar");
         textoInformativo.setPosition((game.SCREEN_WIDTH-textoInformativo.getWidth())/2, ((Mundo)game).getBarra().getY()- ((Mundo)game).getBarra().getHeight()*6);
         textoInformativo.setTamanio(14);
         textoInformativo.setColor(Color.WHITE);
@@ -74,6 +74,7 @@ public class Escena1 extends Escena{
          this.finEscena=true;
          quitarActoresEscena();
          Ladrillo.reiniciarLadrillos();
+         ((Mundo)game).reiniciarBola();
     }
 
     @Override
@@ -86,8 +87,8 @@ public class Escena1 extends Escena{
 
     @Override
     public void reanudar() {
-        textoInformativo.setTexto("");
         game.reanudarJuego();
+        textoInformativo.setTexto("");
     }
 
     @Override
@@ -100,7 +101,5 @@ public class Escena1 extends Escena{
         return new Escena2(game);
     }
     
-    public void setTextoInformativo(String textoInformativo) {
-        this.textoInformativo.setTexto(textoInformativo);
-    }
+
 }

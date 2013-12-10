@@ -60,7 +60,7 @@ public class Escena3 extends Escena{
         this.addActor(textoInformativo);  
         
         //Pared de ladrillos
-        ((Mundo)game).generarParedLadrillosHomogenea(LADRILLO_ALEATORIO, 2, 1, 0, 150, game.SCREEN_HEIGHT/4, this);
+        ((Mundo)game).generarParedLadrillosHomogenea(LADRILLO_ALEATORIO, 1, 1, 0, 150, game.SCREEN_HEIGHT/4, this);
            
         controlEscena=new Control(game,"ESCENA 2");
         controlEscena.setAction(this.SALIR, KeyEvent.VK_ESCAPE, 0);
@@ -76,6 +76,7 @@ public class Escena3 extends Escena{
          this.finEscena=true;
          quitarActoresEscena();
          Ladrillo.reiniciarLadrillos();
+         ((Mundo)game).reiniciarBola();
     }
 
     @Override

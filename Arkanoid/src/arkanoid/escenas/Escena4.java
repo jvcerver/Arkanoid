@@ -89,6 +89,7 @@ public class Escena4 extends Escena{
          this.finEscena=true;
          quitarActoresEscena();
          Ladrillo.reiniciarLadrillos();
+         ((Mundo)game).reiniciarBola();
     }
 
     @Override

@@ -22,19 +22,23 @@ import arkanoid.bloques.BloqueBarraPega;
  *
  * @author Carmen
  */
-public class LadrilloSuerte extends Ladrillo{
+public class LadrilloAleatorio extends Ladrillo{
 
     private final int PUNTOS = 25;
     private BitMap bitMap;
     
-    public LadrilloSuerte(Game game, BitMap bitMap) {
+    public LadrilloAleatorio(Game game, BitMap bitMap) {
         super(game, bitMap);
-        this.bitMap=bitMap;
+            setSpriteActual(new Sprite(Recursos.ladrilloAleatorio,4,40));
     }
 
     @Override
     public void actualizar(int deltaTime) {
-
+        tickTime += deltaTime; 
+        if (tickTime > TICK) {            
+            tickTime -= TICK;
+            this.actualizar(tickTime);
+        }
     }
 
     @Override
@@ -49,20 +53,21 @@ public class LadrilloSuerte extends Ladrillo{
     
     public void crearBono(){
         Bloque bloque = null;
-        
-        if (bitMap.equals(Recursos.ladrilloVida)){
-            bloque = new BloqueVida(this.getGame());
+       
+            switch(this.getSpriteActual().getiFrame()){
+            case 0:
+                bloque = new BloqueBarraMin(this.getGame());
+                break;
+            case 1:
+                bloque = new BloqueBarraPega(this.getGame());
+                break;
+            case 2:
+                bloque = new BloqueBarraMax(this.getGame());
+                break;
+            case 3:
+                bloque = new BloqueVida(this.getGame());
+                break;
         }
-        else if (bitMap.equals(Recursos.ladrilloBarraMax)){
-            bloque = new BloqueBarraMax(this.getGame());
-        }
-        else if (bitMap.equals(Recursos.ladrilloBarraMin)){
-            bloque = new BloqueBarraMin(this.getGame());
-        }
-        else if (bitMap.equals(Recursos.ladrilloBarraPega)){
-            bloque = new BloqueBarraPega(this.getGame());
-        }
-
         
         //Lo añado a la lista de actores
         this.getGame().actorManager.add(bloque);
