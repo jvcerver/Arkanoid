@@ -7,35 +7,38 @@
 package arkanoid.escenas;
 
 import ESCENAS.Escena;
+import FRAMEWORK.GRAFICOS.Sprite;
 import FRAMEWORK.INPUT.Control;
 import FRAMEWORK.LOGICA.ActorTexto;
 import FRAMEWORK.LOGICA.Game;
+import arkanoid.Mundo;
+import arkanoid.Recursos;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 
 public class EscenaFinal extends Escena{
  
-    private ActorTexto tituloFin;
+    private ActorTexto puntosFinales;
     
     public EscenaFinal(Game game){
         super(game);
     }
     @Override
     public void iniciar() {
-        /*FUTURO FONDO*/
-        //Sprite spFondo=new Sprite(Recursos.fondoPresentacion);
-        //game.stageManager.setFondo(spFondo);
+        Sprite spFondo=new Sprite(Recursos.fondoGameOver);
+        game.stageManager.setFondo(spFondo);
         
-        tituloFin=new ActorTexto(game,"GAME OVER.");
-        tituloFin.setPosition(game.SCREEN_WIDTH/2-150,350);
-        tituloFin.setTamanio(30);
-        tituloFin.setColor(Color.WHITE); 
-        game.actorManager.add(tituloFin);
+        ((Mundo)game).resetTextoInformativo();
+        
+        //Texto informativo para el usuario
+        puntosFinales = new ActorTexto(game, "PUNTOS: " + ((Mundo)game).getBarra().getPuntos());
+        puntosFinales.setPosition((game.SCREEN_WIDTH-puntosFinales.getWidth())/2, ((Mundo)game).getBarra().getY()- ((Mundo)game).getBarra().getHeight()*6);
+        puntosFinales.setTamanio(24);
+        puntosFinales.setColor(Color.WHITE);
+        this.addActor(puntosFinales); 
         
         controlEscena=new Control(game,"ESCENA FINAL");
         controlEscena.setAction(this.SALIR, KeyEvent.VK_ESCAPE, 0);
-        controlEscena.setAction(this.PAUSAR, KeyEvent.VK_P, 0);
-        controlEscena.setAction(this.CONTINUAR, KeyEvent.VK_C, 0);
         controlEscena.setOwner(this);
         game.controlManager.addControl(controlEscena);  
     }

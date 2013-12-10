@@ -7,6 +7,7 @@
 package arkanoid.escenas;
 
 import ESCENAS.Escena;
+import FRAMEWORK.GRAFICOS.Sprite;
 import FRAMEWORK.INPUT.Control;
 import FRAMEWORK.LOGICA.ActorTexto;
 import FRAMEWORK.LOGICA.Game;
@@ -21,8 +22,6 @@ import java.awt.event.KeyEvent;
 
 public class Escena1 extends Escena{
 
-    private ActorTexto textoInformativo; 
-    private ActorTexto tituloPuntosVidas;
     private Sonido sonidoFondo;
     
     public Escena1(Game game){
@@ -33,23 +32,11 @@ public class Escena1 extends Escena{
     public void iniciar() {  
         sonidoFondo.loopPlay();
         
-        /*FUTURO FONDO*/
-        //Sprite spFondo=new Sprite(Recursos.fondoPresentacion);
-        //game.stageManager.setFondo(spFondo);
+        Sprite spFondo=new Sprite(Recursos.fondoNegro);
+        game.stageManager.setFondo(spFondo);
         
-         //Titulo vidas y puntos
-        tituloPuntosVidas = new ActorTexto(game,"Puntos " + ((Mundo)game).getBarra().getPuntos());
-        tituloPuntosVidas.setPosition(20, game.SCREEN_HEIGHT - ((Mundo)game).getBarra().getHeight());
-        tituloPuntosVidas.setTamanio(20);
-        tituloPuntosVidas.setColor(Color.BLUE); 
-        this.addActor(tituloPuntosVidas);
-        
-        //Texto informativo para el usuario
-        textoInformativo = new ActorTexto(game, "Pulsa flecha arriba para empezar");
-        textoInformativo.setPosition((game.SCREEN_WIDTH-textoInformativo.getWidth())/2, ((Mundo)game).getBarra().getY()- ((Mundo)game).getBarra().getHeight()*6);
-        textoInformativo.setTamanio(14);
-        textoInformativo.setColor(Color.WHITE);
-        this.addActor(textoInformativo);  
+        //Texto informativo
+        ((Mundo)game).setTextoInformativo("Pulsa la flecha arriba para soltar la bola");
         
         //Pared de ladrillos
         ((Mundo)game).generarParedLadrillosHomogenea(LADRILLO_ROJO, 3, 10, 10, 10, game.SCREEN_HEIGHT/4, this);
@@ -73,7 +60,7 @@ public class Escena1 extends Escena{
 
     @Override
     public void actualizar() {      
-        tituloPuntosVidas.setTexto("Puntos " + ((Mundo)game).getBarra().getPuntos());
+        ((Mundo)game).setTextoPuntosVidas("Puntos " + ((Mundo)game).getBarra().getPuntos());
         if (((Mundo)game).getBarra().getVida() == 0 || Ladrillo.getNumLadrillos()==0)
                 finalizar();
 
@@ -81,13 +68,14 @@ public class Escena1 extends Escena{
 
     @Override
     public void reanudar() {
+        ((Mundo)game).resetTextoInformativo();
         game.reanudarJuego();
-        textoInformativo.setTexto("");
     }
 
     @Override
     public void pausar() {
-
+        ((Mundo)game).setTextoInformativo("Pulsa la barra espaciadora para reanudar el juego");
+        game.pausarJuego();
     }
 
     @Override

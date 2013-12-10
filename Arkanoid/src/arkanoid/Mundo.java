@@ -8,6 +8,7 @@ package arkanoid;
 
 import ESCENAS.Escena;
 import FRAMEWORK.INPUT.Control;
+import FRAMEWORK.LOGICA.ActorTexto;
 import arkanoid.ladrillos.Ladrillo;
 import arkanoid.ladrillos.LadrilloSuerte;
 import FRAMEWORK.LOGICA.Game;
@@ -16,6 +17,7 @@ import arkanoid.ladrillos.LadrilloAleatorio;
 import arkanoid.ladrillos.LadrilloIrrompible;
 import arkanoid.ladrillos.LadrilloNormal;
 import arkanoid.ladrillos.LadrilloResistente;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
@@ -29,6 +31,7 @@ public class Mundo extends Game{
     private ArrayList<Bola> bolas;
     private Sombra sombra;
     private Escena escenaActual;
+    private ActorTexto textoInformativo, tituloPuntosVidas;
     
     //ladrillos
     public static final int LADRILLO_ROJO = 1;
@@ -107,14 +110,40 @@ public class Mundo extends Game{
                 
         //Bola(s)
         bolas = new ArrayList<>();
-        bolas.add(new Bola(this, Recursos.bola));   
+        bolas.add(new Bola(this, Recursos.bola));
         
+        //Texto informativo para el usuario
+        textoInformativo = new ActorTexto(this, "");
+        textoInformativo.setTamanio(14);
+        textoInformativo.setColor(Color.WHITE);
+        
+        //Titulo vidas y puntos
+        tituloPuntosVidas = new ActorTexto(this,"Puntos " + this.getBarra().getPuntos());
+        tituloPuntosVidas.setPosition(20, this.SCREEN_HEIGHT - this.getBarra().getHeight());
+        tituloPuntosVidas.setTamanio(20);
+        tituloPuntosVidas.setColor(Color.WHITE); 
+           
         //Añadir personajes a actorManager
         this.actorManager.add(sombra);
         this.actorManager.add(barra);
         this.actorManager.add(bolas.get(0));
+        this.actorManager.add(textoInformativo); 
+        this.actorManager.add(tituloPuntosVidas); 
         barra.setBola(bolas.get(0));
     }
+    
+    public void setTextoInformativo(String texto){
+        textoInformativo.setTexto(texto);
+        textoInformativo.setPosition((this.SCREEN_WIDTH-textoInformativo.getWidth())/2, this.getBarra().getY()- this.getBarra().getHeight()*5);
+    }
+    
+    public void resetTextoInformativo(){
+        textoInformativo.setTexto("");
+    }
+    
+    public void setTextoPuntosVidas(String texto){
+        tituloPuntosVidas.setTexto(texto);
+    } 
     
     public Sombra getSombra() {
         return sombra;
