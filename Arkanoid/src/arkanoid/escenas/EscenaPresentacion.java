@@ -30,8 +30,8 @@ public class EscenaPresentacion extends Escena{
            
         controlEscena=new Control(game,"ESCENA PRESENTACION");
         controlEscena.setAction(this.SALIR, KeyEvent.VK_SPACE, 0);
-        controlEscena.setAction(this.PAUSAR, KeyEvent.VK_P, 0);
-        controlEscena.setAction(this.CONTINUAR, KeyEvent.VK_C, 0);
+        //controlEscena.setAction(this.PAUSAR, KeyEvent.VK_P, 0);
+        //controlEscena.setAction(this.CONTINUAR, KeyEvent.VK_C, 0);
         controlEscena.setOwner(this);
         game.controlManager.addControl(controlEscena);  
     }

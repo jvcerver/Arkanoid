@@ -163,6 +163,7 @@ public class Barra extends Actor implements ObjetoControlable {
                 break;
             case ARRIBA:
                 bola.setEnEspera(false);
+                mundo.resetTextoInformativo();
                 break;
 
         }//fin switch

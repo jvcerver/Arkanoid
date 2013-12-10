@@ -18,7 +18,7 @@ import java.awt.event.KeyEvent;
 
 public class EscenaFinal extends Escena{
  
-    private ActorTexto textoInformativo;
+    private ActorTexto puntosFinales;
     
     public EscenaFinal(Game game){
         super(game);
@@ -28,17 +28,17 @@ public class EscenaFinal extends Escena{
         Sprite spFondo=new Sprite(Recursos.fondoGameOver);
         game.stageManager.setFondo(spFondo);
         
+        ((Mundo)game).resetTextoInformativo();
+        
         //Texto informativo para el usuario
-        textoInformativo = new ActorTexto(game, "PUNTOS: " + ((Mundo)game).getBarra().getPuntos());
-        textoInformativo.setPosition((game.SCREEN_WIDTH-textoInformativo.getWidth())/2, ((Mundo)game).getBarra().getY()- ((Mundo)game).getBarra().getHeight()*6);
-        textoInformativo.setTamanio(24);
-        textoInformativo.setColor(Color.WHITE);
-        this.addActor(textoInformativo); 
+        puntosFinales = new ActorTexto(game, "PUNTOS: " + ((Mundo)game).getBarra().getPuntos());
+        puntosFinales.setPosition((game.SCREEN_WIDTH-puntosFinales.getWidth())/2, ((Mundo)game).getBarra().getY()- ((Mundo)game).getBarra().getHeight()*6);
+        puntosFinales.setTamanio(24);
+        puntosFinales.setColor(Color.WHITE);
+        this.addActor(puntosFinales); 
         
         controlEscena=new Control(game,"ESCENA FINAL");
         controlEscena.setAction(this.SALIR, KeyEvent.VK_ESCAPE, 0);
-        controlEscena.setAction(this.PAUSAR, KeyEvent.VK_P, 0);
-        controlEscena.setAction(this.CONTINUAR, KeyEvent.VK_C, 0);
         controlEscena.setOwner(this);
         game.controlManager.addControl(controlEscena);  
     }
