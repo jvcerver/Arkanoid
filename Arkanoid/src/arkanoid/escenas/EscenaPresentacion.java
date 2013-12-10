@@ -7,18 +7,17 @@
 package arkanoid.escenas;
 
 import ESCENAS.Escena;
+import FRAMEWORK.GRAFICOS.Sprite;
 import FRAMEWORK.INPUT.Control;
+import FRAMEWORK.LOGICA.Actor;
 import FRAMEWORK.LOGICA.ActorTexto;
 import FRAMEWORK.LOGICA.Game;
 import arkanoid.Mundo;
-import java.awt.Color;
+import arkanoid.Recursos;
 import java.awt.event.KeyEvent;
 
 
 public class EscenaPresentacion extends Escena{
-
-    private ActorTexto titulo;
-    private ActorTexto textoInformativo;
     
     public EscenaPresentacion(Game game){
         super(game);
@@ -26,21 +25,8 @@ public class EscenaPresentacion extends Escena{
     @Override
     public void iniciar() {         
         
-        /*FUTURO FONDO*/
-        //Sprite spFondo=new Sprite(Recursos.fondoPresentacion);
-        //game.stageManager.setFondo(spFondo);
-        
-        titulo=new ActorTexto(game,"TEXTO PRESENTACIÓN");
-        titulo.setPosition((game.SCREEN_WIDTH-titulo.getWidth())/2, game.SCREEN_HEIGHT/2);
-        titulo.setColor(Color.MAGENTA);
-        this.addActor(titulo);
-        
-        //Texto informativo para el usuario
-        textoInformativo = new ActorTexto(game, "Comienza el juego pulsando la barra espaciadora, libera la bola con flecha arriba");
-        textoInformativo.setPosition((game.SCREEN_WIDTH-textoInformativo.getWidth())/2, ((Mundo)game).getBarra().getY()- ((Mundo)game).getBarra().getHeight()*6);
-        textoInformativo.setTamanio(14);
-        textoInformativo.setColor(Color.WHITE);
-        this.addActor(textoInformativo);
+        Sprite spFondo=new Sprite(Recursos.intro);
+        game.stageManager.setFondo(spFondo);
            
         controlEscena=new Control(game,"ESCENA PRESENTACION");
         controlEscena.setAction(this.SALIR, KeyEvent.VK_SPACE, 0);
@@ -54,7 +40,8 @@ public class EscenaPresentacion extends Escena{
     public void finalizar() {
         game.controlManager.removeControl(controlEscena);
         this.finEscena=true; 
-        this.quitarActoresEscena();     
+        this.quitarActoresEscena();  
+        ((Mundo)game).reiniciarBola();
     }
 
     @Override

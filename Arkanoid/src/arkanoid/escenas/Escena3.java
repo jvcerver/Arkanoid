@@ -6,6 +6,7 @@
 package arkanoid.escenas;
 
 import ESCENAS.Escena;
+import FRAMEWORK.GRAFICOS.Sprite;
 import FRAMEWORK.INPUT.Control;
 import FRAMEWORK.LOGICA.ActorTexto;
 import FRAMEWORK.LOGICA.Game;
@@ -32,15 +33,14 @@ public class Escena3 extends Escena{
     public void iniciar() {  
         sonidoFondo.loopPlay();
         
-        /*FUTURO FONDO*/
-        //Sprite spFondo=new Sprite(Recursos.fondoPresentacion);
-        //game.stageManager.setFondo(spFondo);
+        Sprite spFondo=new Sprite(Recursos.fondoAzulGuay);
+        game.stageManager.setFondo(spFondo);
         
          //Titulo vidas y puntos
         tituloPuntosVidas = new ActorTexto(game,"Puntos " + ((Mundo)game).getBarra().getPuntos());
         tituloPuntosVidas.setPosition(20, game.SCREEN_HEIGHT - ((Mundo)game).getBarra().getHeight());
         tituloPuntosVidas.setTamanio(20);
-        tituloPuntosVidas.setColor(Color.BLUE); 
+        tituloPuntosVidas.setColor(Color.WHITE); 
         this.addActor(tituloPuntosVidas);
         
         //Texto informativo para el usuario

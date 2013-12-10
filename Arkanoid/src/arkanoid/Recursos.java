@@ -44,6 +44,15 @@ public class Recursos {
     public static BitMap bloqueBarraMin = new BitMap("bloques/bloqueBarraMin.png");
     public static BitMap bloqueBaraPega = new BitMap("bloques/bloqueBarraPega.png");
     
+    //Fondos
+    public static BitMap fondoNegro = new BitMap("fondos/fondoNegro.jpg");
+    public static BitMap fondoAzul = new BitMap("fondos/fondoAzul.jpg");
+    public static BitMap fondoAzulGuay = new BitMap("fondos/fondoAzulGuay.jpg");
+    public static BitMap fondoHojas = new BitMap("fondos/fondoHojas.jpg");
+    public static BitMap fondoLineas = new BitMap("fondos/fondoLineas.jpg");
+    public static BitMap fondoGameOver = new BitMap("fondos/fondoGameOver.jpg");
+    public static BitMap intro = new BitMap("fondos/intro.jpg");
+    
     /******SONIDOS***********/
     public static Sonido sonidoGolpeBola=new Sonido("golpeBola.WAV");
     public static Sonido sonidoFondo=new Sonido("sonidoFondo.wav");
