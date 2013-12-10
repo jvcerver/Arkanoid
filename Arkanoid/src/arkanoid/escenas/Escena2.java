@@ -1,8 +1,7 @@
 /**
  *
- * @author Rafael Pérez
- * DESARROLLO DE APLICACIONES MULTIPLATAFORMAS
- * COLEGIO STMA TRINIDAD DE SALAMANCA
+ * @author josevicente
+ * @author Carmen
  */
 
 package arkanoid.escenas;
@@ -13,7 +12,6 @@ import FRAMEWORK.LOGICA.ActorTexto;
 import FRAMEWORK.LOGICA.Game;
 import FRAMEWORK.SONIDO.Sonido;
 import arkanoid.Mundo;
-import static arkanoid.Mundo.LADRILLO_ALEATORIO;
 import static arkanoid.Mundo.LADRILLO_AMARILLO;
 import static arkanoid.Mundo.LADRILLO_AZUL;
 import static arkanoid.Mundo.LADRILLO_BARRA_MAX;

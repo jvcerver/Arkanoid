@@ -9,14 +9,13 @@ package arkanoid;
 import FRAMEWORK.LOGICA.Actor;
 
 /**
- *
+ * @author josevicente
  * @author Carmen
  */
 public class Sombra extends Actor{
     
     public Sombra(Mundo mundo) {
         super(mundo, Recursos.sombra);
-        //this.dx=(Mundo.NORMAL); 
     }
     
     @Override

@@ -9,6 +9,7 @@ package arkanoid;
 /**
  *
  * @author josevicente
+ * @author Carmen
  */
 public class Arkanoid {
 

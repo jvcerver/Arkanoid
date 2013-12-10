@@ -1,7 +1,6 @@
 /**
- *
- * @author Rafael Pérez DESARROLLO DE APLICACIONES MULTIPLATAFORMAS COLEGIO STMA
- * TRINIDAD DE SALAMANCA
+ * @author josevicente
+ * @author Carmen
  */
 package arkanoid;
 
@@ -36,7 +35,6 @@ public class Bola extends Actor {
         y = mundo.getBarra().getY() - this.getHeight();
         dx = desplazamiento;
         dy = -desplazamiento;
-        //mundo.pausarJuego();
         
     }
 
@@ -186,16 +184,16 @@ public class Bola extends Actor {
 
     @Override
     public void destruir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     
     }
 
     @Override
     public void crear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
     public void debilitar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 }

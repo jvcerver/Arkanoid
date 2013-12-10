@@ -11,8 +11,8 @@ import FRAMEWORK.LOGICA.Game;
 import arkanoid.Mundo;
 
 /**
- *
  * @author josevicente
+ * @author Carmen
  */
 public abstract class Ladrillo extends Actor {
     private static int numLadrillos;

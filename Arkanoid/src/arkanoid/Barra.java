@@ -8,17 +8,15 @@ package arkanoid;
 import FRAMEWORK.GRAFICOS.Sprite;
 import FRAMEWORK.INPUT.ObjetoControlable;
 import FRAMEWORK.LOGICA.Actor;
-import static arkanoid.Recursos.vida;
 import arkanoid.bloques.BloqueBarraMax;
 import arkanoid.bloques.BloqueBarraMin;
 import arkanoid.bloques.BloqueBarraPega;
 import arkanoid.bloques.BloqueVida;
 import java.util.ArrayList;
-import static javax.swing.text.html.HTML.Tag.HEAD;
 
 /**
- *
  * @author josevicente
+ * @author Carmen
  */
 public class Barra extends Actor implements ObjetoControlable {
 
@@ -135,17 +133,17 @@ public class Barra extends Actor implements ObjetoControlable {
 
     @Override
     public void destruir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   
     }
 
     @Override
     public void crear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   
     }
 
     @Override
     public void debilitar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   
     }
 
     public final static int DERECHA = 0;
