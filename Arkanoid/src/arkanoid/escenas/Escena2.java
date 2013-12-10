@@ -80,6 +80,7 @@ public class Escena2 extends Escena{
          this.finEscena=true;
          quitarActoresEscena();
          Ladrillo.reiniciarLadrillos();
+         ((Mundo)game).reiniciarBola();
     }
 
     @Override

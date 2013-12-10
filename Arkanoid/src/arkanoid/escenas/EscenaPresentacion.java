@@ -38,7 +38,7 @@ public class EscenaPresentacion extends Escena{
         this.addActor(titulo);
         
         //Texto informativo para el usuario
-        textoInformativo = new ActorTexto(game, "Comienza el juego pulsando la barra espaciadora");
+        textoInformativo = new ActorTexto(game, "Comienza el juego pulsando la barra espaciadora, libera la bola con flecha arriba");
         textoInformativo.setPosition((game.SCREEN_WIDTH-textoInformativo.getWidth())/2, ((Mundo)game).getBarra().getY()- ((Mundo)game).getBarra().getHeight()*6);
         textoInformativo.setTamanio(14);
         textoInformativo.setColor(Color.WHITE);

@@ -10,7 +10,6 @@ import FRAMEWORK.GRAFICOS.BitMap;
 import FRAMEWORK.LOGICA.Actor;
 import FRAMEWORK.LOGICA.CollisionManager;
 import FRAMEWORK.SONIDO.Sonido;
-import arkanoid.escenas.Escena1;
 
 public class Bola extends Actor {
 
@@ -44,7 +43,7 @@ public class Bola extends Actor {
     //SE HEREDA GOLPEAR
     @Override
     public void recibirGolpe(Actor actor) {
-        //reiniciar();
+      
     }
 
     @Override
@@ -52,8 +51,6 @@ public class Bola extends Actor {
         int xa = x, ya = y;
         this.x += dx;
         this.y += dy;
-        //this.addX(dx);
-        //this.addY(dy);
 
 //COMPROBAR SI CHOCA CON LOS BORDES DE LA PANTALLA
         if (this.x < 0) {//borde izdo
@@ -88,16 +85,6 @@ public class Bola extends Actor {
             //invierte su trayectoria y
             dy = dy * -1;
             golpeBola.play();
-            /*
-             if (((Barra)conQueChoco).isCogerBola()) {
-             //detenemos el movimiento
-             int antDx = dx;
-             int antDy = dy;
-             dx = 0;
-             dy = 0;
-                
-             }
-             */
         }
         if (conQueChoco instanceof Ladrillo) {
             golpeBola.play();

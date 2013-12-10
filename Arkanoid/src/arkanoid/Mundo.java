@@ -7,12 +7,12 @@
 package arkanoid;
 
 import ESCENAS.Escena;
-import FRAMEWORK.GRAFICOS.Sprite;
 import FRAMEWORK.INPUT.Control;
 import arkanoid.ladrillos.Ladrillo;
 import arkanoid.ladrillos.LadrilloSuerte;
 import FRAMEWORK.LOGICA.Game;
 import arkanoid.escenas.EscenaPresentacion;
+import arkanoid.ladrillos.LadrilloAleatorio;
 import arkanoid.ladrillos.LadrilloIrrompible;
 import arkanoid.ladrillos.LadrilloNormal;
 import arkanoid.ladrillos.LadrilloResistente;
@@ -59,6 +59,10 @@ public class Mundo extends Game{
     public Barra getBarra(){
         return barra;
     }
+    public void reiniciarBola(){
+        bolas.get(0).reiniciar();
+    }
+
 
     /**
      *
@@ -166,7 +170,7 @@ public class Mundo extends Game{
                         ladrillo=new LadrilloSuerte(this, Recursos.ladrilloBarraPega);
                         break;
                     case LADRILLO_ALEATORIO: //Ladrillo aleatorio
-                        ladrillo=new LadrilloSuerte(this, Recursos.ladrilloAleatorio);
+                        ladrillo=new LadrilloAleatorio(this, Recursos.ladrilloAleatorio);
                         break;        
                 }    
     
@@ -175,7 +179,7 @@ public class Mundo extends Game{
                     posy = posYInicial + fila*(ladrillo.getHeight() + vgapLadrillo);
                     ladrillo.setPosition(posx,posy);
                     escena.addActor(ladrillo);                   
-                    //this.actorManager.add(ladrillo);
+                    
                 }
                                 
             }          
