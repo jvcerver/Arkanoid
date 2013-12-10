@@ -4,13 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group/>
         <group name="AD">
-            <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/FRAMEWORK/LOGICA/StageManager.java</file>
             <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/escenas/Escena2.java</file>
-            <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/escenas/EscenaFinal.java</file>
+            <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/Mundo.java</file>
+            <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/escenas/Escena4.java</file>
             <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/escenas/Escena1.java</file>
             <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/escenas/Escena3.java</file>
             <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/escenas/EscenaPresentacion.java</file>
-            <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/Recursos.java</file>
+            <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/Bola.java</file>
+            <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/Barra.java</file>
+            <file>file:/Users/Carmen/Arkanoid/Arkanoid/src/arkanoid/Sombra.java</file>
         </group>
     </open-files>
 </project-private>

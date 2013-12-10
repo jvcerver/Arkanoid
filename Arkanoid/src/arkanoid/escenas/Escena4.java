@@ -62,8 +62,8 @@ public class Escena4 extends Escena{
            
         controlEscena=new Control(game,"ESCENA 2");
         controlEscena.setAction(this.SALIR, KeyEvent.VK_ESCAPE, 0);
-        //controlEscena.setAction(this.PAUSAR, KeyEvent.VK_P, 0);
-        //controlEscena.setAction(this.CONTINUAR, KeyEvent.VK_SPACE, 0);
+        controlEscena.setAction(this.PAUSAR, KeyEvent.VK_P, 0);
+        controlEscena.setAction(this.CONTINUAR, KeyEvent.VK_SPACE, 0);
         controlEscena.setOwner(this);
         game.controlManager.addControl(controlEscena);  
     }
@@ -87,13 +87,12 @@ public class Escena4 extends Escena{
 
     @Override
     public void reanudar() {
-        textoInformativo.setTexto("");
         game.reanudarJuego();
     }
 
     @Override
     public void pausar() {
-
+        game.pausarJuego();
     }
 
     @Override
