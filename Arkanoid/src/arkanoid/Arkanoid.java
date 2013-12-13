@@ -17,7 +17,7 @@ public class Arkanoid {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        //inicio del juego
         new Mundo().iniciar();
 
     }
